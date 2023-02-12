@@ -23,8 +23,13 @@ public class DamagePlayer : MonoBehaviour
     {
 
         if(collision.CompareTag("Player"))
-        { 
-            PlayerHealthController.instance.DealDamage();
+        {
+
+            if (!gameObject.CompareTag("EnemyMonster"))
+            {
+                PlayerHealthController.instance.DealDamage();
+            }
+            
         }
     }
 }
