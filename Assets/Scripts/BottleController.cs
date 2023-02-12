@@ -10,11 +10,15 @@ public class BottleController : MonoBehaviour
     public TMP_Text nextBottle;
     public TMP_Text messageBox;
     public TMP_Text nextBottleHeader;
+    public GameObject victoryBanner;
+    public GameObject player;
+    public GameObject dependentCheckpoint;
 
     // Start is called before the first frame update
     void Start()
     {
         globalSequence.gameObject.SetActive(false);
+        victoryBanner.SetActive(false);
     }
 
     // Update is called once per frame
@@ -26,6 +30,7 @@ public class BottleController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         gameObject.SetActive(false);
+        dependentCheckpoint.GetComponent<BoxCollider2D>().isTrigger = true;
 
         globalSequence.text = globalSequence.text.Substring(1);
 
@@ -36,7 +41,8 @@ public class BottleController : MonoBehaviour
         else
         {
 
-            messageBox.text = "LEVEL COMPLETED ";
+            victoryBanner.SetActive(true);
+            player.SetActive(false);
 
             nextBottle.text = "";
             nextBottleHeader.text = "";

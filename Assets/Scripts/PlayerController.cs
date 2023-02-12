@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TMP_Text timerText;
 
     private char lastChar;
-    private bool hitAndDeductPoint;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +35,11 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         currentSeq.text = "";
-        hitAndDeductPoint = false;
+        messageBox.text = "Jump on the platform when it's color is same as pickup bottle color.";
+        targetSeqHeader.gameObject.SetActive(false);
+        targetSeq.gameObject.SetActive(false);
+        currentSeqHeader.gameObject.SetActive(false);
+        currentSeq.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -79,20 +82,12 @@ public class PlayerController : MonoBehaviour
 
         float positionX = transform.position.x;
 
-        if (positionX < -11.5)
-        {
-            messageBox.text = "Jump on the platform when it's color is same as pickup bottle color.";
-            targetSeqHeader.gameObject.SetActive(false);
-            targetSeq.gameObject.SetActive(false);
-            currentSeqHeader.gameObject.SetActive(false);
-            currentSeq.gameObject.SetActive(false);
-
-        }
-        else if (positionX < 4.6)
+        if (positionX > -9 && positionX < -8.5)
         {
             messageBox.text = "";
+
         }
-        else if (positionX < 9)
+        else if (positionX > 5 && positionX < 6)
         {
             messageBox.text = "Jump on colors as per the Target sequence.";
             targetSeqHeader.gameObject.SetActive(true);
@@ -100,29 +95,19 @@ public class PlayerController : MonoBehaviour
             currentSeqHeader.gameObject.SetActive(true);
             currentSeq.gameObject.SetActive(true);
         }
-        else if (positionX < 11.21)
+        else if(positionX > 11.8 && positionX < 12.8)
         {
             messageBox.text = "";
         }
-        else if (hitAndDeductPoint && positionX < 57)
+        else if(positionX > 28 && positionX <29)
         {
-            messageBox.text = "Time deducted by 5...";
-        }
-        else if (positionX > 28)
-        {
-            Debug.Log("Enterd right place");
+            messageBox.text = "";
             targetSeqHeader.gameObject.SetActive(false);
             targetSeq.gameObject.SetActive(false);
             currentSeqHeader.gameObject.SetActive(false);
             currentSeq.gameObject.SetActive(false);
-            messageBox.text = "";
-            
         }
 
-        if (positionX > 57)
-        {
-            hitAndDeductPoint = false;
-        }
         if (totalTime > 0)
         {
             totalTime -= Time.deltaTime;
@@ -130,7 +115,8 @@ public class PlayerController : MonoBehaviour
         else
         {
             totalTime = 0;
-            //Destroy(player);
+            messageBox.text = "TIME'S UP, GAME OVER..";
+            player.gameObject.SetActive(false);
         }
         DisplayTime(totalTime);
 
@@ -170,7 +156,8 @@ public class PlayerController : MonoBehaviour
         else if (tag.Equals("EnemyMonster") || tag.Equals("FireBall"))
         {
             totalTime = totalTime - 5;
-            hitAndDeductPoint = true;
+            messageBox.text = "5 Seconds Lost...";
+            Invoke(nameof(ResetMessageBox), 1f);
         }
   
 
@@ -181,7 +168,7 @@ public class PlayerController : MonoBehaviour
 
         if (currentSeq.text.Equals(targetSeq.text))
         {
-            messageBox.text = "Sequence Satisfied.\n\n Pick the Blue bottles.";
+            messageBox.text = "Sequence Satisfied.\n\n Pick the Blue bottle.";
             blackBox.SetActive(true);
 
             GameObject.Find("RedFloor").GetComponent<SpriteRenderer>().color= new Color(0,0,0,1);
@@ -201,5 +188,11 @@ public class PlayerController : MonoBehaviour
         float minutes = Mathf.FloorToInt(time / 60);
         float seconds = Mathf.FloorToInt(time % 60);
         timerText.text = "Time- " + string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+
+    void ResetMessageBox()
+    {        
+        messageBox.text = "";
     }
 }
