@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - RedFloor
+  - YellowFloor
+  - OrangeFloor
+  - GreenFloor
+  - VioletFloor
+  - BlackFloor
+  - JumpingTrapEndPoint
+  - JumpingTrapStartPoint
+  - ColorChangingPlatform
+  - RedBottle
+  - BlueBottle
+  - MovingPlatform
+  - EnemyMonster
+  - FireBall
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Ground
+  - Water
+  - UI
+  - Player
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: BG
+    uniqueID: 4112267537
+    locked: 0
+  - name: World
+    uniqueID: 501870519
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 1295463191
+    locked: 0
