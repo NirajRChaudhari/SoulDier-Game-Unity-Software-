@@ -23,7 +23,7 @@ public class DropletController : MonoBehaviour
     {
         if (isGrounded())
         {
-            Debug.Log("Drop on ground");
+            //Debug.Log("Drop on ground");
             gameObject.SetActive(false);
             gameObject.transform.position = new Vector2(startX, startY);
             gameObject.SetActive(true);

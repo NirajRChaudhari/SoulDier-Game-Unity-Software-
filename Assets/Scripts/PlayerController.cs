@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     public TMP_Text messageBox;
     public GameObject blackBox;
 
-    private float totalTime = 90;
+    public static float totalTime = 90;
     [SerializeField] private TMP_Text timerText;
 
     private char lastChar;
@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour
     {
         string tag = collision.gameObject.tag;
 
-        Debug.Log("Touched the floor " + tag);
+        //Debug.Log("Touched the floor " + tag);
 
         if (tag.Equals("RedFloor") && lastChar!='R')
         {
