@@ -10,7 +10,7 @@ public class CheckpointController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameObject.GetComponent<BoxCollider2D>().isTrigger = false;
     }
 
     // Update is called once per frame
@@ -25,8 +25,6 @@ public class CheckpointController : MonoBehaviour
         {
             messageBox.text = "Pick up the Bottle to go ahead. ";
             Invoke(nameof(ResetMessageBox), 4f);
-
-            gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
         }
     }
 
