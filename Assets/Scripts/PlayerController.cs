@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     public TMP_Text messageBox;
     public GameObject blackBox;
 
-    private float totalTime = 120;
+    public static float totalTime = 120;
     [SerializeField] private TMP_Text timerText;
 
     private char lastChar;
