@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         currentSeq.text = "";
-        messageBox.text = "Jump on the platform when it's color is same as pickup bottle color.";
+        messageBox.text = "Jump on the platform when it's color is same as pickup bottle color.      (Press Spacebar Twice for Double Jump)";
         targetSeqHeader.gameObject.SetActive(false);
         targetSeq.gameObject.SetActive(false);
         currentSeqHeader.gameObject.SetActive(false);
@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour
     {
         string tag = collision.gameObject.tag;
 
-        Debug.Log("Touched the floor " + tag);
+        //Debug.Log("Touched the floor " + tag);
 
         if (tag.Equals("RedFloor") && lastChar!='R')
         {
