@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
 
-public class PlayerController : MonoBehaviour
+public class PlayerControllerTutorial : MonoBehaviour
 {
     public float moveSpeed;
     public float jumpForce;
@@ -36,11 +35,11 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         currentSeq.text = "";
-        messageBox.text = "Jump on the platform when it's color is same as pickup bottle color.      (Press Spacebar Twice for Double Jump)";
-        targetSeqHeader.gameObject.SetActive(false);
-        targetSeq.gameObject.SetActive(false);
-        currentSeqHeader.gameObject.SetActive(false);
-        currentSeq.gameObject.SetActive(false);
+        messageBox.text = "Match current and target sequence! Jump and Try :)";
+        targetSeqHeader.gameObject.SetActive(true);
+        targetSeq.gameObject.SetActive(true);
+        currentSeqHeader.gameObject.SetActive(true);
+        currentSeq.gameObject.SetActive(true);
     }
 
     // Update is called once per frame
@@ -88,9 +87,9 @@ public class PlayerController : MonoBehaviour
             messageBox.text = "";
 
         }
-        else if (positionX > 5 && positionX < 6)
+        else if (positionX > -1 && positionX < 3)
         {
-            messageBox.text = "Jump on colors as per the Target sequence.";
+            messageBox.text = "Match current and target sequence! Jump and Try :)";
             targetSeqHeader.gameObject.SetActive(true);
             targetSeq.gameObject.SetActive(true);
             currentSeqHeader.gameObject.SetActive(true);
@@ -117,9 +116,7 @@ public class PlayerController : MonoBehaviour
         {
             totalTime = 0;
             messageBox.text = "TIME'S UP, GAME OVER..";
-            // call restartLevel here
             player.gameObject.SetActive(false);
-            Invoke(nameof(restartLevel), 3f);
         }
         DisplayTime(totalTime);
 
@@ -129,7 +126,7 @@ public class PlayerController : MonoBehaviour
     {
         string tag = collision.gameObject.tag;
 
-        //Debug.Log("Touched the floor " + tag);
+        Debug.Log("Touched the floor " + tag);
 
         if (tag.Equals("RedFloor") && lastChar!='R')
         {
@@ -171,7 +168,7 @@ public class PlayerController : MonoBehaviour
 
         if (currentSeq.text.Equals(targetSeq.text))
         {
-            messageBox.text = "Sequence Satisfied.\n\n Pick the Blue bottle.";
+            // messageBox.text = "Sequence Satisfied.\n\n Pick the Blue bottle.";
             blackBox.SetActive(true);
 
             GameObject.Find("RedFloor").GetComponent<SpriteRenderer>().color= new Color(0,0,0,1);
@@ -197,9 +194,5 @@ public class PlayerController : MonoBehaviour
     void ResetMessageBox()
     {        
         messageBox.text = "";
-    }
-
-    private void restartLevel() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
