@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
         {
             messageBox.text = "";
         }
-        else if(positionX > 28 && positionX <29)
+        else if(positionX > 28 && positionX <32)
         {
             messageBox.text = "";
             targetSeqHeader.gameObject.SetActive(false);
@@ -169,7 +169,7 @@ public class PlayerController : MonoBehaviour
             currentSeq.text = currentSeq.text.Substring(1);
         }
 
-        if (currentSeq.text.Equals(targetSeq.text))
+        if (currentSeq.text.Equals(targetSeq.text) && transform.position.x<30)
         {
             messageBox.text = "Sequence Satisfied.\n\n Pick the Blue bottle.";
             blackBox.SetActive(true);
