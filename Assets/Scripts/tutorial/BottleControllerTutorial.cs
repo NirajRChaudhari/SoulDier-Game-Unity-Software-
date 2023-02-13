@@ -2,16 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
 
-public class BottleController : MonoBehaviour
+public class BottleControllerTutorial : MonoBehaviour
 {
 
     public TMP_Text globalSequence;
-    public TMP_Text nextBottle;
     public TMP_Text messageBox;
-    public TMP_Text nextBottleHeader;
-    public GameObject victoryBanner;
     public GameObject player;
     public GameObject dependentCheckpoint;
 
@@ -19,7 +15,7 @@ public class BottleController : MonoBehaviour
     void Start()
     {
         globalSequence.gameObject.SetActive(false);
-        victoryBanner.SetActive(false);
+        // victoryBanner.SetActive(false);
     }
 
     // Update is called once per frame
@@ -37,20 +33,18 @@ public class BottleController : MonoBehaviour
 
         if(globalSequence.text != "")
         {
-            nextBottle.text = getColorName(globalSequence.text[0]);
+            // nextBottle.text = getColorName(globalSequence.text[0]);
         }
         else
         {
 
-            victoryBanner.SetActive(true);
-            // run next scene
-
+            // victoryBanner.SetActive(true);
             player.SetActive(false);
 
-            nextBottle.text = "";
-            nextBottleHeader.text = "";
-            Invoke("levelComplete", 3f);
+            // nextBottle.text = "";
+            // nextBottleHeader.text = "";
         }
+
         messageBox.text="";
     }
 
@@ -58,18 +52,10 @@ public class BottleController : MonoBehaviour
     {
         switch (colorCode)
         {
-            case 'R':
-                //nextBottle.color = Color.red;
-                return "Red";
 
             case 'B':
-                //nextBottle.color = Color.blue;
-
+                //nextBottle.color = Color.blue
                 return "Blue";
-
-            case 'G':
-                //nextBottle.color = Color.green;
-                return "Green";
 
             default:
                 //nextBottle.color = Color.white;
@@ -77,8 +63,5 @@ public class BottleController : MonoBehaviour
         }
         
     }
-    
-    private void levelComplete() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
+           
 }
