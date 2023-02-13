@@ -25,6 +25,8 @@ public class CheckpointController : MonoBehaviour
         {
             messageBox.text = "Pick up the Bottle to go ahead. ";
             Invoke(nameof(ResetMessageBox), 4f);
+
+            gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
         }
     }
 
