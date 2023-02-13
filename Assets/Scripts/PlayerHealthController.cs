@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealthController : MonoBehaviour
 {
@@ -59,8 +60,9 @@ public class PlayerHealthController : MonoBehaviour
                 messageBox.text = "GAME OVER";
 
                 gameObject.SetActive(false);
-                
                 currentHealth = 0;
+                Invoke(nameof(restartLevel), 3f);
+
             }
             else
             {
@@ -72,5 +74,38 @@ public class PlayerHealthController : MonoBehaviour
 
             UIController.instance.UpdateHealthDisplay();
         }
+    }
+
+    // private void OnCollisionEnter2D(Collision2D collision)
+    // {
+	// 	Debug.Log("Hitting it man $$$$$$$$$$$$$" + collision.gameObject.tag);
+	// 	if(collision.gameObject.tag=="") return;
+    // 	if (collision.gameObject.tag == "Red"){
+    // 		Global.cur_sequence+="R";
+    //         Debug.Log(Global.cur_sequence);
+    // 	}
+    //     else if (collision.gameObject.tag == "Yellow"){
+    // 		Global.cur_sequence+="Y";
+    //         Debug.Log(Global.cur_sequence);
+    // 	}
+    //             else if (collision.gameObject.tag == "Sky"){
+    // 		Global.cur_sequence+="S";
+    //         Debug.Log(Global.cur_sequence);
+    // 	}
+    //             else if (collision.gameObject.tag == "Pink"){
+    // 		Global.cur_sequence+="P";
+    //         Debug.Log(Global.cur_sequence);
+    // 	}
+    //             else if (collision.gameObject.tag == "Blue"){
+    // 		Global.cur_sequence+="B";
+    //         Debug.Log(Global.cur_sequence);
+    // 	}
+    //             else if (collision.gameObject.tag == "Green"){
+    // 		Global.cur_sequence+="G";
+    //         Debug.Log(Global.cur_sequence);
+    // 	}
+    // }
+        private void restartLevel() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
