@@ -50,17 +50,19 @@ public class SendAnalytics : MonoBehaviour
     {
         // Create the form and enter responses
         WWWForm form = new WWWForm();
-        form.AddField("entry.226111635", sessionID);
-        form.AddField("entry.1891867197", testInt);
-        form.AddField("entry.1119269862", testBool);
-        form.AddField("entry.669354282", testFloat);
-        form.AddField("entry.1914846611", _checkpoint_name);
-        form.AddField("entry.419101719", _time_taken);
+        form.AddField("entry.366340186", sessionID);
+        form.AddField("entry.655163041", testInt);
+        form.AddField("entry.244123968", testBool);
+        form.AddField("entry.431586524", testFloat);
+        form.AddField("entry.1421423374", _checkpoint_name);
+        form.AddField("entry.42440326", _time_taken);
         //Debug.Log("Hi");
         Debug.Log(_checkpoint_name);
         // Send responses and verify result
         using (UnityWebRequest www = UnityWebRequest.Post(URL, form))
         {
+            www.disposeUploadHandlerOnDispose = true;
+             www.disposeDownloadHandlerOnDispose = true;
             yield return www.SendWebRequest();
             if (www.result != UnityWebRequest.Result.Success)
             {
@@ -73,6 +75,8 @@ public class SendAnalytics : MonoBehaviour
             }
 
             www.Dispose();
+            // form.Dispose();
         }
+
     }
 }
