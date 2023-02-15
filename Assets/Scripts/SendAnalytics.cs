@@ -59,8 +59,8 @@ public class SendAnalytics : MonoBehaviour
         //Debug.Log("Hi");
         Debug.Log(_checkpoint_name);
         // Send responses and verify result
-        using (UnityWebRequest www = UnityWebRequest.Post(URL, form))
-        {
+        UnityWebRequest www = UnityWebRequest.Post(URL, form);
+        // {
             www.disposeUploadHandlerOnDispose = true;
              www.disposeDownloadHandlerOnDispose = true;
             yield return www.SendWebRequest();
@@ -76,7 +76,7 @@ public class SendAnalytics : MonoBehaviour
 
             www.Dispose();
             // form.Dispose();
-        }
+        // }
 
     }
 }
