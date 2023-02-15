@@ -11,8 +11,8 @@ public class SendAnalytics : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            Debug.Log(gameObject.name);
-            Debug.Log(PlayerController.totalTime);
+            // Debug.Log(gameObject.name);
+            // Debug.Log(PlayerController.totalTime);
             Send(gameObject.name, PlayerController.totalTime);
             gameObject.SetActive(false);
 
@@ -57,7 +57,7 @@ public class SendAnalytics : MonoBehaviour
         form.AddField("entry.1421423374", _checkpoint_name);
         form.AddField("entry.42440326", _time_taken);
         //Debug.Log("Hi");
-        Debug.Log(_checkpoint_name);
+        // Debug.Log(_checkpoint_name);
         // Send responses and verify result
         UnityWebRequest www = UnityWebRequest.Post(URL, form);
         // {

@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     public TMP_Text targetSeqHeader;
     public TMP_Text messageBox;
     public GameObject blackBox;
+    public int jump_counter;
+    private bool seq_jump_flag;
 
     public static float totalTime = 120;
     [SerializeField] private TMP_Text timerText;
@@ -41,6 +43,8 @@ public class PlayerController : MonoBehaviour
         targetSeq.gameObject.SetActive(false);
         currentSeqHeader.gameObject.SetActive(false);
         currentSeq.gameObject.SetActive(false);
+        jump_counter=0;
+        seq_jump_flag=false;
     }
 
     // Update is called once per frame
@@ -128,33 +132,44 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         string tag = collision.gameObject.tag;
+        // Debug.Log("Touched the floor " + tag);
 
-        //Debug.Log("Touched the floor " + tag);
 
         if (tag.Equals("RedFloor") && lastChar!='R')
         {
             currentSeq.text += "R";
             lastChar = 'R';
+            jump_counter+=1;
+            Debug.Log("Touched the floor " + tag);
+
         }
         else if (tag.Equals("YellowFloor") && lastChar != 'Y')
         {
             currentSeq.text += "Y";
             lastChar = 'Y';
+            jump_counter+=1;
+            Debug.Log("Touched the floor " + tag);
         }
         else if (tag.Equals("OrangeFloor") && lastChar != 'O')
         {
             currentSeq.text += "O";
             lastChar = 'O';
+            jump_counter+=1;
+            Debug.Log("Touched the floor " + tag);
         }
         else if (tag.Equals("GreenFloor") && lastChar != 'G')
         {
             currentSeq.text += "G";
             lastChar = 'G';
+            jump_counter+=1;
+            Debug.Log("Touched the floor " + tag);
         }
         else if (tag.Equals("VioletFloor") && lastChar != 'V')
         {
             currentSeq.text += "V";
             lastChar = 'V';
+            jump_counter+=1;
+            Debug.Log("Touched the floor " + tag);
         }
         else if (tag.Equals("EnemyMonster") || tag.Equals("FireBall"))
         {
@@ -173,7 +188,14 @@ public class PlayerController : MonoBehaviour
         {
             messageBox.text = "Sequence Satisfied.\n\n Pick the Blue bottle.";
             blackBox.SetActive(true);
-
+            // Debug.Log("adfsdf");
+            if (seq_jump_flag==false){
+            SendAnalytics2 ob = gameObject.AddComponent<SendAnalytics2>();
+            Debug.Log("Jump Counter: "+jump_counter);
+            // Debug.Log("seqlen: "+seq_len);
+            ob.Send(5, jump_counter);
+            seq_jump_flag=true;
+            }
             GameObject.Find("RedFloor").GetComponent<SpriteRenderer>().color= new Color(0,0,0,1);
             GameObject.Find("BlueFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
             GameObject.Find("OrangeFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
