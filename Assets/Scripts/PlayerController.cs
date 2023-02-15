@@ -171,12 +171,23 @@ public class PlayerController : MonoBehaviour
             jump_counter+=1;
             Debug.Log("Touched the floor " + tag);
         }
-        else if (tag.Equals("EnemyMonster") || tag.Equals("FireBall"))
+        else if (tag.Equals("EnemyMonster"))
         {
             totalTime = totalTime - 5;
+            SendAnalytics3 ob = gameObject.AddComponent<SendAnalytics3>();
+            ob.Send("Monster");
             messageBox.text = "5 Seconds Lost...";
             Invoke(nameof(ResetMessageBox), 1f);
         }
+                else if        (tag.Equals("FireBall"))
+        {
+            totalTime = totalTime - 5;
+            SendAnalytics3 ob = gameObject.AddComponent<SendAnalytics3>();
+            messageBox.text = "5 Seconds Lost...";
+                ob.Send("Dropping Box");
+            Invoke(nameof(ResetMessageBox), 1f);
+        }
+
   
 
         if (currentSeq.text.Length == (targetSeq.text.Length+1))

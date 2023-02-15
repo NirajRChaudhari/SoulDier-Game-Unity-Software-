@@ -18,6 +18,8 @@ TagManager:
   - MovingPlatform
   - EnemyMonster
   - FireBall
+  - Spike
+  - Rotating Saw
   layers:
   - Default
   - TransparentFX
