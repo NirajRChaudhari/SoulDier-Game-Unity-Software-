@@ -57,6 +57,8 @@ public class PlayerHealthController : MonoBehaviour
 
             if (currentHealth <= 0)
             {
+                SendAnalytics4 ob = gameObject.AddComponent<SendAnalytics4>();
+                ob.Send("Killed by Traps");
                 messageBox.text = "GAME OVER";
 
                 gameObject.SetActive(false);

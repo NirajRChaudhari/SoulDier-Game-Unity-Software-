@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     public GameObject blackBox;
     public int jump_counter;
     private bool seq_jump_flag;
-
+    public bool send_time_up_flag;
     public static float totalTime = 120;
     [SerializeField] private TMP_Text timerText;
 
@@ -45,6 +45,8 @@ public class PlayerController : MonoBehaviour
         currentSeq.gameObject.SetActive(false);
         jump_counter=0;
         seq_jump_flag=false;
+        send_time_up_flag=false;
+
     }
 
     // Update is called once per frame
@@ -120,6 +122,12 @@ public class PlayerController : MonoBehaviour
         else
         {
             totalTime = 0;
+            if (send_time_up_flag==false)
+            {
+                send_time_up_flag=true;
+                SendAnalytics4 ob = gameObject.AddComponent<SendAnalytics4>();
+                ob.Send("Time up");
+            }
             messageBox.text = "TIME'S UP, GAME OVER..";
             // call restartLevel here
             player.gameObject.SetActive(false);
