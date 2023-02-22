@@ -29,9 +29,14 @@ public class PlayerController : MonoBehaviour
 
     private char lastChar;
 
+    private float saveInitialMoveSpeed;
+    private float saveInitialJumpForce;
+
     // Start is called before the first frame update
     void Start()
     {
+        this.saveInitialMoveSpeed = this.moveSpeed;
+        this.saveInitialJumpForce = this.jumpForce;
         blackBox.SetActive(false);
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -41,6 +46,13 @@ public class PlayerController : MonoBehaviour
         targetSeq.gameObject.SetActive(false);
         currentSeqHeader.gameObject.SetActive(false);
         currentSeq.gameObject.SetActive(false);
+    }
+
+    public void resetMovementToNormal() {
+        Debug.Log("Reset Movement");
+        this.moveSpeed = this.saveInitialMoveSpeed;
+        this.jumpForce = this.saveInitialJumpForce;
+        spriteRenderer.color = new Color (1, 1, 1, 1);
     }
 
     // Update is called once per frame
@@ -125,6 +137,36 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.tag.Equals("SpeedupPowerup")) {
+            other.gameObject.SetActive(false);
+            // run faster for 3 seconds and again back to normal
+            float normalMoveSpeedSave = this.moveSpeed;
+            float normalJumpForce = this.jumpForce;
+            this.moveSpeed+=4;
+            this.jumpForce+=3;
+            spriteRenderer.color = new Color (0, 1, 0, 1);
+            Debug.Log("speed up activated");
+            Invoke(nameof(resetMovementToNormal), 3f);
+            totalTime = totalTime + 5;
+            messageBox.text = " + 5 Seconds! ";
+            Invoke(nameof(ResetMessageBox), 1f);
+        }
+
+        if(other.gameObject.tag.Equals("speedSlowPowerDown")) {
+            other.gameObject.SetActive(false);
+            float normalMoveSpeedSave = this.moveSpeed;
+            float normalJumpForce = this.jumpForce;
+            this.moveSpeed-=4;
+            this.jumpForce-=3;
+            spriteRenderer.color = new Color (1, 0, 0, 1);
+            Debug.Log("speed slow activated");
+            Invoke(nameof(resetMovementToNormal), 3f);
+        }
+
+
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         string tag = collision.gameObject.tag;
@@ -192,7 +234,6 @@ public class PlayerController : MonoBehaviour
         float seconds = Mathf.FloorToInt(time % 60);
         timerText.text = "Time- " + string.Format("{0:00}:{1:00}", minutes, seconds);
     }
-
 
     void ResetMessageBox()
     {        

@@ -18,6 +18,9 @@ TagManager:
   - MovingPlatform
   - EnemyMonster
   - FireBall
+  - Spike
+  - SpeedupPowerup
+  - speedSlowPowerDown
   layers:
   - Default
   - TransparentFX
