@@ -670,11 +670,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 57d7b073-442d-4de7-b75b-883f6b695e78
+  cloudProjectId: e177cb58-e612-4831-a371-35bd8977eed1
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: EscapeRun
-  organizationId: tiwaria
+  projectName: EscapeRun (1)
+  organizationId: premkotak
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 

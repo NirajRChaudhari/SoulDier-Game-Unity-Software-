@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class PlayerController : MonoBehaviour
 {
@@ -48,11 +49,13 @@ public class PlayerController : MonoBehaviour
         currentSeq.gameObject.SetActive(false);
     }
 
-    public void resetMovementToNormal() {
+    public void resetMovementToNormal()
+    {
         Debug.Log("Reset Movement");
         this.moveSpeed = this.saveInitialMoveSpeed;
         this.jumpForce = this.saveInitialJumpForce;
-        spriteRenderer.color = new Color (1, 1, 1, 1);
+        spriteRenderer.color = new Color(1, 1, 1, 1);
+        player.gravityScale = 3;
     }
 
     // Update is called once per frame
@@ -108,11 +111,11 @@ public class PlayerController : MonoBehaviour
             currentSeqHeader.gameObject.SetActive(true);
             currentSeq.gameObject.SetActive(true);
         }
-        else if(positionX > 11.8 && positionX < 12.8)
+        else if (positionX > 11.8 && positionX < 12.8)
         {
             messageBox.text = "";
         }
-        else if(positionX > 28 && positionX <32)
+        else if (positionX > 28 && positionX < 32)
         {
             messageBox.text = "";
             targetSeqHeader.gameObject.SetActive(false);
@@ -137,15 +140,17 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.tag.Equals("SpeedupPowerup")) {
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag.Equals("SpeedupPowerup"))
+        {
             other.gameObject.SetActive(false);
             // run faster for 3 seconds and again back to normal
             float normalMoveSpeedSave = this.moveSpeed;
             float normalJumpForce = this.jumpForce;
-            this.moveSpeed+=4;
-            this.jumpForce+=3;
-            spriteRenderer.color = new Color (0, 1, 0, 1);
+            this.moveSpeed += 4;
+            this.jumpForce += 3;
+            spriteRenderer.color = new Color(0, 1, 0, 1);
             Debug.Log("speed up activated");
             Invoke(nameof(resetMovementToNormal), 3f);
             totalTime = totalTime + 5;
@@ -153,16 +158,42 @@ public class PlayerController : MonoBehaviour
             Invoke(nameof(ResetMessageBox), 1f);
         }
 
-        if(other.gameObject.tag.Equals("speedSlowPowerDown")) {
+        if (other.gameObject.tag.Equals("speedSlowPowerDown"))
+        {
             other.gameObject.SetActive(false);
             float normalMoveSpeedSave = this.moveSpeed;
             float normalJumpForce = this.jumpForce;
-            this.moveSpeed-=4;
-            this.jumpForce-=3;
-            spriteRenderer.color = new Color (1, 0, 0, 1);
+            this.moveSpeed -= 4;
+            this.jumpForce -= 3;
+            spriteRenderer.color = new Color(1, 0, 0, 1);
             Debug.Log("speed slow activated");
             Invoke(nameof(resetMovementToNormal), 3f);
         }
+        if(other.gameObject.tag.Equals("fly"))
+        {
+            other.gameObject.SetActive(false);
+            float normalMoveSpeedSave = this.moveSpeed;
+            float normalJumpForce = this.jumpForce;
+            player.gravityScale = 1.25f;
+            spriteRenderer.color = new Color(1, 1, 0, 1);
+            Debug.Log("fly mode activated");
+            messageBox.text = "Fly Mode Activated";
+            Invoke(nameof(ResetMessageBox), 3f);
+            Invoke(nameof(resetMovementToNormal), 6f);
+        }
+        if (other.gameObject.tag.Equals("doublejump"))
+        {
+            other.gameObject.SetActive(false);
+            float normalMoveSpeedSave = this.moveSpeed;
+            float normalJumpForce = this.jumpForce;
+            this.jumpForce *= 2;
+            spriteRenderer.color = new Color(0, 105, 50, 30);
+            Debug.Log("double jump mode activated");
+            messageBox.text = "Double Jump Activated";
+            Invoke(nameof(ResetMessageBox), 3f);
+            Invoke(nameof(resetMovementToNormal), 5f);
+        }
+
 
 
     }
@@ -173,7 +204,7 @@ public class PlayerController : MonoBehaviour
 
         //Debug.Log("Touched the floor " + tag);
 
-        if (tag.Equals("RedFloor") && lastChar!='R')
+        if (tag.Equals("RedFloor") && lastChar != 'R')
         {
             currentSeq.text += "R";
             lastChar = 'R';
@@ -204,19 +235,19 @@ public class PlayerController : MonoBehaviour
             messageBox.text = "5 Seconds Lost...";
             Invoke(nameof(ResetMessageBox), 1f);
         }
-  
 
-        if (currentSeq.text.Length == (targetSeq.text.Length+1))
+
+        if (currentSeq.text.Length == (targetSeq.text.Length + 1))
         {
             currentSeq.text = currentSeq.text.Substring(1);
         }
 
-        if (currentSeq.text.Equals(targetSeq.text) && transform.position.x<30)
+        if (currentSeq.text.Equals(targetSeq.text) && transform.position.x < 30)
         {
             messageBox.text = "Sequence Satisfied.\n\n Pick the Blue bottle.";
             blackBox.SetActive(true);
 
-            GameObject.Find("RedFloor").GetComponent<SpriteRenderer>().color= new Color(0,0,0,1);
+            GameObject.Find("RedFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
             GameObject.Find("BlueFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
             GameObject.Find("OrangeFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
             GameObject.Find("GreenFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
@@ -236,11 +267,12 @@ public class PlayerController : MonoBehaviour
     }
 
     void ResetMessageBox()
-    {        
+    {
         messageBox.text = "";
     }
 
-    private void restartLevel() {
+    private void restartLevel()
+    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
