@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+
 using UnityEngine.SceneManagement;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -96,11 +98,11 @@ public class PlayerController : MonoBehaviour
             currentSeqHeader.gameObject.SetActive(true);
             currentSeq.gameObject.SetActive(true);
         }
-        else if(positionX > 11.8 && positionX < 12.8)
+        else if (positionX > 11.8 && positionX < 12.8)
         {
             messageBox.text = "";
         }
-        else if(positionX > 28 && positionX <29)
+        else if (positionX > 28 && positionX < 29)
         {
             messageBox.text = "";
             targetSeqHeader.gameObject.SetActive(false);
@@ -131,7 +133,7 @@ public class PlayerController : MonoBehaviour
 
         Debug.Log("Touched the floor " + tag);
 
-        if (tag.Equals("RedFloor") && lastChar!='R')
+        if (tag.Equals("RedFloor") && lastChar != 'R')
         {
             currentSeq.text += "R";
             lastChar = 'R';
@@ -162,9 +164,9 @@ public class PlayerController : MonoBehaviour
             messageBox.text = "5 Seconds Lost...";
             Invoke(nameof(ResetMessageBox), 1f);
         }
-  
 
-        if (currentSeq.text.Length == (targetSeq.text.Length+1))
+
+        if (currentSeq.text.Length == (targetSeq.text.Length + 1))
         {
             currentSeq.text = currentSeq.text.Substring(1);
         }
@@ -174,7 +176,7 @@ public class PlayerController : MonoBehaviour
             messageBox.text = "Sequence Satisfied.\n\n Pick the Blue bottle.";
             blackBox.SetActive(true);
 
-            GameObject.Find("RedFloor").GetComponent<SpriteRenderer>().color= new Color(0,0,0,1);
+            GameObject.Find("RedFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
             GameObject.Find("BlueFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
             GameObject.Find("OrangeFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
             GameObject.Find("GreenFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
@@ -195,11 +197,29 @@ public class PlayerController : MonoBehaviour
 
 
     void ResetMessageBox()
-    {        
+    {
         messageBox.text = "";
     }
 
-    private void restartLevel() {
+
+    private void restartLevel()
+    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("fly"))
+        {
+            Destroy(collision.gameObject);
+            jumpForce = jumpForce * 1.5f;
+            messageBox.text = "Press Space to fly";
+
+        }
+        if (collision.gameObject.CompareTag("Check"))
+        {
+            Invoke(messageBox.text = "Collect box to Fly", 3f);
+        }
+
     }
 }
