@@ -186,7 +186,7 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false);
             float normalMoveSpeedSave = this.moveSpeed;
             float normalJumpForce = this.jumpForce;
-            this.jumpForce *= 2;
+            this.jumpForce *= 1.5f;
             spriteRenderer.color = new Color(0, 105, 50, 30);
             Debug.Log("double jump mode activated");
             messageBox.text = "Double Jump Activated";
