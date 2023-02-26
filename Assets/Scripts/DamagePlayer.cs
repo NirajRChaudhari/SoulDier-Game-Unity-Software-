@@ -19,16 +19,24 @@ public class DamagePlayer : MonoBehaviour
 
     }
 
+    // private void OnCollisionEnter2D(Collision2D collision)
+    // {
+    //     if (collision.gameObject.CompareTag("Player"))
+    //     {
+    //         float scaleX = collision.gameObject.transform.localScale.x;
+    //         float scaleY = collision.gameObject.transform.localScale.y;
+
+    //         collision.gameObject.transform.localScale = new Vector2(scaleX * 0.8f, scaleY * 0.8f);
+    //         PlayerHealthController.instance.DealDamage();
+    //     }
+    // }
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
         if (collision.CompareTag("Player"))
         {
 
-            if (!gameObject.CompareTag("EnemyMonster"))
-            {
-                PlayerHealthController.instance.DealDamage();
-            }
+            PlayerHealthController.instance.DealDamage();
 
         }
     }
