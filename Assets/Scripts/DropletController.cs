@@ -10,7 +10,8 @@ public class DropletController : MonoBehaviour
     private int count;
 
     // Start is called before the first frame update
-    void Start() {
+    void Start()
+    {
         count = 0;
         collider = GetComponent<BoxCollider2D>();
         startX = gameObject.transform.position.x;
@@ -18,7 +19,8 @@ public class DropletController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
         if (isGrounded())
         {
             //Debug.Log("Drop on ground");
@@ -31,7 +33,7 @@ public class DropletController : MonoBehaviour
     private bool isGrounded()
     {
         //BoxCast method returns true if player box overlaps with ground layer.
-        
-        return  Physics2D.BoxCast(collider.bounds.center, collider.bounds.size, 0f, Vector2.down, 0f, jumpableGround);
+
+        return Physics2D.BoxCast(collider.bounds.center, collider.bounds.size, 0f, Vector2.down, 0f, jumpableGround);
     }
 }
