@@ -32,6 +32,7 @@ TagManager:
   - Sky
   - Door
   - doublejump
+  - Spring
   layers:
   - Default
   - TransparentFX
