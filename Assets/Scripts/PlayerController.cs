@@ -134,7 +134,6 @@ public class PlayerController : MonoBehaviour
             Invoke(nameof(restartLevel), 3f);
         }
         DisplayTime(totalTime);
-
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -163,15 +162,11 @@ public class PlayerController : MonoBehaviour
             Debug.Log("speed slow activated");
             Invoke(nameof(resetMovementToNormal), 3f);
         }
-
-
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         string tag = collision.gameObject.tag;
-
-        //Debug.Log("Touched the floor " + tag);
 
         if (tag.Equals("RedFloor") && lastChar!='R')
         {
@@ -200,11 +195,11 @@ public class PlayerController : MonoBehaviour
         }
         else if (tag.Equals("EnemyMonster") || tag.Equals("FireBall"))
         {
+            Debug.Log("Fireball touched!");
             totalTime = totalTime - 5;
             messageBox.text = "5 Seconds Lost...";
             Invoke(nameof(ResetMessageBox), 1f);
         }
-  
 
         if (currentSeq.text.Length == (targetSeq.text.Length+1))
         {
@@ -242,5 +237,8 @@ public class PlayerController : MonoBehaviour
 
     private void restartLevel() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        messageBox.text = "";
+        totalTime = 120;
+        player.gameObject.SetActive(true);
     }
 }
