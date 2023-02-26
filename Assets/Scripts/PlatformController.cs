@@ -24,12 +24,12 @@ public class PlatformController : MonoBehaviour
         if (gameObject.CompareTag("MovingPlatform"))
         {
             playerRB = player.GetComponent<Rigidbody2D>();
-
         }
         platformRB = GetComponent<Rigidbody2D>();
 
         colorIndex = 0;
         platformSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        
         colors = new Color[] { Color.red, Color.green, Color.yellow, Color.blue };
 
         onMovingPlatform = false;
@@ -57,7 +57,7 @@ public class PlatformController : MonoBehaviour
                 playerRB.velocity = new Vector2(platformRB.velocity.x, playerRB.velocity.y);
             }
         }
-        
+
     }
 
     void ChangeColor()
@@ -71,10 +71,10 @@ public class PlatformController : MonoBehaviour
     {
         Debug.Log("Entered");
 
-        
+
         if (collision.gameObject.CompareTag("Player"))
         {
-            
+
             if (platformSpriteRenderer.color == extractColorOfNextBottle())
             {
                 CancelInvoke();
@@ -94,14 +94,14 @@ public class PlatformController : MonoBehaviour
     {
         Debug.Log("Exited");
 
-        
+
         if (collision.gameObject.CompareTag("Player"))
         {
             if (platformSpriteRenderer.color == extractColorOfNextBottle())
             {
                 //platformSpriteRenderer.color = Color.red;
-            
-            Start();
+
+                Start();
             }
         }
 

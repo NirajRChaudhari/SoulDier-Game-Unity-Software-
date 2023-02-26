@@ -28,12 +28,12 @@ public class DropletController : MonoBehaviour
             gameObject.transform.position = new Vector2(startX, startY);
             gameObject.SetActive(true);
         }
-
     }
 
     private bool isGrounded()
     {
         //BoxCast method returns true if player box overlaps with ground layer.
-        return Physics2D.BoxCast(collider.bounds.center, collider.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
+
+        return Physics2D.BoxCast(collider.bounds.center, collider.bounds.size, 0f, Vector2.down, 0f, jumpableGround);
     }
 }
