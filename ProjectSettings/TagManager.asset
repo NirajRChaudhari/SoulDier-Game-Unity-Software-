@@ -21,6 +21,17 @@ TagManager:
   - Spike
   - SpeedupPowerup
   - speedSlowPowerDown
+  - Undefined
+  - fly
+  - Pink
+  - Black
+  - Blue
+  - Red
+  - Green
+  - Yellow
+  - Sky
+  - Door
+  - doublejump
   layers:
   - Default
   - TransparentFX
