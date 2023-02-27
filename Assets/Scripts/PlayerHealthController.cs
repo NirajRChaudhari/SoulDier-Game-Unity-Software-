@@ -38,7 +38,7 @@ public class PlayerHealthController : MonoBehaviour
 
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        playerController = gameObject.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
