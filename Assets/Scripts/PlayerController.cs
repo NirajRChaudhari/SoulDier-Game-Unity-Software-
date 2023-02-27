@@ -445,7 +445,7 @@ public class PlayerController : MonoBehaviour
                 GameObject.Find("OrangeFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
                 GameObject.Find("GreenFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
                 GameObject.Find("VioletFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
-                if (seq_jump_flag == false)
+                if (seq_jump_flag == false)//
                 {
                     SendAnalytics2 ob = gameObject.AddComponent<SendAnalytics2>();
                     Debug.Log("Jump Counter: " + jump_counter);

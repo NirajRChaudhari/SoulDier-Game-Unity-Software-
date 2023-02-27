@@ -52,7 +52,7 @@ public class PlayerControllerTutorial : MonoBehaviour
 
         playerNextColorIndicatorSpriteRenderer.color = getColorUsingCharacter(targetSeq.text[0]);
         messageBox.text = "Jump on platform with the color same as Marker.";
-        Invoke(nameof(ResetMessageBox), 5f);
+        Invoke(nameof(ResetMessageBox), 10f);
     }
 
     // Update is called once per frame
