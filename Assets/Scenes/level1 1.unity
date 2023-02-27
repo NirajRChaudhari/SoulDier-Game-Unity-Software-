@@ -1312,7 +1312,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &375142026
 Transform:
   m_ObjectHideFlags: 0
@@ -17350,7 +17350,6 @@ GameObject:
   m_Component:
   - component: {fileID: 923054129}
   - component: {fileID: 923054128}
-  - component: {fileID: 923054127}
   m_Layer: 0
   m_Name: CP2
   m_TagString: Untagged
@@ -17358,19 +17357,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &923054127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 923054126}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c46615d5cc41442bb0e9b81c7858496, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  URL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSdP2qjFwOtmyO0RRC9PfndXGuA5s9KFW3yfOC9hJY9l3xIrsA/formResponse
 --- !u!61 &923054128
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17557,7 +17543,6 @@ GameObject:
   m_Component:
   - component: {fileID: 994130747}
   - component: {fileID: 994130746}
-  - component: {fileID: 994130745}
   m_Layer: 0
   m_Name: CP3
   m_TagString: Untagged
@@ -17565,19 +17550,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &994130745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 994130744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c46615d5cc41442bb0e9b81c7858496, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  URL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSdP2qjFwOtmyO0RRC9PfndXGuA5s9KFW3yfOC9hJY9l3xIrsA/formResponse
 --- !u!61 &994130746
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20024,7 +19996,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1689172933}
   - component: {fileID: 1689172932}
-  - component: {fileID: 1689172931}
   m_Layer: 0
   m_Name: CP1
   m_TagString: Untagged
@@ -20032,19 +20003,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1689172931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1689172930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c46615d5cc41442bb0e9b81c7858496, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  URL: https://docs.google.com/forms/u/0/d/e/1FAIpQLSdP2qjFwOtmyO0RRC9PfndXGuA5s9KFW3yfOC9hJY9l3xIrsA/formResponse
 --- !u!61 &1689172932
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -118,12 +118,12 @@ public class PlayerController : MonoBehaviour
         if (transform.position.x > checkPoint1.transform.position.x && transform.position.x < checkPoint2.transform.position.x)
         {
             lastCheckpoint = "Checkpoint1";
-            Debug.Log(lastCheckpoint);
+            //Debug.Log(lastCheckpoint);
         }
         else if (transform.position.x > checkPoint2.transform.position.x)
         {
             lastCheckpoint = "Checkpoint2";
-            Debug.Log(lastCheckpoint);
+            //Debug.Log(lastCheckpoint);
         }
 
         if (player.velocity.x < 0)
@@ -212,6 +212,27 @@ public class PlayerController : MonoBehaviour
             messageBox.text = "Double Jump Activated";
             Invoke(nameof(ResetMessageBox), 3f);
             Invoke(nameof(resetMovementToNormal), 5f);
+        }
+
+        if(other.gameObject.name == "CP1")
+        {
+            SendAnalytics ob = gameObject.AddComponent<SendAnalytics>();
+            ob.Send(other.gameObject.name, PlayerController.totalTime);
+            other.gameObject.SetActive(false);
+        }
+
+        if (other.gameObject.name == "CP2")
+        {
+            SendAnalytics ob = gameObject.AddComponent<SendAnalytics>();
+            ob.Send(other.gameObject.name, PlayerController.totalTime);
+            other.gameObject.SetActive(false);
+        }
+
+        if (other.gameObject.name == "CP3")
+        {
+            SendAnalytics ob = gameObject.AddComponent<SendAnalytics>();
+            ob.Send(other.gameObject.name, PlayerController.totalTime);
+            other.gameObject.SetActive(false);
         }
     }
 

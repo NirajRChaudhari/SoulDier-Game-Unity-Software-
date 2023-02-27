@@ -7,19 +7,19 @@ using UnityEngine.Networking;
 public class SendAnalytics : MonoBehaviour
 {
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-        {
-            // Debug.Log(gameObject.name);
-            // Debug.Log(PlayerController.totalTime);
-            Send(gameObject.name, PlayerController.totalTime);
-            gameObject.SetActive(false);
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.tag == "Player")
+    //    {
+    //        // Debug.Log(gameObject.name);
+    //        // Debug.Log(PlayerController.totalTime);
+    //        Send(gameObject.name, PlayerController.totalTime);
+    //        gameObject.SetActive(false);
 
-        }
-    }
+    //    }
+    //}
 
-    [SerializeField] private string URL;
+    private string URL;
     private long _sessionId;
     private int _testInt;
     private bool _testBool;
@@ -30,6 +30,7 @@ public class SendAnalytics : MonoBehaviour
     private void Awake()
     {
         _sessionId = DateTime.Now.Ticks;
+        URL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdP2qjFwOtmyO0RRC9PfndXGuA5s9KFW3yfOC9hJY9l3xIrsA/formResponse";
         //Send("dafa", 5.7f);
     }
     public void Send(string checkpoint_name, float time_taken)
