@@ -17,6 +17,12 @@ public class PlayerHealthController : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
+    private PlayerController playerController;
+
+    public GameObject checkPoint1, checkPoint2;
+
+    public TMP_Text globalSequence;
+
 
     //Awake function is called before the start function
     private void Awake()
@@ -31,12 +37,14 @@ public class PlayerHealthController : MonoBehaviour
         currentHealth = maxHealth;
 
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(invincibleCounter > 0)
+        if (invincibleCounter > 0)
         {
             invincibleCounter -= Time.deltaTime;
 
@@ -47,27 +55,60 @@ public class PlayerHealthController : MonoBehaviour
         }
     }
 
-    public void DealDamage()
+    public void DealDamage(string trap)
     {
-        if (invincibleCounter <=  0)
+        if (invincibleCounter <= 0)
         {
-            //messageBox.text = "Time Deducted By 5...";
 
             currentHealth--;
+            SendAnalytics3 ob = gameObject.AddComponent<SendAnalytics3>();
 
+                if (trap=="Spike"){
+
+                    ob.Send("Spike");
+                }
+                else if (trap=="Rotating Saw")
+                {
+                    ob.Send("Rotating Saw");
+                }
             if (currentHealth <= 0)
             {
                 messageBox.text = "GAME OVER";
+                SendAnalytics4 ob2 = gameObject.AddComponent<SendAnalytics4>();
+                ob2.Send("Killed by Traps");
+                Debug.Log("Restarting");
+                Debug.Log(playerController.lastCheckpoint);
+
+                if (playerController.lastCheckpoint == "Checkpoint1")
+                {
+                    Debug.Log(playerController.lastCheckpoint);
+                    PlayerPrefs.SetFloat("x", checkPoint1.transform.position.x);
+                    PlayerPrefs.SetFloat("y", checkPoint1.transform.position.y);
+                    PlayerPrefs.SetString("nextColor", globalSequence.text);
+                    PlayerPrefs.SetString("latestCp", playerController.lastCheckpoint);
+                }
+                else if (playerController.lastCheckpoint == "Checkpoint2")
+                {
+                    Debug.Log(playerController.lastCheckpoint);
+                    Debug.Log("CP2 x = " + checkPoint2.transform.position.x);
+                    Debug.Log("CP2 y = " + checkPoint2.transform.position.y);
+                    PlayerPrefs.SetFloat("x", checkPoint2.transform.position.x);
+                    PlayerPrefs.SetFloat("y", checkPoint2.transform.position.y);
+                    PlayerPrefs.SetString("nextColor", globalSequence.text);
+                    PlayerPrefs.SetString("latestCp", playerController.lastCheckpoint);
+                }
 
                 gameObject.SetActive(false);
                 currentHealth = 0;
                 Invoke(nameof(restartLevel), 3f);
-
             }
             else
             {
-                //messageBox.text = "Time Deducted By 10...";
 
+                float scaleX = gameObject.transform.localScale.x;
+                float scaleY = gameObject.transform.localScale.y;
+
+                gameObject.transform.localScale = new Vector2(scaleX * 0.8f, scaleY * 0.8f);
                 invincibleCounter = invincibleLength;
                 spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0.5f);
             }
@@ -76,36 +117,8 @@ public class PlayerHealthController : MonoBehaviour
         }
     }
 
-    // private void OnCollisionEnter2D(Collision2D collision)
-    // {
-	// 	Debug.Log("Hitting it man $$$$$$$$$$$$$" + collision.gameObject.tag);
-	// 	if(collision.gameObject.tag=="") return;
-    // 	if (collision.gameObject.tag == "Red"){
-    // 		Global.cur_sequence+="R";
-    //         Debug.Log(Global.cur_sequence);
-    // 	}
-    //     else if (collision.gameObject.tag == "Yellow"){
-    // 		Global.cur_sequence+="Y";
-    //         Debug.Log(Global.cur_sequence);
-    // 	}
-    //             else if (collision.gameObject.tag == "Sky"){
-    // 		Global.cur_sequence+="S";
-    //         Debug.Log(Global.cur_sequence);
-    // 	}
-    //             else if (collision.gameObject.tag == "Pink"){
-    // 		Global.cur_sequence+="P";
-    //         Debug.Log(Global.cur_sequence);
-    // 	}
-    //             else if (collision.gameObject.tag == "Blue"){
-    // 		Global.cur_sequence+="B";
-    //         Debug.Log(Global.cur_sequence);
-    // 	}
-    //             else if (collision.gameObject.tag == "Green"){
-    // 		Global.cur_sequence+="G";
-    //         Debug.Log(Global.cur_sequence);
-    // 	}
-    // }
-        private void restartLevel() {
+    private void restartLevel()
+    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

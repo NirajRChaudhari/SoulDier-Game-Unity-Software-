@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,18 +21,29 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer playerSpriteRenderer;
     private SpriteRenderer playerNextColorIndicatorSpriteRenderer;
 
-    public TMP_Text currentSeq;
-    public TMP_Text currentSeqHeader;
+    // public TMP_Text currentSeq;
+    // public TMP_Text currentSeqHeader;
     public TMP_Text targetSeq;
     public TMP_Text targetSeqHeader;
     public TMP_Text messageBox;
-    public GameObject blackBox;
+
+    public TMP_Text globalSequence;
+
+    public Image knob1, knob2, knob3;
+
+    public GameObject blackFloor;
 
     public static float totalTime = 120;
-    [SerializeField] private TMP_Text timerText;
+    public static int currentPos = -1;
+    public string lastCheckpoint = "Starting Point";
+    public int jump_counter;
+    private bool seq_jump_flag;
+    public bool send_time_up_flag;
 
-    private char lastChar;
-    private int currentPos;
+    public GameObject checkPoint1, checkPoint2;
+
+    [SerializeField] private TMP_Text timerText;
+    static private char lastChar;
 
     private float saveInitialMoveSpeed;
     private float saveInitialJumpForce;
@@ -39,22 +51,32 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (PlayerPrefs.HasKey("x") && PlayerPrefs.HasKey("y"))
+        {
+            Debug.Log("Latest: " + lastCheckpoint);
+            transform.position = new Vector2(PlayerPrefs.GetFloat("x"), PlayerPrefs.GetFloat("y"));
+        }
+        PlayerPrefs.DeleteAll();
+
         this.saveInitialMoveSpeed = this.moveSpeed;
         this.saveInitialJumpForce = this.jumpForce;
-        blackBox.SetActive(false);
+        blackFloor.SetActive(false);
         animator = GetComponent<Animator>();
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
         playerNextColorIndicatorSpriteRenderer = playerNextColorIndicator.GetComponent<SpriteRenderer>();
 
-        currentSeq.text = "";
-        messageBox.text = "Jump on the platform when it's color is same as pickup bottle color.      (Press Spacebar Twice for Double Jump)";
+        // currentSeq.text = "";
+        messageBox.text = "Jump on the platform when it's color is same as pickup bottle color.";
+        Invoke(nameof(ResetMessageBox), 5f);
         targetSeqHeader.gameObject.SetActive(false);
         targetSeq.gameObject.SetActive(false);
-        currentSeqHeader.gameObject.SetActive(false);
-        currentSeq.gameObject.SetActive(false);
+        // currentSeqHeader.gameObject.SetActive(false);
+        // currentSeq.gameObject.SetActive(false);
         playerNextColorIndicator.SetActive(false);
+        jump_counter=0;
+        seq_jump_flag=false;
+        send_time_up_flag=false;
 
-        currentPos = -1;
     }
 
     public void resetMovementToNormal()
@@ -93,6 +115,17 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if (transform.position.x > checkPoint1.transform.position.x && transform.position.x < checkPoint2.transform.position.x)
+        {
+            lastCheckpoint = "Checkpoint1";
+            //Debug.Log(lastCheckpoint);
+        }
+        else if (transform.position.x > checkPoint2.transform.position.x)
+        {
+            lastCheckpoint = "Checkpoint2";
+            //Debug.Log(lastCheckpoint);
+        }
+
         if (player.velocity.x < 0)
         {
             playerSpriteRenderer.flipX = true;
@@ -106,42 +139,6 @@ public class PlayerController : MonoBehaviour
 
         float positionX = transform.position.x;
 
-        if (positionX > -9 && positionX < -8.5)
-        {
-            messageBox.text = "";
-
-        }
-        else if (positionX > 5 && positionX < 6)
-        {
-            messageBox.text = "Jump on colors as per the Target sequence.";
-            playerNextColorIndicator.SetActive(true);
-
-            targetSeqHeader.gameObject.SetActive(true);
-            targetSeq.gameObject.SetActive(true);
-            currentSeqHeader.gameObject.SetActive(true);
-            currentSeq.gameObject.SetActive(true);
-
-            if (currentPos == -1)
-            {
-                currentPos = 0;
-                playerSpriteRenderer.color = getColorUsingCharacter(targetSeq.text[0]);
-                playerNextColorIndicatorSpriteRenderer.color = getColorUsingCharacter(targetSeq.text[0]);
-            }
-        }
-        else if (positionX > 11.8 && positionX < 12.8)
-        {
-            messageBox.text = "";
-        }
-        else if (positionX > 28 && positionX < 32)
-        {
-            messageBox.text = "";
-            playerNextColorIndicator.SetActive(false);
-            targetSeqHeader.gameObject.SetActive(false);
-            targetSeq.gameObject.SetActive(false);
-            currentSeqHeader.gameObject.SetActive(false);
-            currentSeq.gameObject.SetActive(false);
-        }
-
         if (totalTime > 0)
         {
             totalTime -= Time.deltaTime;
@@ -149,10 +146,16 @@ public class PlayerController : MonoBehaviour
         else
         {
             totalTime = 0;
+            if (send_time_up_flag==false)
+            {
+                send_time_up_flag=true;
+                SendAnalytics4 ob = gameObject.AddComponent<SendAnalytics4>();
+                ob.Send("Time up");
+            }
             messageBox.text = "TIME'S UP, GAME OVER..";
             // call restartLevel here
             player.gameObject.SetActive(false);
-            Invoke(nameof(restartLevel), 3f);
+            Invoke(nameof(restartLevel), 5f);
         }
         DisplayTime(totalTime);
     }
@@ -210,78 +213,84 @@ public class PlayerController : MonoBehaviour
             Invoke(nameof(ResetMessageBox), 3f);
             Invoke(nameof(resetMovementToNormal), 5f);
         }
+
+        if(other.gameObject.name == "CP1")
+        {
+            SendAnalytics ob = gameObject.AddComponent<SendAnalytics>();
+            ob.Send(other.gameObject.name, PlayerController.totalTime);
+            other.gameObject.SetActive(false);
+        }
+
+        if (other.gameObject.name == "CP2")
+        {
+            SendAnalytics ob = gameObject.AddComponent<SendAnalytics>();
+            ob.Send(other.gameObject.name, PlayerController.totalTime);
+            other.gameObject.SetActive(false);
+        }
+
+        if (other.gameObject.name == "CP3")
+        {
+            SendAnalytics ob = gameObject.AddComponent<SendAnalytics>();
+            ob.Send(other.gameObject.name, PlayerController.totalTime);
+            other.gameObject.SetActive(false);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         string tag = collision.gameObject.tag;
 
-        //Debug.Log("Touched the floor " + tag);
 
         if (tag.Equals("RedFloor") && lastChar != 'R')
         {
-            currentSeq.text += "R";
             lastChar = 'R';
+            jump_counter+=1;
             playerNextColorIndicatorSpriteRenderer.color = extractNextColorForPlayerSprite('R');
-            // playerSpriteRenderer.color = playerNextColorIndicatorSpriteRenderer.color;
+
         }
         else if (tag.Equals("YellowFloor") && lastChar != 'Y')
         {
-            currentSeq.text += "Y";
             lastChar = 'Y';
+            jump_counter+=1;
             playerNextColorIndicatorSpriteRenderer.color = extractNextColorForPlayerSprite('Y');
-            playerSpriteRenderer.color = playerNextColorIndicatorSpriteRenderer.color;
 
         }
         else if (tag.Equals("OrangeFloor") && lastChar != 'O')
         {
-            currentSeq.text += "O";
             lastChar = 'O';
+            jump_counter+=1;
             playerNextColorIndicatorSpriteRenderer.color = extractNextColorForPlayerSprite('O');
-            playerSpriteRenderer.color = playerNextColorIndicatorSpriteRenderer.color;
 
         }
         else if (tag.Equals("GreenFloor") && lastChar != 'G')
         {
-            currentSeq.text += "G";
             lastChar = 'G';
+            jump_counter+=1;
             playerNextColorIndicatorSpriteRenderer.color = extractNextColorForPlayerSprite('G');
-            playerSpriteRenderer.color = playerNextColorIndicatorSpriteRenderer.color;
 
         }
         else if (tag.Equals("VioletFloor") && lastChar != 'V')
         {
-            currentSeq.text += "V";
             lastChar = 'V';
+            jump_counter+=1;
             playerNextColorIndicatorSpriteRenderer.color = extractNextColorForPlayerSprite('V');
-            playerSpriteRenderer.color = playerNextColorIndicatorSpriteRenderer.color;
 
         }
-        else if (tag.Equals("EnemyMonster") || tag.Equals("FireBall"))
+        else if (tag.Equals("EnemyMonster"))
         {
-            Debug.Log("Fireball touched!");
             totalTime = totalTime - 5;
+            SendAnalytics3 ob = gameObject.AddComponent<SendAnalytics3>();
+            ob.Send("Monster");
             messageBox.text = "5 Seconds Lost...";
             Invoke(nameof(ResetMessageBox), 1f);
         }
-
-
-        if (currentSeq.text.Length == (targetSeq.text.Length + 1))
+                else if        (tag.Equals("FireBall"))
         {
-            currentSeq.text = currentSeq.text.Substring(1);
-        }
-
-        if (currentSeq.text.Equals(targetSeq.text) && transform.position.x < 30)
-        {
-            messageBox.text = "Sequence Satisfied.\n\n Pick the Blue bottle.";
-            blackBox.SetActive(true);
-
-            GameObject.Find("RedFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
-            GameObject.Find("BlueFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
-            GameObject.Find("OrangeFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
-            GameObject.Find("GreenFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
-            GameObject.Find("VioletFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
-
+            totalTime = totalTime - 5;
+            SendAnalytics3 ob = gameObject.AddComponent<SendAnalytics3>();
+            messageBox.text = "5 Seconds Lost...";
+                ob.Send("Dropping Box");
+            Invoke(nameof(ResetMessageBox), 1f);
         }
     }
 
@@ -315,9 +324,27 @@ public class PlayerController : MonoBehaviour
 
         if (currentPos < targetSeq.text.Length && targetSeq.text[currentPos] == currentPlatformColor)
         {
-            currentPos++;
+            currentPos = currentPos + 1;
             if (currentPos == targetSeq.text.Length)
             {
+                messageBox.text = "Pick the Blue bottle.";
+                blackFloor.SetActive(true);
+
+                GameObject.Find("RedFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
+                GameObject.Find("BlueFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
+                GameObject.Find("OrangeFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
+                GameObject.Find("GreenFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
+                GameObject.Find("VioletFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
+        if (seq_jump_flag==false){
+                    SendAnalytics2 ob = gameObject.AddComponent<SendAnalytics2>();
+                    Debug.Log("Jump Counter: "+jump_counter);
+                    // Debug.Log("seqlen: "+seq_len);
+                    ob.Send(5, jump_counter);
+                    seq_jump_flag=true;
+                    }
+                playerNextColorIndicator.SetActive(false);
+                Invoke(nameof(ResetMessageBox), 6f);
+
                 return extractNextColorForPlayerSprite(currentPlatformColor);
             }
         }
@@ -333,7 +360,6 @@ public class PlayerController : MonoBehaviour
 
     private Color getColorUsingCharacter(char colorChar)
     {
-        Debug.Log("getColorUsingCharacter: " + colorChar + "  " + currentPos);
         Color color = Color.white;
 
         switch (colorChar)

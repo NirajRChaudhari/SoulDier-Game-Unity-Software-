@@ -7,19 +7,19 @@ using UnityEngine.Networking;
 public class SendAnalytics : MonoBehaviour
 {
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-        {
-            Debug.Log(gameObject.name);
-            Debug.Log(PlayerController.totalTime);
-            Send(gameObject.name, PlayerController.totalTime);
-            gameObject.SetActive(false);
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.tag == "Player")
+    //    {
+    //        // Debug.Log(gameObject.name);
+    //        // Debug.Log(PlayerController.totalTime);
+    //        Send(gameObject.name, PlayerController.totalTime);
+    //        gameObject.SetActive(false);
 
-        }
-    }
+    //    }
+    //}
 
-    [SerializeField] private string URL;
+    private string URL;
     private long _sessionId;
     private int _testInt;
     private bool _testBool;
@@ -30,6 +30,7 @@ public class SendAnalytics : MonoBehaviour
     private void Awake()
     {
         _sessionId = DateTime.Now.Ticks;
+        URL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdP2qjFwOtmyO0RRC9PfndXGuA5s9KFW3yfOC9hJY9l3xIrsA/formResponse";
         //Send("dafa", 5.7f);
     }
     public void Send(string checkpoint_name, float time_taken)
@@ -50,17 +51,19 @@ public class SendAnalytics : MonoBehaviour
     {
         // Create the form and enter responses
         WWWForm form = new WWWForm();
-        form.AddField("entry.226111635", sessionID);
-        form.AddField("entry.1891867197", testInt);
-        form.AddField("entry.1119269862", testBool);
-        form.AddField("entry.669354282", testFloat);
-        form.AddField("entry.1914846611", _checkpoint_name);
-        form.AddField("entry.419101719", _time_taken);
+        form.AddField("entry.366340186", sessionID);
+        form.AddField("entry.655163041", testInt);
+        form.AddField("entry.244123968", testBool);
+        form.AddField("entry.431586524", testFloat);
+        form.AddField("entry.1421423374", _checkpoint_name);
+        form.AddField("entry.42440326", _time_taken);
         //Debug.Log("Hi");
-        Debug.Log(_checkpoint_name);
+        // Debug.Log(_checkpoint_name);
         // Send responses and verify result
-        using (UnityWebRequest www = UnityWebRequest.Post(URL, form))
-        {
+        UnityWebRequest www = UnityWebRequest.Post(URL, form);
+        // {
+            www.disposeUploadHandlerOnDispose = true;
+             www.disposeDownloadHandlerOnDispose = true;
             yield return www.SendWebRequest();
             if (www.result != UnityWebRequest.Result.Success)
             {
@@ -73,6 +76,8 @@ public class SendAnalytics : MonoBehaviour
             }
 
             www.Dispose();
-        }
+            // form.Dispose();
+        // }
+
     }
 }

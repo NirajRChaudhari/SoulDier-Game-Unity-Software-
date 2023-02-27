@@ -29,7 +29,7 @@ public class PlatformController : MonoBehaviour
 
         colorIndex = 0;
         platformSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        
+
         colors = new Color[] { Color.red, Color.green, Color.yellow, Color.blue };
 
         onMovingPlatform = false;
@@ -95,7 +95,7 @@ public class PlatformController : MonoBehaviour
         Debug.Log("Exited");
 
 
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && collision.gameObject.activeSelf)
         {
             if (platformSpriteRenderer.color == extractColorOfNextBottle())
             {

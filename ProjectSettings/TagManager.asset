@@ -32,6 +32,8 @@ TagManager:
   - Sky
   - Door
   - doublejump
+  - NextColorIndicator
+  - Rotating Saw
   layers:
   - Default
   - TransparentFX

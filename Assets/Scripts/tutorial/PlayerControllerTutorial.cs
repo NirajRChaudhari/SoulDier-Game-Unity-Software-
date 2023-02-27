@@ -16,8 +16,8 @@ public class PlayerControllerTutorial : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteRenderer;
 
-    public TMP_Text currentSeq;
-    public TMP_Text currentSeqHeader;
+    // public TMP_Text currentSeq;
+    // public TMP_Text currentSeqHeader;
     public TMP_Text targetSeq;
     public TMP_Text targetSeqHeader;
     public TMP_Text messageBox;
@@ -34,12 +34,12 @@ public class PlayerControllerTutorial : MonoBehaviour
         blackBox.SetActive(false);
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        currentSeq.text = "";
+        // currentSeq.text = "";
         messageBox.text = "Match current and target sequence! Jump and Try :)";
         targetSeqHeader.gameObject.SetActive(true);
         targetSeq.gameObject.SetActive(true);
-        currentSeqHeader.gameObject.SetActive(true);
-        currentSeq.gameObject.SetActive(true);
+        // currentSeqHeader.gameObject.SetActive(true);
+        // currentSeq.gameObject.SetActive(true);
     }
 
     // Update is called once per frame
@@ -92,20 +92,20 @@ public class PlayerControllerTutorial : MonoBehaviour
             messageBox.text = "Match current and target sequence! Jump and Try :)";
             targetSeqHeader.gameObject.SetActive(true);
             targetSeq.gameObject.SetActive(true);
-            currentSeqHeader.gameObject.SetActive(true);
-            currentSeq.gameObject.SetActive(true);
+            // currentSeqHeader.gameObject.SetActive(true);
+            // currentSeq.gameObject.SetActive(true);
         }
-        else if(positionX > 11.8 && positionX < 12.8)
+        else if (positionX > 11.8 && positionX < 12.8)
         {
             messageBox.text = "";
         }
-        else if(positionX > 28 && positionX <29)
+        else if (positionX > 28 && positionX < 29)
         {
             messageBox.text = "";
             targetSeqHeader.gameObject.SetActive(false);
             targetSeq.gameObject.SetActive(false);
-            currentSeqHeader.gameObject.SetActive(false);
-            currentSeq.gameObject.SetActive(false);
+            // currentSeqHeader.gameObject.SetActive(false);
+            // currentSeq.gameObject.SetActive(false);
         }
 
         if (totalTime > 0)
@@ -128,29 +128,29 @@ public class PlayerControllerTutorial : MonoBehaviour
 
         Debug.Log("Touched the floor " + tag);
 
-        if (tag.Equals("RedFloor") && lastChar!='R')
+        if (tag.Equals("RedFloor") && lastChar != 'R')
         {
-            currentSeq.text += "R";
+            // currentSeq.text += "R";
             lastChar = 'R';
         }
         else if (tag.Equals("YellowFloor") && lastChar != 'Y')
         {
-            currentSeq.text += "Y";
+            // currentSeq.text += "Y";
             lastChar = 'Y';
         }
         else if (tag.Equals("OrangeFloor") && lastChar != 'O')
         {
-            currentSeq.text += "O";
+            // currentSeq.text += "O";
             lastChar = 'O';
         }
         else if (tag.Equals("GreenFloor") && lastChar != 'G')
         {
-            currentSeq.text += "G";
+            // currentSeq.text += "G";
             lastChar = 'G';
         }
         else if (tag.Equals("VioletFloor") && lastChar != 'V')
         {
-            currentSeq.text += "V";
+            // currentSeq.text += "V";
             lastChar = 'V';
         }
         else if (tag.Equals("EnemyMonster") || tag.Equals("FireBall"))
@@ -159,25 +159,25 @@ public class PlayerControllerTutorial : MonoBehaviour
             messageBox.text = "5 Seconds Lost...";
             Invoke(nameof(ResetMessageBox), 1f);
         }
-  
 
-        if (currentSeq.text.Length == (targetSeq.text.Length+1))
-        {
-            currentSeq.text = currentSeq.text.Substring(1);
-        }
 
-        if (currentSeq.text.Equals(targetSeq.text))
-        {
-            // messageBox.text = "Sequence Satisfied.\n\n Pick the Blue bottle.";
-            blackBox.SetActive(true);
+        // if (currentSeq.text.Length == (targetSeq.text.Length+1))
+        // {
+        //     currentSeq.text = currentSeq.text.Substring(1);
+        // }
 
-            GameObject.Find("RedFloor").GetComponent<SpriteRenderer>().color= new Color(0,0,0,1);
-            GameObject.Find("BlueFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
-            GameObject.Find("OrangeFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
-            GameObject.Find("GreenFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
-            GameObject.Find("VioletFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
+        // if (currentSeq.text.Equals(targetSeq.text))
+        // {
+        //     // messageBox.text = "Sequence Satisfied.\n\n Pick the Blue bottle.";
+        //     blackBox.SetActive(true);
 
-        }
+        //     GameObject.Find("RedFloor").GetComponent<SpriteRenderer>().color= new Color(0,0,0,1);
+        //     GameObject.Find("BlueFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
+        //     GameObject.Find("OrangeFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
+        //     GameObject.Find("GreenFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
+        //     GameObject.Find("VioletFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
+
+        // }
     }
 
     void DisplayTime(float time)
@@ -192,7 +192,7 @@ public class PlayerControllerTutorial : MonoBehaviour
 
 
     void ResetMessageBox()
-    {        
+    {
         messageBox.text = "";
     }
 }
