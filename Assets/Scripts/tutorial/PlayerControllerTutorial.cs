@@ -51,7 +51,7 @@ public class PlayerControllerTutorial : MonoBehaviour
         playerSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 
         playerNextColorIndicatorSpriteRenderer.color = getColorUsingCharacter(targetSeq.text[0]);
-        messageBox.text = "Jump on platform with the color same as Marker.";
+        messageBox.text = "Jump on platform with the color same as Marker. Press Space bar twice for Double Jump.";
         Invoke(nameof(ResetMessageBox), 10f);
     }
 
