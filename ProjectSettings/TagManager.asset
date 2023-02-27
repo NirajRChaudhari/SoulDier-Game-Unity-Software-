@@ -33,6 +33,7 @@ TagManager:
   - Door
   - doublejump
   - NextColorIndicator
+  - Rotating Saw
   layers:
   - Default
   - TransparentFX

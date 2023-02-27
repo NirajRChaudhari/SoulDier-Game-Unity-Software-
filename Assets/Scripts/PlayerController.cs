@@ -36,6 +36,9 @@ public class PlayerController : MonoBehaviour
     public static float totalTime = 120;
     public static int currentPos = -1;
     public string lastCheckpoint = "Starting Point";
+    public int jump_counter;
+    private bool seq_jump_flag;
+    public bool send_time_up_flag;
 
     public GameObject checkPoint1, checkPoint2;
 
@@ -70,6 +73,9 @@ public class PlayerController : MonoBehaviour
         // currentSeqHeader.gameObject.SetActive(false);
         // currentSeq.gameObject.SetActive(false);
         playerNextColorIndicator.SetActive(false);
+        jump_counter=0;
+        seq_jump_flag=false;
+        send_time_up_flag=false;
 
     }
 
@@ -140,6 +146,12 @@ public class PlayerController : MonoBehaviour
         else
         {
             totalTime = 0;
+            if (send_time_up_flag==false)
+            {
+                send_time_up_flag=true;
+                SendAnalytics4 ob = gameObject.AddComponent<SendAnalytics4>();
+                ob.Send("Time up");
+            }
             messageBox.text = "TIME'S UP, GAME OVER..";
             // call restartLevel here
             player.gameObject.SetActive(false);
@@ -211,38 +223,52 @@ public class PlayerController : MonoBehaviour
         if (tag.Equals("RedFloor") && lastChar != 'R')
         {
             lastChar = 'R';
+            jump_counter+=1;
             playerNextColorIndicatorSpriteRenderer.color = extractNextColorForPlayerSprite('R');
 
         }
         else if (tag.Equals("YellowFloor") && lastChar != 'Y')
         {
             lastChar = 'Y';
+            jump_counter+=1;
             playerNextColorIndicatorSpriteRenderer.color = extractNextColorForPlayerSprite('Y');
 
         }
         else if (tag.Equals("OrangeFloor") && lastChar != 'O')
         {
             lastChar = 'O';
+            jump_counter+=1;
             playerNextColorIndicatorSpriteRenderer.color = extractNextColorForPlayerSprite('O');
 
         }
         else if (tag.Equals("GreenFloor") && lastChar != 'G')
         {
             lastChar = 'G';
+            jump_counter+=1;
             playerNextColorIndicatorSpriteRenderer.color = extractNextColorForPlayerSprite('G');
 
         }
         else if (tag.Equals("VioletFloor") && lastChar != 'V')
         {
             lastChar = 'V';
+            jump_counter+=1;
             playerNextColorIndicatorSpriteRenderer.color = extractNextColorForPlayerSprite('V');
 
         }
-        else if (tag.Equals("EnemyMonster") || tag.Equals("FireBall"))
+        else if (tag.Equals("EnemyMonster"))
         {
-            Debug.Log("Fireball touched!");
             totalTime = totalTime - 5;
-            messageBox.text = " - 5 Seconds! ";
+            SendAnalytics3 ob = gameObject.AddComponent<SendAnalytics3>();
+            ob.Send("Monster");
+            messageBox.text = "5 Seconds Lost...";
+            Invoke(nameof(ResetMessageBox), 1f);
+        }
+                else if        (tag.Equals("FireBall"))
+        {
+            totalTime = totalTime - 5;
+            SendAnalytics3 ob = gameObject.AddComponent<SendAnalytics3>();
+            messageBox.text = "5 Seconds Lost...";
+                ob.Send("Dropping Box");
             Invoke(nameof(ResetMessageBox), 1f);
         }
     }
@@ -288,7 +314,13 @@ public class PlayerController : MonoBehaviour
                 GameObject.Find("OrangeFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
                 GameObject.Find("GreenFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
                 GameObject.Find("VioletFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
-
+        if (seq_jump_flag==false){
+                    SendAnalytics2 ob = gameObject.AddComponent<SendAnalytics2>();
+                    Debug.Log("Jump Counter: "+jump_counter);
+                    // Debug.Log("seqlen: "+seq_len);
+                    ob.Send(5, jump_counter);
+                    seq_jump_flag=true;
+                    }
                 playerNextColorIndicator.SetActive(false);
                 Invoke(nameof(ResetMessageBox), 6f);
 

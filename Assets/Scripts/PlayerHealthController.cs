@@ -55,19 +55,30 @@ public class PlayerHealthController : MonoBehaviour
         }
     }
 
-    public void DealDamage()
+    public void DealDamage(string trap)
     {
         if (invincibleCounter <= 0)
         {
 
             currentHealth--;
+            SendAnalytics3 ob = gameObject.AddComponent<SendAnalytics3>();
 
+                if (trap=="Spike"){
+
+                    ob.Send("Spike");
+                }
+                else if (trap=="Rotating Saw")
+                {
+                    ob.Send("Rotating Saw");
+                }
             if (currentHealth <= 0)
             {
                 messageBox.text = "GAME OVER";
-
+                SendAnalytics4 ob2 = gameObject.AddComponent<SendAnalytics4>();
+                ob2.Send("Killed by Traps");
                 Debug.Log("Restarting");
                 Debug.Log(playerController.lastCheckpoint);
+
                 if (playerController.lastCheckpoint == "Checkpoint1")
                 {
                     Debug.Log(playerController.lastCheckpoint);
