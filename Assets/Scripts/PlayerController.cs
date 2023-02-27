@@ -5,62 +5,54 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 using UnityEngine.UI;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
+    // Public variables
     public float moveSpeed;
     public float jumpForce;
-    private bool isGrounded;
-    private bool isDoubleJumpAllowed;
-
-    public Rigidbody2D player;
-    public Transform groundCheckPoint;
-    public GameObject playerNextColorIndicator;
+    private Transform groundCheckPoint;
     public LayerMask whatIsGround;
-    private Animator animator;
-    private SpriteRenderer playerSpriteRenderer;
-    private SpriteRenderer playerNextColorIndicatorSpriteRenderer;
-
-    // public TMP_Text currentSeq;
-    // public TMP_Text currentSeqHeader;
-    public TMP_Text targetSeq;
-    public TMP_Text targetSeqHeader;
-    public TMP_Text messageBox;
-
-    public TMP_Text globalSequence;
-
-    public Image knob1, knob2, knob3;
-
+    public GameObject canvas;
+    public GameObject knobGroup;
+    public GameObject checkPointGroup;
     public GameObject blackFloor;
-
     public static float totalTime = 120;
     public static int currentPos = -1;
     public string lastCheckpoint = "Starting Point";
 
-    public GameObject checkPoint1, checkPoint2;
 
-    [SerializeField] private TMP_Text timerText;
+    // Private variables
+    private Rigidbody2D playerRigidbody2D;
     static private char lastChar;
-
+    private bool isGrounded;
+    private bool isDoubleJumpAllowed;
     private float saveInitialMoveSpeed;
     private float saveInitialJumpForce;
+    private Animator animator;
+    private SpriteRenderer playerSpriteRenderer;
+    private SpriteRenderer playerNextColorIndicatorSpriteRenderer;
+    // private TMP_Text currentSeq;
+    // private TMP_Text currentSeqHeader;
+    private TMP_Text targetSeq, targetSeqHeader, messageBox, nextBottle, globalSequence, timerText;
+    private Image knob1, knob2, knob3;
+    private GameObject checkPoint1, checkPoint2;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerPrefs.HasKey("x") && PlayerPrefs.HasKey("y"))
-        {
-            Debug.Log("Latest: " + lastCheckpoint);
-            transform.position = new Vector2(PlayerPrefs.GetFloat("x"), PlayerPrefs.GetFloat("y"));
-        }
-        PlayerPrefs.DeleteAll();
+        retrieveAndInitializeAllPrivateObjects();
+
+
 
         this.saveInitialMoveSpeed = this.moveSpeed;
         this.saveInitialJumpForce = this.jumpForce;
         blackFloor.SetActive(false);
         animator = GetComponent<Animator>();
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
-        playerNextColorIndicatorSpriteRenderer = playerNextColorIndicator.GetComponent<SpriteRenderer>();
 
         // currentSeq.text = "";
         messageBox.text = "Jump on the platform when it's color is same as pickup bottle color.";
@@ -69,17 +61,8 @@ public class PlayerController : MonoBehaviour
         targetSeq.gameObject.SetActive(false);
         // currentSeqHeader.gameObject.SetActive(false);
         // currentSeq.gameObject.SetActive(false);
-        playerNextColorIndicator.SetActive(false);
+        playerNextColorIndicatorSpriteRenderer.gameObject.SetActive(false);
 
-    }
-
-    public void resetMovementToNormal()
-    {
-        Debug.Log("Reset Movement");
-        this.moveSpeed = this.saveInitialMoveSpeed;
-        this.jumpForce = this.saveInitialJumpForce;
-        playerSpriteRenderer.color = new Color(1, 1, 1, 1);
-        player.gravityScale = 3;
     }
 
     // Update is called once per frame
@@ -89,7 +72,7 @@ public class PlayerController : MonoBehaviour
         {
             isDoubleJumpAllowed = true;
         }
-        player.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), player.velocity.y);
+        playerRigidbody2D.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), playerRigidbody2D.velocity.y);
 
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, .2f, whatIsGround);
 
@@ -97,13 +80,13 @@ public class PlayerController : MonoBehaviour
         {
             if (isGrounded)
             {
-                player.velocity = new Vector2(player.velocity.x, jumpForce);
+                playerRigidbody2D.velocity = new Vector2(playerRigidbody2D.velocity.x, jumpForce);
             }
             else
             {
                 if (isDoubleJumpAllowed)
                 {
-                    player.velocity = new Vector2(player.velocity.x, jumpForce);
+                    playerRigidbody2D.velocity = new Vector2(playerRigidbody2D.velocity.x, jumpForce);
                     isDoubleJumpAllowed = false;
                 }
             }
@@ -112,23 +95,21 @@ public class PlayerController : MonoBehaviour
         if (transform.position.x > checkPoint1.transform.position.x && transform.position.x < checkPoint2.transform.position.x)
         {
             lastCheckpoint = "Checkpoint1";
-            Debug.Log(lastCheckpoint);
         }
         else if (transform.position.x > checkPoint2.transform.position.x)
         {
             lastCheckpoint = "Checkpoint2";
-            Debug.Log(lastCheckpoint);
         }
 
-        if (player.velocity.x < 0)
+        if (playerRigidbody2D.velocity.x < 0)
         {
             playerSpriteRenderer.flipX = true;
         }
-        else if (player.velocity.x > 0) //This condition is important or else at velocity = 0 it will flip X
+        else if (playerRigidbody2D.velocity.x > 0) //This condition is important or else at velocity = 0 it will flip X
         {
             playerSpriteRenderer.flipX = false;
         }
-        animator.SetFloat("moveSpeed", Mathf.Abs(player.velocity.x));
+        animator.SetFloat("moveSpeed", Mathf.Abs(playerRigidbody2D.velocity.x));
         animator.SetBool("isGrounded", isGrounded);
 
         float positionX = transform.position.x;
@@ -142,7 +123,7 @@ public class PlayerController : MonoBehaviour
             totalTime = 0;
             messageBox.text = "TIME'S UP, GAME OVER..";
             // call restartLevel here
-            player.gameObject.SetActive(false);
+            playerRigidbody2D.gameObject.SetActive(false);
             Invoke(nameof(restartLevel), 5f);
         }
         DisplayTime(totalTime);
@@ -159,7 +140,7 @@ public class PlayerController : MonoBehaviour
             this.moveSpeed += 4;
             this.jumpForce += 3;
             playerSpriteRenderer.color = new Color(0, 1, 0, 1);
-            Debug.Log("speed up activated");
+            Debug.Log("Speed up activated");
             Invoke(nameof(resetMovementToNormal), 3f);
             totalTime = totalTime + 5;
             messageBox.text = " + 5 Seconds! ";
@@ -174,7 +155,7 @@ public class PlayerController : MonoBehaviour
             this.moveSpeed -= 4;
             this.jumpForce -= 3;
             playerSpriteRenderer.color = new Color(1, 0, 0, 1);
-            Debug.Log("speed slow activated");
+            Debug.Log("Speed slow activated");
             Invoke(nameof(resetMovementToNormal), 3f);
         }
         if (other.gameObject.tag.Equals("fly"))
@@ -182,9 +163,9 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false);
             float normalMoveSpeedSave = this.moveSpeed;
             float normalJumpForce = this.jumpForce;
-            player.gravityScale = 1.25f;
+            playerRigidbody2D.gravityScale = 1.25f;
             playerSpriteRenderer.color = new Color(1, 1, 0, 1);
-            Debug.Log("fly mode activated");
+            Debug.Log("Fly mode activated");
             messageBox.text = "Fly Mode Activated";
             Invoke(nameof(ResetMessageBox), 3f);
             Invoke(nameof(resetMovementToNormal), 6f);
@@ -196,7 +177,7 @@ public class PlayerController : MonoBehaviour
             float normalJumpForce = this.jumpForce;
             this.jumpForce *= 1.5f;
             playerSpriteRenderer.color = new Color(0, 105, 50, 30);
-            Debug.Log("double jump mode activated");
+            Debug.Log("Double jump mode activated");
             messageBox.text = "Double Jump Activated";
             Invoke(nameof(ResetMessageBox), 3f);
             Invoke(nameof(resetMovementToNormal), 5f);
@@ -247,6 +228,135 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void retrieveAndInitializeAllPrivateObjects()
+    {
+
+        // Set All Canvas Child Objects
+        playerRigidbody2D = gameObject.GetComponent<Rigidbody2D>();
+
+        TMP_Text[] all_TMP_Texts = canvas.GetComponentsInChildren<TMP_Text>(true);
+
+        foreach (TMP_Text tmpTextObject in all_TMP_Texts)
+        {
+            switch (tmpTextObject.name)
+            {
+                case "TargetSeq":
+                    targetSeq = tmpTextObject;
+                    break;
+
+                case "TargetSeqHeader":
+                    targetSeqHeader = tmpTextObject;
+                    break;
+
+                case "MessageBox":
+                    messageBox = tmpTextObject;
+                    break;
+
+                case "GlobalSequence":
+                    globalSequence = tmpTextObject;
+                    break;
+
+                case "NextBottle":
+                    nextBottle = tmpTextObject;
+                    break;
+
+                case "TimerText":
+                    timerText = tmpTextObject;
+                    break;
+            }
+        }
+
+        // Set All Knob Child Objects
+        Image[] knobGroupImg = knobGroup.GetComponentsInChildren<Image>(true);
+        foreach (Image img in knobGroupImg)
+        {
+            switch (img.name)
+            {
+                case "Knob1":
+                    knob1 = img;
+                    break;
+
+                case "Knob2":
+                    knob2 = img;
+                    break;
+
+                case "Knob3":
+                    knob3 = img;
+                    break;
+            }
+        }
+
+
+        // Set Transform Child Object of Player
+        Transform[] groundCheckPoint = gameObject.GetComponentsInChildren<Transform>();
+        foreach (Transform t in groundCheckPoint)
+        {
+            if (t.gameObject.name.Equals("GroundPoint"))
+            {
+                this.groundCheckPoint = t;
+            }
+        }
+
+        // Set Sprite Renderer Child Object of Player
+        SpriteRenderer[] allSpriteRenderers = gameObject.GetComponentsInChildren<SpriteRenderer>();
+        foreach (SpriteRenderer spriteRenderer in allSpriteRenderers)
+        {
+            if (spriteRenderer.gameObject.name.Equals("NextColorIndicator"))
+            {
+                playerNextColorIndicatorSpriteRenderer = spriteRenderer;
+            }
+        }
+
+        //Set All Checkpoint Child Objects
+        Transform[] allCheckpoints = checkPointGroup.GetComponentsInChildren<Transform>();
+        foreach (Transform checkpointTransform in allCheckpoints)
+        {
+            switch (checkpointTransform.gameObject.name)
+            {
+                case "Checkpoint1":
+                    checkPoint1 = checkpointTransform.gameObject;
+                    break;
+
+                case "Checkpoint2":
+                    checkPoint2 = checkpointTransform.gameObject;
+                    break;
+            }
+        }
+
+        // Set Player Prefs And Next Bottle Color
+        setPlayerPrefsAndNextBottleColor();
+    }
+
+    private void setPlayerPrefsAndNextBottleColor()
+    {
+        if (PlayerPrefs.HasKey("globalSequenceFile") && PlayerPrefs.HasKey("lastCheckpoint"))
+        {
+            globalSequence.text = PlayerPrefs.GetString("globalSequenceFile");
+            if (globalSequence.text != "")
+            {
+                nextBottle.text = getColorOfBottle(globalSequence.text[0]);
+                setKnobColor();
+            }
+        }
+
+        if (PlayerPrefs.HasKey("x") && PlayerPrefs.HasKey("y"))
+        {
+            Debug.Log("Latest: " + lastCheckpoint);
+            transform.position = new Vector2(PlayerPrefs.GetFloat("x"), PlayerPrefs.GetFloat("y"));
+        }
+        PlayerPrefs.DeleteAll();
+    }
+
+    public void resetMovementToNormal()
+    {
+        Debug.Log("Reset Movement");
+        this.moveSpeed = this.saveInitialMoveSpeed;
+        this.jumpForce = this.saveInitialJumpForce;
+        playerSpriteRenderer.color = new Color(1, 1, 1, 1);
+        playerRigidbody2D.gravityScale = 3;
+    }
+
+
     void DisplayTime(float time)
     {
         if (time < 0)
@@ -267,7 +377,7 @@ public class PlayerController : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         messageBox.text = "";
         totalTime = 120;
-        player.gameObject.SetActive(true);
+        playerRigidbody2D.gameObject.SetActive(true);
     }
 
     private Color extractNextColorForPlayerSprite(char currentPlatformColor)
@@ -289,7 +399,7 @@ public class PlayerController : MonoBehaviour
                 GameObject.Find("GreenFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
                 GameObject.Find("VioletFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
 
-                playerNextColorIndicator.SetActive(false);
+                playerNextColorIndicatorSpriteRenderer.gameObject.SetActive(false);
                 Invoke(nameof(ResetMessageBox), 6f);
 
                 return extractNextColorForPlayerSprite(currentPlatformColor);
@@ -329,6 +439,45 @@ public class PlayerController : MonoBehaviour
         }
 
         return color;
+    }
+
+    private string getColorOfBottle(char ch)
+    {
+
+        switch (ch)
+        {
+            case 'R':
+                return "Red";
+            case 'B':
+                return "Blue";
+            case 'G':
+                return "Green";
+
+            default:
+                return "Gray";
+        }
+    }
+
+    private void setKnobColor()
+    {
+        if (nextBottle.text == "Red")
+        {
+            knob1.color = Color.red;
+            knob2.color = new Color(128, 128, 128);
+            knob3.color = new Color(128, 128, 128);
+        }
+        if (nextBottle.text == "Green")
+        {
+            knob1.color = new Color(128, 128, 128);
+            knob2.color = new Color(128, 128, 128);
+            knob3.color = Color.green;
+        }
+        if (nextBottle.text == "Blue")
+        {
+            knob1.color = new Color(128, 128, 128);
+            knob2.color = Color.blue;
+            knob3.color = new Color(128, 128, 128);
+        }
     }
 }
 

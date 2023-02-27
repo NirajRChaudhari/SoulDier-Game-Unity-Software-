@@ -73,8 +73,8 @@ public class PlayerHealthController : MonoBehaviour
                     Debug.Log(playerController.lastCheckpoint);
                     PlayerPrefs.SetFloat("x", checkPoint1.transform.position.x);
                     PlayerPrefs.SetFloat("y", checkPoint1.transform.position.y);
-                    PlayerPrefs.SetString("nextColor", globalSequence.text);
-                    PlayerPrefs.SetString("latestCp", playerController.lastCheckpoint);
+                    PlayerPrefs.SetString("globalSequenceFile", globalSequence.text);
+                    PlayerPrefs.SetString("lastCheckpoint", playerController.lastCheckpoint);
                 }
                 else if (playerController.lastCheckpoint == "Checkpoint2")
                 {
@@ -83,8 +83,8 @@ public class PlayerHealthController : MonoBehaviour
                     Debug.Log("CP2 y = " + checkPoint2.transform.position.y);
                     PlayerPrefs.SetFloat("x", checkPoint2.transform.position.x);
                     PlayerPrefs.SetFloat("y", checkPoint2.transform.position.y);
-                    PlayerPrefs.SetString("nextColor", globalSequence.text);
-                    PlayerPrefs.SetString("latestCp", playerController.lastCheckpoint);
+                    PlayerPrefs.SetString("globalSequenceFile", globalSequence.text);
+                    PlayerPrefs.SetString("lastCheckpoint", playerController.lastCheckpoint);
                 }
 
                 gameObject.SetActive(false);
