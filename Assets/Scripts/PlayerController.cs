@@ -65,9 +65,9 @@ public class PlayerController : MonoBehaviour
         // currentSeqHeader.gameObject.SetActive(false);
         // currentSeq.gameObject.SetActive(false);
         playerNextColorIndicatorSpriteRenderer.gameObject.SetActive(false);
-        jump_counter=0;
-        seq_jump_flag=false;
-        send_time_up_flag=false;
+        jump_counter = 0;
+        seq_jump_flag = false;
+        send_time_up_flag = false;
 
     }
 
@@ -127,9 +127,9 @@ public class PlayerController : MonoBehaviour
         else
         {
             totalTime = 0;
-            if (send_time_up_flag==false)
+            if (send_time_up_flag == false)
             {
-                send_time_up_flag=true;
+                send_time_up_flag = true;
                 SendAnalytics4 ob = gameObject.AddComponent<SendAnalytics4>();
                 ob.Send("Time up");
             }
@@ -195,7 +195,7 @@ public class PlayerController : MonoBehaviour
             Invoke(nameof(resetMovementToNormal), 5f);
         }
 
-        if(other.gameObject.name == "CP1")
+        if (other.gameObject.name == "CP1")
         {
             SendAnalytics ob = gameObject.AddComponent<SendAnalytics>();
             ob.Send(other.gameObject.name, PlayerController.totalTime);
@@ -225,35 +225,35 @@ public class PlayerController : MonoBehaviour
         if (tag.Equals("RedFloor") && lastChar != 'R')
         {
             lastChar = 'R';
-            jump_counter+=1;
+            jump_counter += 1;
             playerNextColorIndicatorSpriteRenderer.color = extractNextColorForPlayerSprite('R');
 
         }
         else if (tag.Equals("YellowFloor") && lastChar != 'Y')
         {
             lastChar = 'Y';
-            jump_counter+=1;
+            jump_counter += 1;
             playerNextColorIndicatorSpriteRenderer.color = extractNextColorForPlayerSprite('Y');
 
         }
         else if (tag.Equals("OrangeFloor") && lastChar != 'O')
         {
             lastChar = 'O';
-            jump_counter+=1;
+            jump_counter += 1;
             playerNextColorIndicatorSpriteRenderer.color = extractNextColorForPlayerSprite('O');
 
         }
         else if (tag.Equals("GreenFloor") && lastChar != 'G')
         {
             lastChar = 'G';
-            jump_counter+=1;
+            jump_counter += 1;
             playerNextColorIndicatorSpriteRenderer.color = extractNextColorForPlayerSprite('G');
 
         }
         else if (tag.Equals("VioletFloor") && lastChar != 'V')
         {
             lastChar = 'V';
-            jump_counter+=1;
+            jump_counter += 1;
             playerNextColorIndicatorSpriteRenderer.color = extractNextColorForPlayerSprite('V');
 
         }
@@ -265,12 +265,12 @@ public class PlayerController : MonoBehaviour
             messageBox.text = "5 Seconds Lost...";
             Invoke(nameof(ResetMessageBox), 1f);
         }
-                else if        (tag.Equals("FireBall"))
+        else if (tag.Equals("FireBall"))
         {
             totalTime = totalTime - 5;
             SendAnalytics3 ob = gameObject.AddComponent<SendAnalytics3>();
             messageBox.text = "5 Seconds Lost...";
-                ob.Send("Dropping Box");
+            ob.Send("Dropping Box");
             Invoke(nameof(ResetMessageBox), 1f);
         }
     }
@@ -445,13 +445,14 @@ public class PlayerController : MonoBehaviour
                 GameObject.Find("OrangeFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
                 GameObject.Find("GreenFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
                 GameObject.Find("VioletFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
-        if (seq_jump_flag==false){
+                if (seq_jump_flag == false)
+                {
                     SendAnalytics2 ob = gameObject.AddComponent<SendAnalytics2>();
-                    Debug.Log("Jump Counter: "+jump_counter);
+                    Debug.Log("Jump Counter: " + jump_counter);
                     // Debug.Log("seqlen: "+seq_len);
                     ob.Send(5, jump_counter);
-                    seq_jump_flag=true;
-                    }
+                    seq_jump_flag = true;
+                }
                 playerNextColorIndicatorSpriteRenderer.gameObject.SetActive(false);
                 Invoke(nameof(ResetMessageBox), 6f);
 
