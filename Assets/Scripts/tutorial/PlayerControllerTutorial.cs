@@ -14,7 +14,7 @@ public class PlayerControllerTutorial : MonoBehaviour
     public float jumpForce;
     public LayerMask whatIsGround;
     public GameObject canvas;
-    public GameObject knobGroup;
+    // public GameObject knobGroup;
     public GameObject checkPointGroup;
     public GameObject blackFloor;
     public static float totalTime = 120;
@@ -33,8 +33,9 @@ public class PlayerControllerTutorial : MonoBehaviour
     // private TMP_Text currentSeq;
     // private TMP_Text currentSeqHeader;
     private TMP_Text targetSeq, targetSeqHeader, messageBox, nextBottle, globalSequence, timerText;
-    private Image knob1, knob2, knob3;
+    // private Image knob1, knob2, knob3;
     private GameObject checkPoint1;
+    public GameObject checkPoint2;
 
 
     // Start is called before the first frame update
@@ -51,7 +52,7 @@ public class PlayerControllerTutorial : MonoBehaviour
         playerSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 
         playerNextColorIndicatorSpriteRenderer.color = getColorUsingCharacter(targetSeq.text[0]);
-        messageBox.text = "Jump on platform with the color same as Marker. Press Space bar twice for Double Jump.";
+        messageBox.text = "";
         Invoke(nameof(ResetMessageBox), 10f);
     }
 
@@ -151,7 +152,16 @@ public class PlayerControllerTutorial : MonoBehaviour
             totalTime = totalTime - 5;
             messageBox.text = " - 5 Seconds! ";
             Invoke(nameof(ResetMessageBox), 1f);
+        } 
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        
+        if(other.gameObject.tag=="RedBottle") {
+            other.gameObject.SetActive(false);
+            checkPoint2.SetActive(false);
         }
+
     }
 
     private void retrieveAndInitializeAllPrivateObjects()
