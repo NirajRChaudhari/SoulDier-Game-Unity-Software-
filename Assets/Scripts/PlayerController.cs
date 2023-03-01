@@ -74,28 +74,47 @@ public class PlayerController : MonoBehaviour
     {
         playerSpriteRenderer.color = getColorUsingColorName(nextBottle.text);
 
-        if (isGrounded)
-        {
-            isDoubleJumpAllowed = true;
-        }
+        isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, .2f, whatIsGround);
+
+
+
+        // if (!isDoubleJumpAllowed)
+        // {
+
+        //     if (isGrounded)
+        //     {
+        //         isDoubleJumpAllowed = true;
+        //     }
+        // }
+
+
         playerRigidbody2D.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), playerRigidbody2D.velocity.y);
 
-        isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, .2f, whatIsGround);
 
         if (Input.GetButtonDown("Jump"))
         {
-            if (isGrounded)
+            if (isDoubleJumpAllowed || isGrounded)
             {
                 playerRigidbody2D.velocity = new Vector2(playerRigidbody2D.velocity.x, jumpForce);
-            }
-            else
-            {
+
                 if (isDoubleJumpAllowed)
                 {
-                    playerRigidbody2D.velocity = new Vector2(playerRigidbody2D.velocity.x, jumpForce);
                     isDoubleJumpAllowed = false;
                 }
+                else
+                {
+                    isDoubleJumpAllowed = true;
+                }
             }
+            // if (isDoubleJumpAllowed)
+            // {
+            //     playerRigidbody2D.velocity = new Vector2(playerRigidbody2D.velocity.x, jumpForce);
+            //     isDoubleJumpAllowed = false;
+            // }
+            // else if (isGrounded)
+            // {
+            //     playerRigidbody2D.velocity = new Vector2(playerRigidbody2D.velocity.x, jumpForce);
+            // }
         }
 
         if (transform.position.x > checkPoint1.transform.position.x && transform.position.x < checkPoint2.transform.position.x)
@@ -488,7 +507,7 @@ public class PlayerController : MonoBehaviour
             case 'Y':
                 return "Yellow";
             default:
-                return "Gray";
+                return "White";
         }
     }
 
