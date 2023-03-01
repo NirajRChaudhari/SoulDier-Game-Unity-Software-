@@ -21,7 +21,7 @@ public class BottleControllerTutorial : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -31,7 +31,7 @@ public class BottleControllerTutorial : MonoBehaviour
 
         globalSequence.text = globalSequence.text.Substring(1);
 
-        if(globalSequence.text != "")
+        if (globalSequence.text != "")
         {
             // nextBottle.text = getColorName(globalSequence.text[0]);
         }
@@ -45,7 +45,7 @@ public class BottleControllerTutorial : MonoBehaviour
             // nextBottleHeader.text = "";
         }
 
-        messageBox.text="";
+        messageBox.text = "";
     }
 
     private string getColorName(char colorCode)
@@ -61,7 +61,7 @@ public class BottleControllerTutorial : MonoBehaviour
                 //nextBottle.color = Color.white;
                 return "";
         }
-        
+
     }
-           
+
 }

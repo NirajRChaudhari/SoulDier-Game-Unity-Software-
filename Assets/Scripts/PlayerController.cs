@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour
     private Transform groundCheckPoint;
     public LayerMask whatIsGround;
     public GameObject canvas;
-    public GameObject knobGroup;
     public GameObject checkPointGroup;
     public GameObject blackFloor;
     public static float totalTime = 120;
@@ -39,7 +38,6 @@ public class PlayerController : MonoBehaviour
     // private TMP_Text currentSeq;
     // private TMP_Text currentSeqHeader;
     private TMP_Text targetSeq, targetSeqHeader, messageBox, nextBottle, globalSequence, timerText;
-    private Image knob1, knob2, knob3;
     private GameObject checkPoint1, checkPoint2;
 
 
@@ -74,6 +72,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        playerSpriteRenderer.color = getColorUsingColorName(nextBottle.text);
+
         if (isGrounded)
         {
             isDoubleJumpAllowed = true;
@@ -313,26 +313,6 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // Set All Knob Child Objects
-        Image[] knobGroupImg = knobGroup.GetComponentsInChildren<Image>(true);
-        foreach (Image img in knobGroupImg)
-        {
-            switch (img.name)
-            {
-                case "Knob1":
-                    knob1 = img;
-                    break;
-
-                case "Knob2":
-                    knob2 = img;
-                    break;
-
-                case "Knob3":
-                    knob3 = img;
-                    break;
-            }
-        }
-
 
         // Set Transform Child Object of Player
         Transform[] groundCheckPoint = gameObject.GetComponentsInChildren<Transform>();
@@ -382,7 +362,6 @@ public class PlayerController : MonoBehaviour
             if (globalSequence.text != "")
             {
                 nextBottle.text = getColorOfBottle(globalSequence.text[0]);
-                setKnobColor();
             }
         }
 
@@ -512,25 +491,25 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void setKnobColor()
+    static public Color getColorUsingColorName(string colorName)
     {
-        if (nextBottle.text == "Red")
+
+        switch (colorName)
         {
-            knob1.color = Color.red;
-            knob2.color = new Color(128, 128, 128);
-            knob3.color = new Color(128, 128, 128);
-        }
-        if (nextBottle.text == "Green")
-        {
-            knob1.color = new Color(128, 128, 128);
-            knob2.color = new Color(128, 128, 128);
-            knob3.color = Color.green;
-        }
-        if (nextBottle.text == "Blue")
-        {
-            knob1.color = new Color(128, 128, 128);
-            knob2.color = Color.blue;
-            knob3.color = new Color(128, 128, 128);
+            case "Red":
+                return Color.red;
+
+            case "Blue":
+                return Color.blue;
+
+            case "Green":
+                return Color.green;
+
+            case "Yellow":
+                return Color.yellow;
+
+            default:
+                return Color.black;
         }
     }
 }
