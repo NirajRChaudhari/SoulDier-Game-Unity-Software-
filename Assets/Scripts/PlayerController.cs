@@ -485,7 +485,8 @@ public class PlayerController : MonoBehaviour
                 return "Blue";
             case 'G':
                 return "Green";
-
+            case 'Y':
+                return "Yellow";
             default:
                 return "Gray";
         }

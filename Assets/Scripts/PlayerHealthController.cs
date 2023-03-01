@@ -63,14 +63,15 @@ public class PlayerHealthController : MonoBehaviour
             currentHealth--;
             SendAnalytics3 ob = gameObject.AddComponent<SendAnalytics3>();
 
-                if (trap=="Spike"){
+            if (trap == "Spike")
+            {
 
-                    ob.Send("Spike");
-                }
-                else if (trap=="Rotating Saw")
-                {
-                    ob.Send("Rotating Saw");
-                }
+                ob.Send("Spike");
+            }
+            else if (trap == "Rotating Saw")
+            {
+                ob.Send("Rotating Saw");
+            }
             if (currentHealth <= 0)
             {
                 messageBox.text = "GAME OVER";
