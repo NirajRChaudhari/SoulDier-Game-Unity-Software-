@@ -36251,6 +36251,14 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7328417388933538223, guid: bffc060ce2c1645bcac7a9095b4cd111, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.047
+      objectReference: {fileID: 0}
+    - target: {fileID: 7328417388933538223, guid: bffc060ce2c1645bcac7a9095b4cd111, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.37
+      objectReference: {fileID: 0}
     - target: {fileID: 7328417389042922837, guid: bffc060ce2c1645bcac7a9095b4cd111, type: 3}
       propertyPath: canvas
       value: 
