@@ -41,7 +41,7 @@ public class PlatformController : MonoBehaviour
     void Update()
     {
 
-        if (platformSpriteRenderer.color == extractColorOfNextBottle())
+        if (platformSpriteRenderer.color.CompareRGB(extractColorOfNextBottle()))
         {
             gameObject.layer = 3;
             gameObject.GetComponent<Collider2D>().isTrigger = false;
@@ -77,11 +77,15 @@ public class PlatformController : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
 
-            if (platformSpriteRenderer.color == extractColorOfNextBottle())
+            if (platformSpriteRenderer.color.CompareRGB(extractColorOfNextBottle()))
             {
-                CancelInvoke();
-                //platformSpriteRenderer.color = extractColorOfNextBottle();
+                Color platformColor = platformSpriteRenderer.color;
+                platformColor.a = 0.5f;
+                platformSpriteRenderer.color = platformColor;
 
+                gameObject.GetComponent<Collider2D>().isTrigger = false;
+
+                CancelInvoke();
             }
 
 
@@ -99,9 +103,11 @@ public class PlatformController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player") && collision.gameObject.activeSelf)
         {
-            if (platformSpriteRenderer.color == extractColorOfNextBottle())
+            if (platformSpriteRenderer.color.CompareRGB(extractColorOfNextBottle()))
             {
-                //platformSpriteRenderer.color = Color.red;
+                Color platformColor = platformSpriteRenderer.color;
+                platformColor.a = 1f;
+                platformSpriteRenderer.color = platformColor;
 
                 Start();
             }

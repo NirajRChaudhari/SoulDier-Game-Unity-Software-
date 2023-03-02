@@ -18,16 +18,19 @@ public class PlayerController : MonoBehaviour
     public GameObject checkPointGroup;
     public GameObject blackFloor;
     public static float totalTime = 120;
-    public static int currentPos = -1;
     public string lastCheckpoint = "Starting Point";
-    public int jump_counter;
-    private bool seq_jump_flag;
+    public static int jump_counter;
+    public static bool seq_jump_flag;
     public bool send_time_up_flag;
 
 
     // Private variables
     private Rigidbody2D playerRigidbody2D;
-    static private char lastChar;
+    private char lastChar;
+
+    public static char lastCharInColorSubseq;
+    public static int currentPosInColorSubseq = -1;
+
     private bool isGrounded;
     private bool isDoubleJumpAllowed;
     private float saveInitialMoveSpeed;
@@ -35,8 +38,6 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private SpriteRenderer playerSpriteRenderer;
     private SpriteRenderer playerNextColorIndicatorSpriteRenderer;
-    // private TMP_Text currentSeq;
-    // private TMP_Text currentSeqHeader;
     private TMP_Text targetSeq, targetSeqHeader, messageBox, nextBottle, globalSequence, timerText;
     private GameObject checkPoint1, checkPoint2;
 
@@ -55,18 +56,15 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
 
-        // currentSeq.text = "";
         messageBox.text = "Jump on the platform when it's color is same as pickup bottle color.";
         Invoke(nameof(ResetMessageBox), 5f);
         targetSeqHeader.gameObject.SetActive(false);
         targetSeq.gameObject.SetActive(false);
-        // currentSeqHeader.gameObject.SetActive(false);
-        // currentSeq.gameObject.SetActive(false);
         playerNextColorIndicatorSpriteRenderer.gameObject.SetActive(false);
+
         jump_counter = 0;
         seq_jump_flag = false;
         send_time_up_flag = false;
-
     }
 
     // Update is called once per frame
@@ -75,17 +73,6 @@ public class PlayerController : MonoBehaviour
         playerSpriteRenderer.color = getColorUsingColorName(nextBottle.text);
 
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, .2f, whatIsGround);
-
-
-
-        // if (!isDoubleJumpAllowed)
-        // {
-
-        //     if (isGrounded)
-        //     {
-        //         isDoubleJumpAllowed = true;
-        //     }
-        // }
 
 
         playerRigidbody2D.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), playerRigidbody2D.velocity.y);
@@ -106,15 +93,6 @@ public class PlayerController : MonoBehaviour
                     isDoubleJumpAllowed = true;
                 }
             }
-            // if (isDoubleJumpAllowed)
-            // {
-            //     playerRigidbody2D.velocity = new Vector2(playerRigidbody2D.velocity.x, jumpForce);
-            //     isDoubleJumpAllowed = false;
-            // }
-            // else if (isGrounded)
-            // {
-            //     playerRigidbody2D.velocity = new Vector2(playerRigidbody2D.velocity.x, jumpForce);
-            // }
         }
 
         if (transform.position.x > checkPoint1.transform.position.x && transform.position.x < checkPoint2.transform.position.x)
@@ -240,43 +218,7 @@ public class PlayerController : MonoBehaviour
     {
         string tag = collision.gameObject.tag;
 
-
-        if (tag.Equals("RedFloor") && lastChar != 'R')
-        {
-            lastChar = 'R';
-            jump_counter += 1;
-            playerNextColorIndicatorSpriteRenderer.color = extractNextColorForPlayerSprite('R');
-
-        }
-        else if (tag.Equals("YellowFloor") && lastChar != 'Y')
-        {
-            lastChar = 'Y';
-            jump_counter += 1;
-            playerNextColorIndicatorSpriteRenderer.color = extractNextColorForPlayerSprite('Y');
-
-        }
-        else if (tag.Equals("OrangeFloor") && lastChar != 'O')
-        {
-            lastChar = 'O';
-            jump_counter += 1;
-            playerNextColorIndicatorSpriteRenderer.color = extractNextColorForPlayerSprite('O');
-
-        }
-        else if (tag.Equals("GreenFloor") && lastChar != 'G')
-        {
-            lastChar = 'G';
-            jump_counter += 1;
-            playerNextColorIndicatorSpriteRenderer.color = extractNextColorForPlayerSprite('G');
-
-        }
-        else if (tag.Equals("VioletFloor") && lastChar != 'V')
-        {
-            lastChar = 'V';
-            jump_counter += 1;
-            playerNextColorIndicatorSpriteRenderer.color = extractNextColorForPlayerSprite('V');
-
-        }
-        else if (tag.Equals("EnemyMonster"))
+        if (tag.Equals("EnemyMonster"))
         {
             totalTime = totalTime - 5;
             SendAnalytics3 ob = gameObject.AddComponent<SendAnalytics3>();
@@ -425,73 +367,6 @@ public class PlayerController : MonoBehaviour
         playerRigidbody2D.gameObject.SetActive(true);
     }
 
-    private Color extractNextColorForPlayerSprite(char currentPlatformColor)
-    {
-
-        Color color = Color.white;
-
-        if (currentPos < targetSeq.text.Length && targetSeq.text[currentPos] == currentPlatformColor)
-        {
-            currentPos = currentPos + 1;
-            if (currentPos == targetSeq.text.Length)
-            {
-                messageBox.text = "Pick the Blue bottle.";
-                blackFloor.SetActive(true);
-
-                GameObject.Find("RedFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
-                GameObject.Find("BlueFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
-                GameObject.Find("OrangeFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
-                GameObject.Find("GreenFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
-                GameObject.Find("VioletFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
-                if (seq_jump_flag == false)//
-                {
-                    SendAnalytics2 ob = gameObject.AddComponent<SendAnalytics2>();
-                    Debug.Log("Jump Counter: " + jump_counter);
-                    // Debug.Log("seqlen: "+seq_len);
-                    ob.Send(5, jump_counter);
-                    seq_jump_flag = true;
-                }
-                playerNextColorIndicatorSpriteRenderer.gameObject.SetActive(false);
-                Invoke(nameof(ResetMessageBox), 6f);
-
-                return extractNextColorForPlayerSprite(currentPlatformColor);
-            }
-        }
-        else
-        {
-            currentPos = 0;
-        }
-        color = getColorUsingCharacter(targetSeq.text[currentPos]);
-
-
-        return color;
-    }
-
-    private Color getColorUsingCharacter(char colorChar)
-    {
-        Color color = Color.white;
-
-        switch (colorChar)
-        {
-            case 'R':
-                color = Color.red;
-                break;
-            case 'Y':
-                color = Color.yellow;
-                break;
-            case 'O':
-                color = new Color(1, 0.5f, 0, 1);
-                break;
-            case 'G':
-                color = Color.green;
-                break;
-            case 'V':
-                color = Color.magenta;
-                break;
-        }
-
-        return color;
-    }
 
     private string getColorOfBottle(char ch)
     {
