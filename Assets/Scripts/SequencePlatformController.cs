@@ -8,10 +8,11 @@ public class SequencePlatformController : MonoBehaviour
     public GameObject playerNextColorIndicator;
     public GameObject canvas;
     public GameObject colorfullFloor;
+    public GameObject blackFloor;
 
     private SpriteRenderer playerNextColorIndicatorSpriteRenderer, currentPlatformSpriteRenderer;
     private TMP_Text targetSeq, messageBox;
-    private SpriteRenderer blackFloor, redFloor, greenFloor, orangeFloor, yellowFloor, violetFloor;
+    private SpriteRenderer redFloor, greenFloor, orangeFloor, yellowFloor, violetFloor;
 
     // Start is called before the first frame update
     void Start()
@@ -54,10 +55,6 @@ public class SequencePlatformController : MonoBehaviour
         {
             switch (colorfullFloor.name)
             {
-                case "BlackFloor":
-                    blackFloor = colorfullFloor;
-                    break;
-
                 case "RedFloor":
                     redFloor = colorfullFloor;
                     break;
@@ -111,7 +108,7 @@ public class SequencePlatformController : MonoBehaviour
             if (PlayerController.currentPosInColorSubseq == targetSeq.text.Length)
             {
                 messageBox.text = "Pick the Blue bottle.";
-                blackFloor.gameObject.SetActive(true);
+                blackFloor.SetActive(true);
 
                 redFloor.color = Color.white;
                 yellowFloor.color = Color.white;
