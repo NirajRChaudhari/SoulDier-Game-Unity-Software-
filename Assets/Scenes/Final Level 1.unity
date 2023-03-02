@@ -16696,6 +16696,7 @@ MonoBehaviour:
   playerNextColorIndicator: {fileID: 1578483358}
   canvas: {fileID: 1178642476}
   colorfullFloor: {fileID: 1849696422}
+  blackFloor: {fileID: 1557697089}
 --- !u!1 &756603368
 GameObject:
   m_ObjectHideFlags: 0
@@ -16948,6 +16949,7 @@ MonoBehaviour:
   playerNextColorIndicator: {fileID: 1578483358}
   canvas: {fileID: 1178642476}
   colorfullFloor: {fileID: 1849696422}
+  blackFloor: {fileID: 1557697089}
 --- !u!1 &789838490
 GameObject:
   m_ObjectHideFlags: 0
@@ -18317,6 +18319,7 @@ MonoBehaviour:
   playerNextColorIndicator: {fileID: 1578483358}
   canvas: {fileID: 1178642476}
   colorfullFloor: {fileID: 1849696422}
+  blackFloor: {fileID: 1557697089}
 --- !u!1 &1176099953
 GameObject:
   m_ObjectHideFlags: 0
@@ -18684,6 +18687,7 @@ MonoBehaviour:
   playerNextColorIndicator: {fileID: 1578483358}
   canvas: {fileID: 1178642476}
   colorfullFloor: {fileID: 1849696422}
+  blackFloor: {fileID: 1557697089}
 --- !u!1 &1311551559
 GameObject:
   m_ObjectHideFlags: 0
@@ -20295,6 +20299,7 @@ MonoBehaviour:
   playerNextColorIndicator: {fileID: 1578483358}
   canvas: {fileID: 1178642476}
   colorfullFloor: {fileID: 1849696422}
+  blackFloor: {fileID: 1557697089}
 --- !u!4 &1757189670 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2061993478433145325, guid: ae6c670ca6d1d4d70ad381d9e59d9199, type: 3}
@@ -36393,11 +36398,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7328417389042922839, guid: bffc060ce2c1645bcac7a9095b4cd111, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -24.48
+      value: -22.92
       objectReference: {fileID: 0}
     - target: {fileID: 7328417389042922839, guid: bffc060ce2c1645bcac7a9095b4cd111, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.39
+      value: 1.93
       objectReference: {fileID: 0}
     - target: {fileID: 7328417389042922839, guid: bffc060ce2c1645bcac7a9095b4cd111, type: 3}
       propertyPath: m_LocalPosition.z
