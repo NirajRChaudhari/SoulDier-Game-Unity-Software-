@@ -43,10 +43,12 @@ public class PlatformController : MonoBehaviour
 
         if (platformSpriteRenderer.color == extractColorOfNextBottle())
         {
+            gameObject.layer = 3;
             gameObject.GetComponent<Collider2D>().isTrigger = false;
         }
         else
         {
+            gameObject.layer = 0;
             gameObject.GetComponent<Collider2D>().isTrigger = true;
         }
 
