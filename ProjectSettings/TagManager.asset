@@ -34,6 +34,8 @@ TagManager:
   - doublejump
   - NextColorIndicator
   - Rotating Saw
+  - YellowBottle
+  - PlatformJumpGuideImg
   layers:
   - Default
   - TransparentFX

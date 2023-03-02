@@ -14,10 +14,7 @@ public class PlayerControllerTutorial : MonoBehaviour
     public float jumpForce;
     public LayerMask whatIsGround;
     public GameObject canvas;
-<<<<<<< HEAD
-=======
     // public GameObject knobGroup;
->>>>>>> 8f5537bf406e65dde3377bdad64471bc8d11cee4
     public GameObject checkPointGroup;
     public GameObject blackFloor;
     public static float totalTime = 120;
@@ -36,12 +33,13 @@ public class PlayerControllerTutorial : MonoBehaviour
     // private TMP_Text currentSeq;
     // private TMP_Text currentSeqHeader;
     private TMP_Text targetSeq, targetSeqHeader, messageBox, nextBottle, globalSequence, timerText;
-<<<<<<< HEAD
-=======
     // private Image knob1, knob2, knob3;
->>>>>>> 8f5537bf406e65dde3377bdad64471bc8d11cee4
     private GameObject checkPoint1;
     public GameObject checkPoint2;
+    private float saveInitialMoveSpeed;
+    private float saveInitialJumpForce;
+
+    public GameObject checkpoint3;
 
 
     // Start is called before the first frame update
@@ -49,8 +47,10 @@ public class PlayerControllerTutorial : MonoBehaviour
     {
         retrieveAndInitializeAllPrivateObjects();
 
+        this.saveInitialMoveSpeed = this.moveSpeed;
+        this.saveInitialJumpForce = this.jumpForce;
         blackFloor.SetActive(false);
-        playerNextColorIndicatorSpriteRenderer.gameObject.SetActive(true);
+        playerNextColorIndicatorSpriteRenderer.gameObject.SetActive(false);
         targetSeqHeader.gameObject.SetActive(false);
         targetSeq.gameObject.SetActive(false);
 
@@ -65,8 +65,6 @@ public class PlayerControllerTutorial : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerSpriteRenderer.color = getColorUsingColorName(nextBottle.text);
-
         if (isGrounded)
         {
             isDoubleJumpAllowed = true;
@@ -134,7 +132,6 @@ public class PlayerControllerTutorial : MonoBehaviour
         {
             lastChar = 'Y';
             playerNextColorIndicatorSpriteRenderer.color = extractNextColorForPlayerSprite('Y');
-
         }
         else if (tag.Equals("OrangeFloor") && lastChar != 'O')
         {
@@ -168,9 +165,61 @@ public class PlayerControllerTutorial : MonoBehaviour
         if(other.gameObject.tag=="RedBottle") {
             other.gameObject.SetActive(false);
             checkPoint2.SetActive(false);
+            playerSpriteRenderer.color = new Color (1, 1, 1, 1);
+        }
+        if(other.gameObject.tag=="BlueBottle") {
+            playerSpriteRenderer.color = new Color (1, 0, 0, 1);
+        }
+        if(other.gameObject.tag=="YellowBottle") {
+            playerSpriteRenderer.color = new Color (0, 0, 1, 1);
+            other.gameObject.SetActive(false);
+            checkpoint3.SetActive(false);
+            messageBox.text = "Purrfect :)";
+            Invoke(nameof(ResetMessageBox), 2f);
         }
 
+        if(other.gameObject.tag=="PlatformJumpGuideImg") {
+            playerNextColorIndicatorSpriteRenderer.gameObject.SetActive(true);
+        }
+
+        if (other.gameObject.tag.Equals("SpeedupPowerup"))
+        {
+            other.gameObject.SetActive(false);
+            // run faster for 3 seconds and again back to normal
+            float normalMoveSpeedSave = this.moveSpeed;
+            float normalJumpForce = this.jumpForce;
+            this.moveSpeed += 4;
+            this.jumpForce += 3;
+            // playerSpriteRenderer.color = new Color(0, 1, 0, 1);
+            Debug.Log("Speed up activated");
+            Invoke(nameof(resetMovementToNormal), 3f);
+            totalTime = totalTime + 2;
+            messageBox.text = " + 2 Seconds! ";
+            Invoke(nameof(ResetMessageBox), 1f);
+        }
+
+        if (other.gameObject.tag.Equals("speedSlowPowerDown"))
+        {
+            other.gameObject.SetActive(false);
+            float normalMoveSpeedSave = this.moveSpeed;
+            float normalJumpForce = this.jumpForce;
+            this.moveSpeed -= 5;
+            this.jumpForce -= 4;
+            // playerSpriteRenderer.color = new Color(1, 0, 0, 1);
+            Debug.Log("Speed slow activated");
+            Invoke(nameof(resetMovementToNormal), 3f);
+        }
     }
+
+        public void resetMovementToNormal()
+    {
+        Debug.Log("Reset Movement");
+        this.moveSpeed = this.saveInitialMoveSpeed;
+        this.jumpForce = this.saveInitialJumpForce;
+        // playerSpriteRenderer.color = new Color(1, 1, 1, 1);
+        playerRigidbody2D.gravityScale = 3;
+    }
+
 
     private void retrieveAndInitializeAllPrivateObjects()
     {
@@ -209,6 +258,27 @@ public class PlayerControllerTutorial : MonoBehaviour
                     break;
             }
         }
+
+        // Set All Knob Child Objects
+        // Image[] knobGroupImg = knobGroup.GetComponentsInChildren<Image>(true);
+        // foreach (Image img in knobGroupImg)
+        // {
+        //     switch (img.name)
+        //     {
+        //         case "Knob1":
+        //             knob1 = img;
+        //             break;
+
+        //         case "Knob2":
+        //             knob2 = img;
+        //             break;
+
+        //         case "Knob3":
+        //             knob3 = img;
+        //             break;
+        //     }
+        // }
+
 
         // Set Transform Child Object of Player
         Transform[] groundCheckPoint = gameObject.GetComponentsInChildren<Transform>();
@@ -322,25 +392,4 @@ public class PlayerControllerTutorial : MonoBehaviour
         return color;
     }
 
-    static public Color getColorUsingColorName(string colorName)
-    {
-
-        switch (colorName)
-        {
-            case "Red":
-                return Color.red;
-
-            case "Blue":
-                return Color.blue;
-
-            case "Green":
-                return Color.green;
-
-            case "Yellow":
-                return Color.yellow;
-
-            default:
-                return Color.black;
-        }
-    }
 }

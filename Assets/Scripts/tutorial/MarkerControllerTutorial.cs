@@ -29,8 +29,8 @@ public class MarkerControllerTutorial : MonoBehaviour
             if (gameObject.name == "Markers1")
             {
                 Debug.Log("Jump now");
-                messageBox.text = "Find & Collect Red Bottle. Only Red Platforms are available to jump";
-
+                messageBox.text = "Great!";
+                gameObject.SetActive(false);
                 Invoke(nameof(ResetMessageBox), 4f);
             }
         }

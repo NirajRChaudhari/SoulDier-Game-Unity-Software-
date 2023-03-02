@@ -11,9 +11,9 @@ public class LevelCompleted : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.name=="Player") {
-            messageBox.text = "Congrats! Level Completed";
+            messageBox.text = "Congrats! Starting game...";
             Invoke("levelComplete", 3f);
-            messageBox.text = "Congrats! Level Completed";
+            messageBox.text = "Congrats! Starting game...";
         }
     }
 
