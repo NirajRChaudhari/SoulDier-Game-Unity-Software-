@@ -29,9 +29,9 @@ public class MarkerControllerTutorial : MonoBehaviour
             if (gameObject.name == "Markers1")
             {
                 Debug.Log("Jump now");
-                messageBox.text = "Jump on the Spring to gain more height";
+                messageBox.text = "Awesome!";
 
-                Invoke(nameof(ResetMessageBox), 4f);
+                Invoke(nameof(ResetMessageBox), 2f);
             }
         }
     }
