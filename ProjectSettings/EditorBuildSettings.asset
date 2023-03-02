@@ -6,15 +6,33 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Tutorial.unity
+    path: Assets/Scenes/ChangeLvlTutorial.unity
+    guid: 1db478118e5d44786815461fcca53dd1
+  - enabled: 1
+    path: Assets/Scenes/tutorial.unity
     guid: ba1c86961eb904fd6ab56bd2324c3313
   - enabled: 1
-    path: Assets/Scenes/StartScreen.unity
-    guid: 1db478118e5d44786815461fcca53dd1
+    path: Assets/Scenes/ChangeLvl1.unity
+    guid: 3278243efff0c48b2b2a05312dd4bd31
   - enabled: 1
     path: Assets/Scenes/Final Level 1.unity
     guid: 5043bfc2d93729b4987098d99d75757c
   - enabled: 1
+    path: Assets/Scenes/ChangeLvl2.unity
+    guid: 91932526f4d3e411c847e583e605f14b
+  - enabled: 1
+    path: Assets/Scenes/Level 2 Prem.unity
+    guid: f166c3625405549afb8470a3f5a8506f
+  - enabled: 1
+    path: Assets/Scenes/ChangeLvl3.unity
+    guid: d6ca54731bf644f028460ca468783f83
+  - enabled: 1
+    path: Assets/Scenes/Final_level3.unity
+    guid: 9d2203b3455d720418ba60b5d0260618
+  - enabled: 1
+    path: Assets/Scenes/ChangeLvlFinal.unity
+    guid: 04cb4da1e2b584a028946ac597cceaaf
+  - enabled: 0
     path: Assets/Scenes/EndScreen.unity
     guid: 026bf03af914d467aa5ea96a1f7368ac
   - enabled: 0

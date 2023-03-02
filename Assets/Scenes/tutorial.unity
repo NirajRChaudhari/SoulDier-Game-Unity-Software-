@@ -33015,18 +33015,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1049730982}
   m_CullTransparentMesh: 1
---- !u!114 &1073475311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1295858619376577342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f8617b88bdc14988a4756f229101b72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1156024978
 GameObject:
   m_ObjectHideFlags: 0
@@ -34859,18 +34847,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1818008833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1295858618429775350}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f8617b88bdc14988a4756f229101b72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1822190788
 GameObject:
   m_ObjectHideFlags: 0
@@ -40418,8 +40394,6 @@ GameObject:
   - component: {fileID: 1295858618429775354}
   - component: {fileID: 1295858618429775355}
   - component: {fileID: 1295858618429775352}
-  - component: {fileID: 1295858618429775353}
-  - component: {fileID: 1818008833}
   - component: {fileID: 1295858618429775356}
   m_Layer: 3
   m_Name: ColorChangingPlatform1
@@ -40454,23 +40428,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9815544, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1295858618429775353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1295858618429775350}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80d36fcf32c5842d5957987caa6032fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 485985277}
-  groundCheckPoint: {fileID: 599018853}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 8
 --- !u!4 &1295858618429775354
 Transform:
   m_ObjectHideFlags: 0
@@ -40581,23 +40538,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.9815544, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1295858619376577329
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1295858619376577342}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80d36fcf32c5842d5957987caa6032fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 485985277}
-  groundCheckPoint: {fileID: 1367109895}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 8
 --- !u!4 &1295858619376577330
 Transform:
   m_ObjectHideFlags: 0
@@ -40676,8 +40616,6 @@ GameObject:
   - component: {fileID: 1295858619376577330}
   - component: {fileID: 1295858619376577331}
   - component: {fileID: 1295858619376577328}
-  - component: {fileID: 1295858619376577329}
-  - component: {fileID: 1073475311}
   - component: {fileID: 1295858619376577343}
   m_Layer: 3
   m_Name: ColorChangingPlatform1 (1)

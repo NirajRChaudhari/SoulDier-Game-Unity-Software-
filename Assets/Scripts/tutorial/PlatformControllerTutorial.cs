@@ -109,9 +109,9 @@ public class PlatformControllerTutorial : MonoBehaviour
 
     private Color extractColorOfNextBottle()
     {
-        TMP_Text nextBottle = GameObject.Find("NextBottle").GetComponent<TMP_Text>();
+        // TMP_Text nextBottle = GameObject.Find("NextBottle").GetComponent<TMP_Text>();
 
-        switch (nextBottle.text)
+        switch ("Red")
         {
             case "Red":
                 return Color.red;
