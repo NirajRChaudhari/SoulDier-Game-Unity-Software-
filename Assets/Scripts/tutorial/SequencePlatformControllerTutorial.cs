@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class SequencePlatformController : MonoBehaviour
+public class SequencePlatformControllerTutorial : MonoBehaviour
 {
     public GameObject playerNextColorIndicator;
     public GameObject canvas;
@@ -83,10 +83,11 @@ public class SequencePlatformController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player") && !currentPlatformSpriteRenderer.color.CompareRGB(Color.white))
         {
-            if (PlayerController.lastCharInColorSubseq != gameObject.name[0] || PlayerController.currentPosInColorSubseq == 0)
+            Debug.Log("currentPosInColorSubseq"+PlayerControllerTutorial.currentPosInColorSubseq);
+            if (PlayerControllerTutorial.lastCharInColorSubseq != gameObject.name[0] || PlayerControllerTutorial.currentPosInColorSubseq == 0)
             {
-                PlayerController.jump_counter = PlayerController.jump_counter + 1;
-                PlayerController.lastCharInColorSubseq = gameObject.name[0];
+                PlayerControllerTutorial.jump_counter = PlayerControllerTutorial.jump_counter + 1;
+                PlayerControllerTutorial.lastCharInColorSubseq = gameObject.name[0];
                 playerNextColorIndicatorSpriteRenderer.color = extractNextColorForPlayerSprite(gameObject.name[0]);
             }
         }
@@ -96,18 +97,18 @@ public class SequencePlatformController : MonoBehaviour
     {
 
         Color color = Color.white;
-        Debug.Log("Point 1");
+        Debug.Log("Point 1" + PlayerControllerTutorial.currentPosInColorSubseq+ " ----> "+ targetSeq.text[PlayerControllerTutorial.currentPosInColorSubseq]);
 
-        if (PlayerController.currentPosInColorSubseq < targetSeq.text.Length && targetSeq.text[PlayerController.currentPosInColorSubseq] == currentPlatformColor)
+        if (PlayerControllerTutorial.currentPosInColorSubseq < targetSeq.text.Length && targetSeq.text[PlayerControllerTutorial.currentPosInColorSubseq] == currentPlatformColor)
         {
-            PlayerController.currentPosInColorSubseq = PlayerController.currentPosInColorSubseq + 1;
+            PlayerControllerTutorial.currentPosInColorSubseq = PlayerControllerTutorial.currentPosInColorSubseq + 1;
             Debug.Log("Point 2");
             Color platformColor = currentPlatformSpriteRenderer.color;
             platformColor.a = 0.5f;
             currentPlatformSpriteRenderer.color = platformColor;
 
             Debug.Log("Point 3");
-            if (PlayerController.currentPosInColorSubseq == targetSeq.text.Length)
+            if (PlayerControllerTutorial.currentPosInColorSubseq == targetSeq.text.Length)
             {
                             Debug.Log("Point 4");
 
@@ -121,15 +122,15 @@ public class SequencePlatformController : MonoBehaviour
                 violetFloor.color = Color.white;
             Debug.Log("Point 7");
 
-                if (PlayerController.seq_jump_flag == false)
+                if (PlayerControllerTutorial.seq_jump_flag == false)
                 {
                                 Debug.Log("Point 5");
 
                     SendAnalytics2 ob = gameObject.AddComponent<SendAnalytics2>();
-                    Debug.Log("Jump Counter: " + PlayerController.jump_counter);
+                    Debug.Log("Jump Counter: " + PlayerControllerTutorial.jump_counter);
                     // Debug.Log("seqlen: "+seq_len);
-                    ob.Send(5, PlayerController.jump_counter);
-                    PlayerController.seq_jump_flag = true;
+                    ob.Send(5, PlayerControllerTutorial.jump_counter);
+                    PlayerControllerTutorial.seq_jump_flag = true;
                 }
             Debug.Log("Point 6");
 
@@ -143,7 +144,7 @@ public class SequencePlatformController : MonoBehaviour
         {
                         Debug.Log("Point 8");
 
-            PlayerController.currentPosInColorSubseq = 0;
+            PlayerControllerTutorial.currentPosInColorSubseq = 0;
 
             redFloor.color = Color.red;
             yellowFloor.color = Color.yellow;
@@ -152,7 +153,7 @@ public class SequencePlatformController : MonoBehaviour
             violetFloor.color = Color.magenta;
         }
         Debug.Log("Starting method");
-        color = getColorUsingCharacter(targetSeq.text[PlayerController.currentPosInColorSubseq]);
+        color = getColorUsingCharacter(targetSeq.text[PlayerControllerTutorial.currentPosInColorSubseq]);
         Debug.Log("Ending method");
 
         return color;
