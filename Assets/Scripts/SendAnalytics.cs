@@ -34,20 +34,21 @@ public class SendAnalytics : MonoBehaviour
         URL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdP2qjFwOtmyO0RRC9PfndXGuA5s9KFW3yfOC9hJY9l3xIrsA/formResponse";
         //Send("dafa", 5.7f);
     }
-    public void Send(string checkpoint_name, float time_taken, string level_name)
+    public void Send(string checkpoint_name, float time_taken,string level_name,long sessionId)
     {
         // Assign variables
-        _sessionId = DateTime.Now.Ticks;
+        // _sessionId = DateTime.Now.Ticks;
         Debug.Log(checkpoint_name);
         Debug.Log(time_taken);
+        _sessionId=sessionId;
         _checkpoint_name = checkpoint_name;
-        _time_taken = 120f - time_taken;
+        // _time_taken = 120f - time_taken;
         _testInt = UnityEngine.Random.Range(0, 101);
         _testBool = true;
         _testFloat = UnityEngine.Random.Range(0.0f, 10.0f);
         _level_name=level_name;
 
-        StartCoroutine(Post(_sessionId.ToString(), checkpoint_name, _testBool.ToString(), _time_taken.ToString(), _checkpoint_name, _time_taken.ToString(), _level_name));
+        StartCoroutine(Post(_sessionId.ToString(), checkpoint_name, _testBool.ToString(), time_taken.ToString(), _checkpoint_name, time_taken.ToString(), _level_name));
     }
     private IEnumerator Post(string sessionID, string testInt, string testBool, string testFloat, string _checkpoint_name, string _time_taken, string _level_name)
     {

@@ -41,7 +41,9 @@ public class PlayerController : MonoBehaviour
     private TMP_Text targetSeq, targetSeqHeader, messageBox, nextBottle, globalSequence, timerText;
     private GameObject checkPoint1, checkPoint2;
     private string level_name;
-
+    private float prev_time=0;
+    private float _time_taken;
+    private long _sessionId;
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +52,7 @@ public class PlayerController : MonoBehaviour
         Scene scene = SceneManager.GetActiveScene();
         Debug.Log(scene.name);
         level_name = scene.name;
-
+        _sessionId = DateTime.Now.Ticks;
         this.saveInitialMoveSpeed = this.moveSpeed;
         this.saveInitialJumpForce = this.jumpForce;
         blackFloor.SetActive(false);
@@ -196,21 +198,28 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.name == "CP1")
         {
             SendAnalytics ob = gameObject.AddComponent<SendAnalytics>();
-            ob.Send(other.gameObject.name, PlayerController.totalTime,level_name);
+            _time_taken = 120f - PlayerController.totalTime;
+            ob.Send(other.gameObject.name, _time_taken,level_name,_sessionId);
+
             other.gameObject.SetActive(false);
+            prev_time=_time_taken;
         }
 
         if (other.gameObject.name == "CP2")
         {
             SendAnalytics ob = gameObject.AddComponent<SendAnalytics>();
-            ob.Send(other.gameObject.name, PlayerController.totalTime,level_name);
+            _time_taken = 120f - PlayerController.totalTime;
+
+            ob.Send(other.gameObject.name, _time_taken-prev_time,level_name,_sessionId);
             other.gameObject.SetActive(false);
+            prev_time=_time_taken;
         }
 
         if (other.gameObject.name == "CP3")
         {
             SendAnalytics ob = gameObject.AddComponent<SendAnalytics>();
-            ob.Send(other.gameObject.name, PlayerController.totalTime,level_name);
+            _time_taken = 120f - PlayerController.totalTime;
+            ob.Send(other.gameObject.name, _time_taken-prev_time,level_name,_sessionId);
             other.gameObject.SetActive(false);
         }
     }
