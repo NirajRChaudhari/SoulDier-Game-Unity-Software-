@@ -41,6 +41,9 @@ public class SendAnalytics : MonoBehaviour
         Debug.Log(checkpoint_name);
         Debug.Log(time_taken);
         _sessionId=sessionId;
+        if (time_taken==0){
+            return;
+        }
         _checkpoint_name = checkpoint_name;
         // _time_taken = 120f - time_taken;
         _testInt = UnityEngine.Random.Range(0, 101);
