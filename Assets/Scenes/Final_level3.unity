@@ -184,6 +184,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 365688436716068198, guid: e28ce774ffed84967a6e36191a487a54, type: 3}
+      propertyPath: m_TagString
+      value: Rotating Saw
+      objectReference: {fileID: 0}
     - target: {fileID: 365688436716068199, guid: e28ce774ffed84967a6e36191a487a54, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -18010,6 +18014,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 365688436716068198, guid: e28ce774ffed84967a6e36191a487a54, type: 3}
+      propertyPath: m_TagString
+      value: Rotating Saw
+      objectReference: {fileID: 0}
     - target: {fileID: 365688436716068199, guid: e28ce774ffed84967a6e36191a487a54, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -18571,6 +18579,10 @@ PrefabInstance:
     - target: {fileID: 5585713119506465, guid: e28ce774ffed84967a6e36191a487a54, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -45
+      objectReference: {fileID: 0}
+    - target: {fileID: 365688436716068198, guid: e28ce774ffed84967a6e36191a487a54, type: 3}
+      propertyPath: m_TagString
+      value: Rotating Saw
       objectReference: {fileID: 0}
     - target: {fileID: 365688436716068199, guid: e28ce774ffed84967a6e36191a487a54, type: 3}
       propertyPath: m_IsTrigger
@@ -19864,6 +19876,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 365688436716068198, guid: e28ce774ffed84967a6e36191a487a54, type: 3}
+      propertyPath: m_TagString
+      value: Rotating Saw
+      objectReference: {fileID: 0}
     - target: {fileID: 365688436716068199, guid: e28ce774ffed84967a6e36191a487a54, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -20966,6 +20982,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 365688436716068198, guid: e28ce774ffed84967a6e36191a487a54, type: 3}
+      propertyPath: m_TagString
+      value: Rotating Saw
+      objectReference: {fileID: 0}
     - target: {fileID: 365688436716068199, guid: e28ce774ffed84967a6e36191a487a54, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -21027,6 +21047,10 @@ PrefabInstance:
     - target: {fileID: 5585713119506465, guid: e28ce774ffed84967a6e36191a487a54, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 365688436716068198, guid: e28ce774ffed84967a6e36191a487a54, type: 3}
+      propertyPath: m_TagString
+      value: Rotating Saw
       objectReference: {fileID: 0}
     - target: {fileID: 365688436716068199, guid: e28ce774ffed84967a6e36191a487a54, type: 3}
       propertyPath: m_IsTrigger
@@ -22271,6 +22295,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 365688436716068198, guid: e28ce774ffed84967a6e36191a487a54, type: 3}
+      propertyPath: m_TagString
+      value: Rotating Saw
+      objectReference: {fileID: 0}
     - target: {fileID: 365688436716068199, guid: e28ce774ffed84967a6e36191a487a54, type: 3}
       propertyPath: m_IsTrigger
       value: 1
@@ -22560,6 +22588,10 @@ PrefabInstance:
     - target: {fileID: 5585713119506465, guid: e28ce774ffed84967a6e36191a487a54, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 365688436716068198, guid: e28ce774ffed84967a6e36191a487a54, type: 3}
+      propertyPath: m_TagString
+      value: Rotating Saw
       objectReference: {fileID: 0}
     - target: {fileID: 365688436716068199, guid: e28ce774ffed84967a6e36191a487a54, type: 3}
       propertyPath: m_IsTrigger
@@ -23679,6 +23711,10 @@ PrefabInstance:
     - target: {fileID: 5585713119506465, guid: e28ce774ffed84967a6e36191a487a54, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 365688436716068198, guid: e28ce774ffed84967a6e36191a487a54, type: 3}
+      propertyPath: m_TagString
+      value: Rotating Saw
       objectReference: {fileID: 0}
     - target: {fileID: 365688436716068199, guid: e28ce774ffed84967a6e36191a487a54, type: 3}
       propertyPath: m_IsTrigger

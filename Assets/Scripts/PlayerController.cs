@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour
             {
                 send_time_up_flag = true;
                 SendAnalytics4 ob = gameObject.AddComponent<SendAnalytics4>();
-                ob.Send("Time up");
+                ob.Send("Time up",level_name);
             }
             messageBox.text = "TIME'S UP, GAME OVER..";
             // call restartLevel here

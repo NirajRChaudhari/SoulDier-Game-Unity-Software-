@@ -76,7 +76,7 @@ public class PlayerHealthController : MonoBehaviour
             {
                 messageBox.text = "GAME OVER";
                 SendAnalytics4 ob2 = gameObject.AddComponent<SendAnalytics4>();
-                ob2.Send("Killed by Traps");
+                ob2.Send("Killed by Traps",PlayerController.level_name);
                 Debug.Log("Restarting");
                 Debug.Log(playerController.lastCheckpoint);
 
