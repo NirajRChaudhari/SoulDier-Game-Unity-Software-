@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 using UnityEngine.UI;
 using System;
+using System.Threading.Tasks;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,20 +16,22 @@ public class PlayerController : MonoBehaviour
     private Transform groundCheckPoint;
     public LayerMask whatIsGround;
     public GameObject canvas;
-    public GameObject knobGroup;
     public GameObject checkPointGroup;
     public GameObject blackFloor;
     public static float totalTime = 120;
-    public static int currentPos = -1;
     public string lastCheckpoint = "Starting Point";
-    public int jump_counter;
-    private bool seq_jump_flag;
+    public static int jump_counter;
+    public static bool seq_jump_flag;
     public bool send_time_up_flag;
 
 
     // Private variables
     private Rigidbody2D playerRigidbody2D;
-    static private char lastChar;
+    private char lastChar;
+
+    public static char lastCharInColorSubseq;
+    public static int currentPosInColorSubseq = -1;
+
     private bool isGrounded;
     private bool isDoubleJumpAllowed;
     private float saveInitialMoveSpeed;
@@ -36,64 +39,62 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private SpriteRenderer playerSpriteRenderer;
     private SpriteRenderer playerNextColorIndicatorSpriteRenderer;
-    // private TMP_Text currentSeq;
-    // private TMP_Text currentSeqHeader;
     private TMP_Text targetSeq, targetSeqHeader, messageBox, nextBottle, globalSequence, timerText;
-    private Image knob1, knob2, knob3;
     private GameObject checkPoint1, checkPoint2;
-
-
+    public static string level_name;
+    private float prev_time=0;
+    private float _time_taken;
+    private long _sessionId;
 
     // Start is called before the first frame update
     void Start()
     {
         retrieveAndInitializeAllPrivateObjects();
-
-
-
+        Scene scene = SceneManager.GetActiveScene();
+        Debug.Log(scene.name);
+        level_name = scene.name;
+        _sessionId = DateTime.Now.Ticks;
         this.saveInitialMoveSpeed = this.moveSpeed;
         this.saveInitialJumpForce = this.jumpForce;
         blackFloor.SetActive(false);
         animator = GetComponent<Animator>();
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
 
-        // currentSeq.text = "";
         messageBox.text = "Jump on the platform when it's color is same as pickup bottle color.";
         Invoke(nameof(ResetMessageBox), 5f);
         targetSeqHeader.gameObject.SetActive(false);
         targetSeq.gameObject.SetActive(false);
-        // currentSeqHeader.gameObject.SetActive(false);
-        // currentSeq.gameObject.SetActive(false);
         playerNextColorIndicatorSpriteRenderer.gameObject.SetActive(false);
+
         jump_counter = 0;
         seq_jump_flag = false;
         send_time_up_flag = false;
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isGrounded)
-        {
-            isDoubleJumpAllowed = true;
-        }
-        playerRigidbody2D.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), playerRigidbody2D.velocity.y);
+        playerSpriteRenderer.color = getColorUsingColorName(nextBottle.text);
 
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, .2f, whatIsGround);
 
+
+        playerRigidbody2D.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), playerRigidbody2D.velocity.y);
+
+
         if (Input.GetButtonDown("Jump"))
         {
-            if (isGrounded)
+            if (isDoubleJumpAllowed || isGrounded)
             {
                 playerRigidbody2D.velocity = new Vector2(playerRigidbody2D.velocity.x, jumpForce);
-            }
-            else
-            {
+
                 if (isDoubleJumpAllowed)
                 {
-                    playerRigidbody2D.velocity = new Vector2(playerRigidbody2D.velocity.x, jumpForce);
                     isDoubleJumpAllowed = false;
+                }
+                else
+                {
+                    isDoubleJumpAllowed = true;
                 }
             }
         }
@@ -131,10 +132,13 @@ public class PlayerController : MonoBehaviour
             {
                 send_time_up_flag = true;
                 SendAnalytics4 ob = gameObject.AddComponent<SendAnalytics4>();
-                ob.Send("Time up");
+                // Task.Delay(1000).ContinueWith(t=> ob.Send("Time up",level_name));
+                ob.Send("Time up",level_name);
             }
             messageBox.text = "TIME'S UP, GAME OVER..";
             // call restartLevel here
+            SendAnalytics5 ob3 = gameObject.AddComponent<SendAnalytics5>();
+            ob3.Send(PlayerController.level_name);
             playerRigidbody2D.gameObject.SetActive(false);
             Invoke(nameof(restartLevel), 5f);
         }
@@ -154,9 +158,12 @@ public class PlayerController : MonoBehaviour
             playerSpriteRenderer.color = new Color(0, 1, 0, 1);
             Debug.Log("Speed up activated");
             Invoke(nameof(resetMovementToNormal), 3f);
-            totalTime = totalTime + 5;
-            messageBox.text = " + 5 Seconds! ";
+            // totalTime = totalTime + 5;
+            // messageBox.text = " + 5 Seconds! ";
             Invoke(nameof(ResetMessageBox), 1f);
+            SendAnalytics6 ob = gameObject.AddComponent<SendAnalytics6>();
+                // Task.Delay(1000).ContinueWith(t=> ob.Send("Time up",level_name));
+            ob.Send("Speed up");
         }
 
         if (other.gameObject.tag.Equals("speedSlowPowerDown"))
@@ -169,6 +176,9 @@ public class PlayerController : MonoBehaviour
             playerSpriteRenderer.color = new Color(1, 0, 0, 1);
             Debug.Log("Speed slow activated");
             Invoke(nameof(resetMovementToNormal), 3f);
+                        SendAnalytics6 ob = gameObject.AddComponent<SendAnalytics6>();
+                // Task.Delay(1000).ContinueWith(t=> ob.Send("Time up",level_name));
+            ob.Send("Slow down");
         }
         if (other.gameObject.tag.Equals("fly"))
         {
@@ -181,6 +191,9 @@ public class PlayerController : MonoBehaviour
             messageBox.text = "Fly Mode Activated";
             Invoke(nameof(ResetMessageBox), 3f);
             Invoke(nameof(resetMovementToNormal), 6f);
+                                    SendAnalytics6 ob = gameObject.AddComponent<SendAnalytics6>();
+                // Task.Delay(1000).ContinueWith(t=> ob.Send("Time up",level_name));
+            ob.Send("Fly");
         }
         if (other.gameObject.tag.Equals("doublejump"))
         {
@@ -198,21 +211,28 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.name == "CP1")
         {
             SendAnalytics ob = gameObject.AddComponent<SendAnalytics>();
-            ob.Send(other.gameObject.name, PlayerController.totalTime);
+            _time_taken = 120f - PlayerController.totalTime;
+            ob.Send(other.gameObject.name, _time_taken,level_name,_sessionId);
+
             other.gameObject.SetActive(false);
+            prev_time=_time_taken;
         }
 
         if (other.gameObject.name == "CP2")
         {
             SendAnalytics ob = gameObject.AddComponent<SendAnalytics>();
-            ob.Send(other.gameObject.name, PlayerController.totalTime);
+            _time_taken = 120f - PlayerController.totalTime;
+
+            ob.Send(other.gameObject.name, _time_taken-prev_time,level_name,_sessionId);
             other.gameObject.SetActive(false);
+            prev_time=_time_taken;
         }
 
         if (other.gameObject.name == "CP3")
         {
             SendAnalytics ob = gameObject.AddComponent<SendAnalytics>();
-            ob.Send(other.gameObject.name, PlayerController.totalTime);
+            _time_taken = 120f - PlayerController.totalTime;
+            ob.Send(other.gameObject.name, _time_taken-prev_time,level_name,_sessionId);
             other.gameObject.SetActive(false);
         }
     }
@@ -221,43 +241,7 @@ public class PlayerController : MonoBehaviour
     {
         string tag = collision.gameObject.tag;
 
-
-        if (tag.Equals("RedFloor") && lastChar != 'R')
-        {
-            lastChar = 'R';
-            jump_counter += 1;
-            playerNextColorIndicatorSpriteRenderer.color = extractNextColorForPlayerSprite('R');
-
-        }
-        else if (tag.Equals("YellowFloor") && lastChar != 'Y')
-        {
-            lastChar = 'Y';
-            jump_counter += 1;
-            playerNextColorIndicatorSpriteRenderer.color = extractNextColorForPlayerSprite('Y');
-
-        }
-        else if (tag.Equals("OrangeFloor") && lastChar != 'O')
-        {
-            lastChar = 'O';
-            jump_counter += 1;
-            playerNextColorIndicatorSpriteRenderer.color = extractNextColorForPlayerSprite('O');
-
-        }
-        else if (tag.Equals("GreenFloor") && lastChar != 'G')
-        {
-            lastChar = 'G';
-            jump_counter += 1;
-            playerNextColorIndicatorSpriteRenderer.color = extractNextColorForPlayerSprite('G');
-
-        }
-        else if (tag.Equals("VioletFloor") && lastChar != 'V')
-        {
-            lastChar = 'V';
-            jump_counter += 1;
-            playerNextColorIndicatorSpriteRenderer.color = extractNextColorForPlayerSprite('V');
-
-        }
-        else if (tag.Equals("EnemyMonster"))
+        if (tag.Equals("EnemyMonster"))
         {
             totalTime = totalTime - 5;
             SendAnalytics3 ob = gameObject.AddComponent<SendAnalytics3>();
@@ -313,26 +297,6 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // Set All Knob Child Objects
-        Image[] knobGroupImg = knobGroup.GetComponentsInChildren<Image>(true);
-        foreach (Image img in knobGroupImg)
-        {
-            switch (img.name)
-            {
-                case "Knob1":
-                    knob1 = img;
-                    break;
-
-                case "Knob2":
-                    knob2 = img;
-                    break;
-
-                case "Knob3":
-                    knob3 = img;
-                    break;
-            }
-        }
-
 
         // Set Transform Child Object of Player
         Transform[] groundCheckPoint = gameObject.GetComponentsInChildren<Transform>();
@@ -382,7 +346,6 @@ public class PlayerController : MonoBehaviour
             if (globalSequence.text != "")
             {
                 nextBottle.text = getColorOfBottle(globalSequence.text[0]);
-                setKnobColor();
             }
         }
 
@@ -422,78 +385,12 @@ public class PlayerController : MonoBehaviour
     private void restartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        
         messageBox.text = "";
         totalTime = 120;
         playerRigidbody2D.gameObject.SetActive(true);
     }
 
-    private Color extractNextColorForPlayerSprite(char currentPlatformColor)
-    {
-
-        Color color = Color.white;
-
-        if (currentPos < targetSeq.text.Length && targetSeq.text[currentPos] == currentPlatformColor)
-        {
-            currentPos = currentPos + 1;
-            if (currentPos == targetSeq.text.Length)
-            {
-                messageBox.text = "Pick the Blue bottle.";
-                blackFloor.SetActive(true);
-
-                GameObject.Find("RedFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
-                GameObject.Find("BlueFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
-                GameObject.Find("OrangeFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
-                GameObject.Find("GreenFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
-                GameObject.Find("VioletFloor").GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
-                if (seq_jump_flag == false)//
-                {
-                    SendAnalytics2 ob = gameObject.AddComponent<SendAnalytics2>();
-                    Debug.Log("Jump Counter: " + jump_counter);
-                    // Debug.Log("seqlen: "+seq_len);
-                    ob.Send(5, jump_counter);
-                    seq_jump_flag = true;
-                }
-                playerNextColorIndicatorSpriteRenderer.gameObject.SetActive(false);
-                Invoke(nameof(ResetMessageBox), 6f);
-
-                return extractNextColorForPlayerSprite(currentPlatformColor);
-            }
-        }
-        else
-        {
-            currentPos = 0;
-        }
-        color = getColorUsingCharacter(targetSeq.text[currentPos]);
-
-
-        return color;
-    }
-
-    private Color getColorUsingCharacter(char colorChar)
-    {
-        Color color = Color.white;
-
-        switch (colorChar)
-        {
-            case 'R':
-                color = Color.red;
-                break;
-            case 'Y':
-                color = Color.yellow;
-                break;
-            case 'O':
-                color = new Color(1, 0.5f, 0, 1);
-                break;
-            case 'G':
-                color = Color.green;
-                break;
-            case 'V':
-                color = Color.magenta;
-                break;
-        }
-
-        return color;
-    }
 
     private string getColorOfBottle(char ch)
     {
@@ -506,31 +403,32 @@ public class PlayerController : MonoBehaviour
                 return "Blue";
             case 'G':
                 return "Green";
-
+            case 'Y':
+                return "Yellow";
             default:
-                return "Gray";
+                return "White";
         }
     }
 
-    private void setKnobColor()
+    static public Color getColorUsingColorName(string colorName)
     {
-        if (nextBottle.text == "Red")
+
+        switch (colorName)
         {
-            knob1.color = Color.red;
-            knob2.color = new Color(128, 128, 128);
-            knob3.color = new Color(128, 128, 128);
-        }
-        if (nextBottle.text == "Green")
-        {
-            knob1.color = new Color(128, 128, 128);
-            knob2.color = new Color(128, 128, 128);
-            knob3.color = Color.green;
-        }
-        if (nextBottle.text == "Blue")
-        {
-            knob1.color = new Color(128, 128, 128);
-            knob2.color = Color.blue;
-            knob3.color = new Color(128, 128, 128);
+            case "Red":
+                return Color.red;
+
+            case "Blue":
+                return Color.blue;
+
+            case "Green":
+                return Color.green;
+
+            case "Yellow":
+                return Color.yellow;
+
+            default:
+                return Color.black;
         }
     }
 }

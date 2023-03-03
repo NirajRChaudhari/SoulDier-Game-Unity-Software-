@@ -5,7 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class StartGameBtn : MonoBehaviour
 {
-    public void StartGame() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    // SceneManager.GetActiveScene().buildIndex + 1
+
+    public void tutorialStart() {
+        SceneManager.LoadScene(1);
+    }
+
+    public void Level1Start() {
+        SceneManager.LoadScene(3);
+    }
+
+    public void Level2Start() {
+        SceneManager.LoadScene(5);
+    }
+
+    public void Level3Start() {
+        SceneManager.LoadScene(7);
     }
 }

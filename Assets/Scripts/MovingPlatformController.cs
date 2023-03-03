@@ -54,3 +54,5 @@ public class MovingPlatformController : MonoBehaviour
         }
     }
 }
+//57.81
+//65.3

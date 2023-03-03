@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.Networking;
-
 public class SendAnalytics4 : MonoBehaviour
 {
 
@@ -28,7 +27,7 @@ public class SendAnalytics4 : MonoBehaviour
         URL="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfCLP59DVdY83TiJpQENY96xsNYet17Pw3Y8SYW5o1zYnQZRw/formResponse";
         //Send("dafa", 5.7f);
     }
-    public void Send(string game_over_reason)
+    public void Send(string game_over_reason, string level)
     {
         // Assign variables
         // _sessionId = DateTime.Now.Ticks;
@@ -41,15 +40,16 @@ public class SendAnalytics4 : MonoBehaviour
         // _testFloat = UnityEngine.Random.Range(0.0f, 10.0f);
         // Debug.Log(seq_len);
         // Debug.Log(jumps_taken);
-        StartCoroutine(Post(game_over_reason));
+        StartCoroutine(Post(game_over_reason,level));
     }
-    private IEnumerator Post(string game_over_reason)
+    private IEnumerator Post(string game_over_reason, string level)
     {
         // Create the form and enter responses
         // Debug.Log(seq_len);
     // Debug.Log(jumps_taken);
         WWWForm form = new WWWForm();
         form.AddField("entry.889328852", game_over_reason);
+        form.AddField("entry.2067715159", level);
         // form.AddField("entry.1841362125", jumps_taken);
         // form.AddField("entry.244123968", testBool);
         // form.AddField("entry.431586524", testFloat);
