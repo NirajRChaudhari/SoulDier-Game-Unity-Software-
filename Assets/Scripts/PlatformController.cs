@@ -18,9 +18,19 @@ public class PlatformController : MonoBehaviour
     private int colorIndex;
     private bool onMovingPlatform;
 
+    private float alpha = 0.5f;
+    Color red, green, blue, yellow, black;
+
     // Start is called before the first frame update
     void Start()
     {
+        alpha = 0.5f;
+        red = new Color(255, 0, 0, alpha);
+        green = new Color(0, 255, 0, alpha);
+        blue = new Color(0, 0, 255, alpha);
+        yellow = new Color(255, 255, 0, alpha);
+        black = new Color(0, 0, 0, 1);
+
         if (gameObject.CompareTag("MovingPlatform"))
         {
             playerRB = player.GetComponent<Rigidbody2D>();
@@ -30,7 +40,7 @@ public class PlatformController : MonoBehaviour
         colorIndex = 0;
         platformSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 
-        colors = new Color[] { Color.red, Color.green, Color.yellow, Color.blue };
+        colors = new Color[] { red, green, yellow, blue };
 
         onMovingPlatform = false;
 
@@ -79,9 +89,8 @@ public class PlatformController : MonoBehaviour
 
             if (platformSpriteRenderer.color.CompareRGB(extractColorOfNextBottle()))
             {
-                Color platformColor = platformSpriteRenderer.color;
-                platformColor.a = 0.5f;
-                platformSpriteRenderer.color = platformColor;
+                alpha = 1.0f;
+                platformSpriteRenderer.color = extractColorOfNextBottle();
 
                 gameObject.GetComponent<Collider2D>().isTrigger = false;
 
@@ -126,19 +135,19 @@ public class PlatformController : MonoBehaviour
         switch (nextBottle.text)
         {
             case "Red":
-                return Color.red;
+                return new Color(255, 0, 0, alpha); ;
 
             case "Blue":
-                return Color.blue;
+                return new Color(0, 0, 255, alpha);
 
             case "Green":
-                return Color.green;
+                return new Color(0, 0, 255, alpha);
 
             case "Yellow":
-                return Color.yellow;
+                return new Color(255, 255, 0, alpha);
 
             default:
-                return Color.black;
+                return black;
         }
     }
 }
