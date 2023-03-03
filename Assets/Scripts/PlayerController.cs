@@ -41,11 +41,15 @@ public class PlayerController : MonoBehaviour
     private TMP_Text targetSeq, targetSeqHeader, messageBox, nextBottle, globalSequence, timerText;
     private GameObject checkPoint1, checkPoint2;
 
+    public float leftMagnetForce = 3f;
+    public float rightMagnetForce = 5f;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        playerRigidbody2D = GetComponent<Rigidbody2D>();
+
         retrieveAndInitializeAllPrivateObjects();
 
 
@@ -77,7 +81,14 @@ public class PlayerController : MonoBehaviour
 
         playerRigidbody2D.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), playerRigidbody2D.velocity.y);
 
-
+        if (transform.position.x > GameObject.Find("magnetPole1").transform.position.x && transform.position.x < GameObject.Find("magnetPole2").transform.position.x)
+        {
+            playerRigidbody2D.AddForce(-transform.right * leftMagnetForce);
+        }
+        if (transform.position.x > GameObject.Find("magnetPole3").transform.position.x && transform.position.x < GameObject.Find("magnetPole4").transform.position.x)
+        {
+            playerRigidbody2D.AddForce(transform.right * rightMagnetForce);
+        }
         if (Input.GetButtonDown("Jump"))
         {
             if (isDoubleJumpAllowed || isGrounded)
