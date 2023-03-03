@@ -158,9 +158,12 @@ public class PlayerController : MonoBehaviour
             playerSpriteRenderer.color = new Color(0, 1, 0, 1);
             Debug.Log("Speed up activated");
             Invoke(nameof(resetMovementToNormal), 3f);
-            totalTime = totalTime + 5;
-            messageBox.text = " + 5 Seconds! ";
+            // totalTime = totalTime + 5;
+            // messageBox.text = " + 5 Seconds! ";
             Invoke(nameof(ResetMessageBox), 1f);
+            SendAnalytics6 ob = gameObject.AddComponent<SendAnalytics6>();
+                // Task.Delay(1000).ContinueWith(t=> ob.Send("Time up",level_name));
+            ob.Send("Speed up");
         }
 
         if (other.gameObject.tag.Equals("speedSlowPowerDown"))
@@ -173,6 +176,9 @@ public class PlayerController : MonoBehaviour
             playerSpriteRenderer.color = new Color(1, 0, 0, 1);
             Debug.Log("Speed slow activated");
             Invoke(nameof(resetMovementToNormal), 3f);
+                        SendAnalytics6 ob = gameObject.AddComponent<SendAnalytics6>();
+                // Task.Delay(1000).ContinueWith(t=> ob.Send("Time up",level_name));
+            ob.Send("Slow down");
         }
         if (other.gameObject.tag.Equals("fly"))
         {
@@ -185,6 +191,9 @@ public class PlayerController : MonoBehaviour
             messageBox.text = "Fly Mode Activated";
             Invoke(nameof(ResetMessageBox), 3f);
             Invoke(nameof(resetMovementToNormal), 6f);
+                                    SendAnalytics6 ob = gameObject.AddComponent<SendAnalytics6>();
+                // Task.Delay(1000).ContinueWith(t=> ob.Send("Time up",level_name));
+            ob.Send("Fly");
         }
         if (other.gameObject.tag.Equals("doublejump"))
         {
