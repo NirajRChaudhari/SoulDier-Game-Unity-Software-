@@ -128,7 +128,7 @@ public class SequencePlatformController : MonoBehaviour
                     SendAnalytics2 ob = gameObject.AddComponent<SendAnalytics2>();
                     Debug.Log("Jump Counter: " + PlayerController.jump_counter);
                     // Debug.Log("seqlen: "+seq_len);
-                    ob.Send(5, PlayerController.jump_counter);
+                    ob.Send(5, PlayerController.jump_counter, PlayerController.level_name);
                     PlayerController.seq_jump_flag = true;
                 }
             Debug.Log("Point 6");

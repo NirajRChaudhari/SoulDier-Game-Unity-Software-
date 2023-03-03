@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer playerNextColorIndicatorSpriteRenderer;
     private TMP_Text targetSeq, targetSeqHeader, messageBox, nextBottle, globalSequence, timerText;
     private GameObject checkPoint1, checkPoint2;
-    private string level_name;
+    public static string level_name;
     private float prev_time=0;
     private float _time_taken;
     private long _sessionId;
