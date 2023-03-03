@@ -40,15 +40,16 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer playerNextColorIndicatorSpriteRenderer;
     private TMP_Text targetSeq, targetSeqHeader, messageBox, nextBottle, globalSequence, timerText;
     private GameObject checkPoint1, checkPoint2;
-
+    private string level_name;
 
 
     // Start is called before the first frame update
     void Start()
     {
         retrieveAndInitializeAllPrivateObjects();
-
-
+        Scene scene = SceneManager.GetActiveScene();
+        Debug.Log(scene.name);
+        level_name = scene.name;
 
         this.saveInitialMoveSpeed = this.moveSpeed;
         this.saveInitialJumpForce = this.jumpForce;
@@ -195,21 +196,21 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.name == "CP1")
         {
             SendAnalytics ob = gameObject.AddComponent<SendAnalytics>();
-            ob.Send(other.gameObject.name, PlayerController.totalTime);
+            ob.Send(other.gameObject.name, PlayerController.totalTime,level_name);
             other.gameObject.SetActive(false);
         }
 
         if (other.gameObject.name == "CP2")
         {
             SendAnalytics ob = gameObject.AddComponent<SendAnalytics>();
-            ob.Send(other.gameObject.name, PlayerController.totalTime);
+            ob.Send(other.gameObject.name, PlayerController.totalTime,level_name);
             other.gameObject.SetActive(false);
         }
 
         if (other.gameObject.name == "CP3")
         {
             SendAnalytics ob = gameObject.AddComponent<SendAnalytics>();
-            ob.Send(other.gameObject.name, PlayerController.totalTime);
+            ob.Send(other.gameObject.name, PlayerController.totalTime,level_name);
             other.gameObject.SetActive(false);
         }
     }

@@ -25,6 +25,7 @@ public class SendAnalytics : MonoBehaviour
     private bool _testBool;
     private float _testFloat;
     private string _checkpoint_name;
+    private string _level_name;
     private float _time_taken;
 
     private void Awake()
@@ -33,7 +34,7 @@ public class SendAnalytics : MonoBehaviour
         URL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdP2qjFwOtmyO0RRC9PfndXGuA5s9KFW3yfOC9hJY9l3xIrsA/formResponse";
         //Send("dafa", 5.7f);
     }
-    public void Send(string checkpoint_name, float time_taken)
+    public void Send(string checkpoint_name, float time_taken, string level_name)
     {
         // Assign variables
         _sessionId = DateTime.Now.Ticks;
@@ -44,10 +45,11 @@ public class SendAnalytics : MonoBehaviour
         _testInt = UnityEngine.Random.Range(0, 101);
         _testBool = true;
         _testFloat = UnityEngine.Random.Range(0.0f, 10.0f);
+        _level_name=level_name;
 
-        StartCoroutine(Post(_sessionId.ToString(), checkpoint_name, _testBool.ToString(), _time_taken.ToString(), _checkpoint_name, _time_taken.ToString()));
+        StartCoroutine(Post(_sessionId.ToString(), checkpoint_name, _testBool.ToString(), _time_taken.ToString(), _checkpoint_name, _time_taken.ToString(), _level_name));
     }
-    private IEnumerator Post(string sessionID, string testInt, string testBool, string testFloat, string _checkpoint_name, string _time_taken)
+    private IEnumerator Post(string sessionID, string testInt, string testBool, string testFloat, string _checkpoint_name, string _time_taken, string _level_name)
     {
         // Create the form and enter responses
         WWWForm form = new WWWForm();
@@ -57,6 +59,8 @@ public class SendAnalytics : MonoBehaviour
         form.AddField("entry.431586524", testFloat);
         form.AddField("entry.1421423374", _checkpoint_name);
         form.AddField("entry.42440326", _time_taken);
+        form.AddField("entry.1385746409", _level_name);
+        
         //Debug.Log("Hi");
         // Debug.Log(_checkpoint_name);
         // Send responses and verify result
