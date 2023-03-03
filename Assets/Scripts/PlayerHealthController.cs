@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-
+using System.Threading.Tasks;
 public class PlayerHealthController : MonoBehaviour
 {
 
@@ -76,6 +76,7 @@ public class PlayerHealthController : MonoBehaviour
             {
                 messageBox.text = "GAME OVER";
                 SendAnalytics4 ob2 = gameObject.AddComponent<SendAnalytics4>();
+                // Task.Delay(1000).ContinueWith(t=> ob2.Send("Killed by Traps",PlayerController.level_name));
                 ob2.Send("Killed by Traps",PlayerController.level_name);
                 Debug.Log("Restarting");
                 Debug.Log(playerController.lastCheckpoint);
@@ -98,7 +99,8 @@ public class PlayerHealthController : MonoBehaviour
                     PlayerPrefs.SetString("globalSequenceFile", globalSequence.text);
                     PlayerPrefs.SetString("lastCheckpoint", playerController.lastCheckpoint);
                 }
-
+        SendAnalytics5 ob3 = gameObject.AddComponent<SendAnalytics5>();
+        ob3.Send(PlayerController.level_name);
                 gameObject.SetActive(false);
                 currentHealth = 0;
                 Invoke(nameof(restartLevel), 3f);
@@ -119,7 +121,9 @@ public class PlayerHealthController : MonoBehaviour
     }
 
     private void restartLevel()
+    
     {
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

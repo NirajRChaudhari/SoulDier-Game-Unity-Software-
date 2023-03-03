@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 using UnityEngine.UI;
 using System;
+using System.Threading.Tasks;
 
 public class PlayerController : MonoBehaviour
 {
@@ -131,10 +132,13 @@ public class PlayerController : MonoBehaviour
             {
                 send_time_up_flag = true;
                 SendAnalytics4 ob = gameObject.AddComponent<SendAnalytics4>();
+                // Task.Delay(1000).ContinueWith(t=> ob.Send("Time up",level_name));
                 ob.Send("Time up",level_name);
             }
             messageBox.text = "TIME'S UP, GAME OVER..";
             // call restartLevel here
+            SendAnalytics5 ob3 = gameObject.AddComponent<SendAnalytics5>();
+            ob3.Send(PlayerController.level_name);
             playerRigidbody2D.gameObject.SetActive(false);
             Invoke(nameof(restartLevel), 5f);
         }
@@ -372,6 +376,7 @@ public class PlayerController : MonoBehaviour
     private void restartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        
         messageBox.text = "";
         totalTime = 120;
         playerRigidbody2D.gameObject.SetActive(true);
