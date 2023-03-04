@@ -18,7 +18,7 @@ public class PlayerControllerTutorial : MonoBehaviour
     public GameObject checkPointGroup;
     public GameObject blackFloor;
     public GameObject plaformJumpGuideImg;
-    public static float totalTime = 5;
+    public static float totalTime = 120;
     public static int currentPos = 0;
     public static int currentPosInColorSubseq = 0;
     public static char lastCharInColorSubseq;
@@ -128,7 +128,7 @@ public class PlayerControllerTutorial : MonoBehaviour
     private void restartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        totalTime = 5;
+        totalTime = 120;
         playerRigidbody2D.gameObject.SetActive(true);
     }
 
