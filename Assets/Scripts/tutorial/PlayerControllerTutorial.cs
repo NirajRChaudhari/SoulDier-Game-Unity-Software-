@@ -120,9 +120,16 @@ public class PlayerControllerTutorial : MonoBehaviour
             messageBox.text = "TIME'S UP, GAME OVER..";
             // call restartLevel here
             playerRigidbody2D.gameObject.SetActive(false);
+            Invoke(nameof(restartLevel), 5f);
         }
         DisplayTime(totalTime);
+    }
 
+    private void restartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        totalTime = 120;
+        playerRigidbody2D.gameObject.SetActive(true);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
