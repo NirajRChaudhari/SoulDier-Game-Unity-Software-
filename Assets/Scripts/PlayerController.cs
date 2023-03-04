@@ -60,8 +60,8 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         playerSpriteRenderer = GetComponent<SpriteRenderer>();
 
-        messageBox.text = "Jump on the platform when it's color is same as pickup bottle color.";
-        Invoke(nameof(ResetMessageBox), 5f);
+        // messageBox.text = "Jump on the platform when it's color is same as pickup bottle color.";
+        // Invoke(nameof(ResetMessageBox), 5f);
         targetSeqHeader.gameObject.SetActive(false);
         targetSeq.gameObject.SetActive(false);
         playerNextColorIndicatorSpriteRenderer.gameObject.SetActive(false);
