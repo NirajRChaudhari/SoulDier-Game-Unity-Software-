@@ -829,6 +829,14 @@ PrefabInstance:
       propertyPath: globalSequence
       value: 
       objectReference: {fileID: 978924840}
+    - target: {fileID: 2462292737499681053, guid: bffc060ce2c1645bcac7a9095b4cd111, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2462292737499681053, guid: bffc060ce2c1645bcac7a9095b4cd111, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1295463191
+      objectReference: {fileID: 0}
     - target: {fileID: 2462292737499681058, guid: bffc060ce2c1645bcac7a9095b4cd111, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.12777

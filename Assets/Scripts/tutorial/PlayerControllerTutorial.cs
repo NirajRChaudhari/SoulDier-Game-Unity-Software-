@@ -209,8 +209,8 @@ public class PlayerControllerTutorial : MonoBehaviour
             // playerSpriteRenderer.color = new Color(0, 1, 0, 1);
             Debug.Log("Speed up activated");
             Invoke(nameof(resetMovementToNormal), 3f);
-            totalTime = totalTime + 2;
-            messageBox.text = " + 2 Seconds! ";
+            // totalTime = totalTime + 2;
+            // messageBox.text = " + 2 Seconds! ";
             Invoke(nameof(ResetMessageBox), 1f);
         }
 
