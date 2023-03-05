@@ -18,7 +18,7 @@ public class PlayerControllerTutorial : MonoBehaviour
     public GameObject checkPointGroup;
     public GameObject blackFloor;
     public GameObject plaformJumpGuideImg;
-    public static float totalTime = 120;
+    public static float totalTime = 1200;
     public static int currentPos = 0;
     public static int currentPosInColorSubseq = 0;
     public static char lastCharInColorSubseq;
