@@ -8,7 +8,7 @@ public class StartGameBtn : MonoBehaviour
     // SceneManager.GetActiveScene().buildIndex + 1
 
     public void tutorialStart() {
-        PlayerControllerTutorial.totalTime = 120;
+        PlayerControllerTutorial.totalTime = 1200;
         SceneManager.LoadScene("tutorial");
     }
 
