@@ -8,22 +8,18 @@ public class StartGameBtn : MonoBehaviour
     // SceneManager.GetActiveScene().buildIndex + 1
 
     public void tutorialStart() {
-        PlayerControllerTutorial.totalTime = 120;
-        SceneManager.LoadScene("tutorial");
+        SceneManager.LoadScene(1);
     }
 
     public void Level1Start() {
-        PlayerController.totalTime = 120;
-        SceneManager.LoadScene("FinalLvl1");
+        SceneManager.LoadScene(3);
     }
 
     public void Level2Start() {
-        PlayerController.totalTime = 120;
-        SceneManager.LoadScene("FinalLvl2");
+        SceneManager.LoadScene(5);
     }
 
     public void Level3Start() {
-        PlayerController.totalTime = 120;
-        SceneManager.LoadScene("FinalLvl3");
+        SceneManager.LoadScene(7);
     }
 }
