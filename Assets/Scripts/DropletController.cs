@@ -7,12 +7,10 @@ public class DropletController : MonoBehaviour
     private BoxCollider2D collider;
     [SerializeField] private LayerMask jumpableGround;
     private float startX, startY;
-    private int count;
 
     // Start is called before the first frame update
     void Start()
     {
-        count = 0;
         collider = GetComponent<BoxCollider2D>();
         startX = gameObject.transform.position.x;
         startY = gameObject.transform.position.y;

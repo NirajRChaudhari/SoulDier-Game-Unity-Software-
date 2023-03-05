@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     private TMP_Text targetSeq, targetSeqHeader, messageBox, nextBottle, globalSequence, timerText;
     private GameObject checkPoint1, checkPoint2;
     public static string level_name;
-    private float prev_time=0;
+    private float prev_time = 0;
     private float _time_taken;
     private long _sessionId;
 
@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
                 send_time_up_flag = true;
                 SendAnalytics4 ob = gameObject.AddComponent<SendAnalytics4>();
                 // Task.Delay(1000).ContinueWith(t=> ob.Send("Time up",level_name));
-                ob.Send("Time up",level_name);
+                ob.Send("Time up", level_name);
             }
             messageBox.text = "TIME'S UP, GAME OVER..";
             // call restartLevel here
@@ -162,7 +162,7 @@ public class PlayerController : MonoBehaviour
             // messageBox.text = " + 5 Seconds! ";
             Invoke(nameof(ResetMessageBox), 1f);
             SendAnalytics6 ob = gameObject.AddComponent<SendAnalytics6>();
-                // Task.Delay(1000).ContinueWith(t=> ob.Send("Time up",level_name));
+            // Task.Delay(1000).ContinueWith(t=> ob.Send("Time up",level_name));
             ob.Send("Speed up");
         }
 
@@ -176,8 +176,8 @@ public class PlayerController : MonoBehaviour
             playerSpriteRenderer.color = new Color(1, 0, 0, 1);
             Debug.Log("Speed slow activated");
             Invoke(nameof(resetMovementToNormal), 3f);
-                        SendAnalytics6 ob = gameObject.AddComponent<SendAnalytics6>();
-                // Task.Delay(1000).ContinueWith(t=> ob.Send("Time up",level_name));
+            SendAnalytics6 ob = gameObject.AddComponent<SendAnalytics6>();
+            // Task.Delay(1000).ContinueWith(t=> ob.Send("Time up",level_name));
             ob.Send("Slow down");
         }
         if (other.gameObject.tag.Equals("fly"))
@@ -191,8 +191,8 @@ public class PlayerController : MonoBehaviour
             messageBox.text = "Fly Mode Activated";
             Invoke(nameof(ResetMessageBox), 3f);
             Invoke(nameof(resetMovementToNormal), 6f);
-                                    SendAnalytics6 ob = gameObject.AddComponent<SendAnalytics6>();
-                // Task.Delay(1000).ContinueWith(t=> ob.Send("Time up",level_name));
+            SendAnalytics6 ob = gameObject.AddComponent<SendAnalytics6>();
+            // Task.Delay(1000).ContinueWith(t=> ob.Send("Time up",level_name));
             ob.Send("Fly");
         }
         if (other.gameObject.tag.Equals("doublejump"))
@@ -212,10 +212,10 @@ public class PlayerController : MonoBehaviour
         {
             SendAnalytics ob = gameObject.AddComponent<SendAnalytics>();
             _time_taken = 120f - PlayerController.totalTime;
-            ob.Send(other.gameObject.name, _time_taken,level_name,_sessionId);
+            ob.Send(other.gameObject.name, _time_taken, level_name, _sessionId);
 
             other.gameObject.SetActive(false);
-            prev_time=_time_taken;
+            prev_time = _time_taken;
         }
 
         if (other.gameObject.name == "CP2")
@@ -223,16 +223,16 @@ public class PlayerController : MonoBehaviour
             SendAnalytics ob = gameObject.AddComponent<SendAnalytics>();
             _time_taken = 120f - PlayerController.totalTime;
 
-            ob.Send(other.gameObject.name, _time_taken-prev_time,level_name,_sessionId);
+            ob.Send(other.gameObject.name, _time_taken - prev_time, level_name, _sessionId);
             other.gameObject.SetActive(false);
-            prev_time=_time_taken;
+            prev_time = _time_taken;
         }
 
         if (other.gameObject.name == "CP3")
         {
             SendAnalytics ob = gameObject.AddComponent<SendAnalytics>();
             _time_taken = 120f - PlayerController.totalTime;
-            ob.Send(other.gameObject.name, _time_taken-prev_time,level_name,_sessionId);
+            ob.Send(other.gameObject.name, _time_taken - prev_time, level_name, _sessionId);
             other.gameObject.SetActive(false);
         }
     }
@@ -340,6 +340,11 @@ public class PlayerController : MonoBehaviour
 
     private void setPlayerPrefsAndNextBottleColor()
     {
+        if (PlayerPrefs.HasKey("lastCheckpoint"))
+        {
+            lastCheckpoint = PlayerPrefs.GetString("lastCheckpoint");
+        }
+
         if (PlayerPrefs.HasKey("globalSequenceFile") && PlayerPrefs.HasKey("lastCheckpoint"))
         {
             globalSequence.text = PlayerPrefs.GetString("globalSequenceFile");
@@ -352,7 +357,33 @@ public class PlayerController : MonoBehaviour
         if (PlayerPrefs.HasKey("x") && PlayerPrefs.HasKey("y"))
         {
             Debug.Log("Latest: " + lastCheckpoint);
+            Debug.Log("X: " + PlayerPrefs.GetFloat("x"));
+            Debug.Log("Y: " + PlayerPrefs.GetFloat("y"));
             transform.position = new Vector2(PlayerPrefs.GetFloat("x"), PlayerPrefs.GetFloat("y"));
+
+            playerNextColorIndicatorSpriteRenderer.color = SequencePlatformController.getColorUsingCharacter(targetSeq.text[0]);
+            currentPosInColorSubseq = 0;
+
+            Scene currentScene = SceneManager.GetActiveScene();
+
+            //Logic specific to Level 2 
+            if (currentScene.name == "FinalLvl2")
+            {
+                if (lastCheckpoint == "Checkpoint1")
+                {
+                    currentPosInColorSubseq = 0;
+                    lastCharInColorSubseq = 'A';
+                }
+            }
+            else if (currentScene.name == "FinalLvl3")
+            {
+                Debug.Log("Print checkpoint " + lastCheckpoint);
+                if (lastCheckpoint == "Checkpoint1")
+                {
+                    currentPosInColorSubseq = 0;
+                    lastCharInColorSubseq = 'A';
+                }
+            }
         }
         PlayerPrefs.DeleteAll();
     }
@@ -385,10 +416,13 @@ public class PlayerController : MonoBehaviour
     private void restartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        
+
         messageBox.text = "";
         totalTime = 120;
         playerRigidbody2D.gameObject.SetActive(true);
+        playerNextColorIndicatorSpriteRenderer.color = SequencePlatformController.getColorUsingCharacter(targetSeq.text[0]);
+        currentPosInColorSubseq = 0;
+        lastCharInColorSubseq = 'A';
     }
 
 

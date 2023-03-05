@@ -109,7 +109,7 @@ public class SequencePlatformController : MonoBehaviour
             Debug.Log("Point 3");
             if (PlayerController.currentPosInColorSubseq == targetSeq.text.Length)
             {
-                            Debug.Log("Point 4");
+                Debug.Log("Point 4");
 
                 messageBox.text = "Pick the Blue bottle.";
                 blackFloor.SetActive(true);
@@ -119,11 +119,11 @@ public class SequencePlatformController : MonoBehaviour
                 orangeFloor.color = Color.white;
                 greenFloor.color = Color.white;
                 violetFloor.color = Color.white;
-            Debug.Log("Point 7");
+                Debug.Log("Point 7");
 
                 if (PlayerController.seq_jump_flag == false)
                 {
-                                Debug.Log("Point 5");
+                    Debug.Log("Point 5");
 
                     SendAnalytics2 ob = gameObject.AddComponent<SendAnalytics2>();
                     Debug.Log("Jump Counter: " + PlayerController.jump_counter);
@@ -131,7 +131,7 @@ public class SequencePlatformController : MonoBehaviour
                     ob.Send(5, PlayerController.jump_counter, PlayerController.level_name);
                     PlayerController.seq_jump_flag = true;
                 }
-            Debug.Log("Point 6");
+                Debug.Log("Point 6");
 
                 playerNextColorIndicatorSpriteRenderer.gameObject.SetActive(false);
                 Invoke(nameof(ResetMessageBox), 6f);
@@ -141,7 +141,7 @@ public class SequencePlatformController : MonoBehaviour
         }
         else
         {
-                        Debug.Log("Point 8");
+            Debug.Log("Point 8");
 
             PlayerController.currentPosInColorSubseq = 0;
 
@@ -158,7 +158,7 @@ public class SequencePlatformController : MonoBehaviour
         return color;
     }
 
-    private Color getColorUsingCharacter(char colorChar)
+    public static Color getColorUsingCharacter(char colorChar)
     {
         Color color = Color.white;
 

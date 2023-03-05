@@ -115,18 +115,6 @@ public class PlatformControllerTutorial : MonoBehaviour
         {
             case "Red":
                 return Color.red;
-
-            case "Blue":
-                return Color.blue;
-
-            case "Green":
-                return Color.green;
-
-            case "Yellow":
-                return Color.yellow;
-
-            default:
-                return Color.black;
         }
     }
 }

@@ -34,11 +34,10 @@ public class DamagePlayer : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.CompareTag("Player") && collision.gameObject.activeSelf)
+        if (collision.CompareTag("Player") && collision.gameObject.activeSelf && PlayerHealthController.instance != null)
         {
 
             // SendAnalytics3 ob = gameObject.AddComponent<SendAnalytics3>();
-
             if (gameObject.CompareTag("Spike"))
             {
                 PlayerHealthController.instance.DealDamage("Spike");
