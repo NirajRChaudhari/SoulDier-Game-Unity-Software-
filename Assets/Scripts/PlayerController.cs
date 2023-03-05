@@ -235,7 +235,7 @@ public class PlayerController : MonoBehaviour
             ob.Send(other.gameObject.name, _time_taken - prev_time, level_name, _sessionId);
             other.gameObject.SetActive(false);
                         SendAnalytics4 ob2 = gameObject.AddComponent<SendAnalytics4>();
-                        ob2.Send("Level completed without dying", level_name);
+                        ob2.Send("Level Completed", level_name);
         }
     }
 
