@@ -30,6 +30,9 @@ public class SendAnalytics3 : MonoBehaviour
     }
     public void Send(string cause_of_death)
     {
+                if (PlayerController.send_analytics_3_enabled==false){
+            return;
+        }
         // Assign variables
         // _sessionId = DateTime.Now.Ticks;
         // Debug.Log(checkpoint_name);

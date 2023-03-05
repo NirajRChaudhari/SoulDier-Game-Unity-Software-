@@ -34,7 +34,11 @@ public class SendAnalytics2 : MonoBehaviour
         //Send("dafa", 5.7f);
     }
     public void Send(int seq_len, int jumps_taken, string level_name)
+    
     {
+                if (PlayerController.send_analytics_2_enabled==false){
+            return;
+        }
         // Assign variables
         // _sessionId = DateTime.Now.Ticks;
         // Debug.Log(checkpoint_name);

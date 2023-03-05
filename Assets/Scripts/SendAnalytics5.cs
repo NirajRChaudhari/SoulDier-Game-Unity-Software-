@@ -28,7 +28,11 @@ public class SendAnalytics5 : MonoBehaviour
         //Send("dafa", 5.7f);
     }
     public void Send(string level)
+    
     {
+                if (PlayerController.send_analytics_5_enabled==false){
+            return;
+        }
         // Assign variables
         // _sessionId = DateTime.Now.Ticks;
         // Debug.Log(checkpoint_name);

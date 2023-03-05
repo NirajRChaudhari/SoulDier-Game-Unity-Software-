@@ -46,6 +46,13 @@ public class PlayerController : MonoBehaviour
     private float _time_taken;
     private long _sessionId;
 
+    public static bool send_analytics_1_enabled = false;
+    public static bool send_analytics_2_enabled = false;
+    public static bool send_analytics_3_enabled = false;
+    public static bool send_analytics_4_enabled = false;
+    public static bool send_analytics_5_enabled = false;
+    public static bool send_analytics_6_enabled = false;
+
     // Start is called before the first frame update
     void Start()
     {
