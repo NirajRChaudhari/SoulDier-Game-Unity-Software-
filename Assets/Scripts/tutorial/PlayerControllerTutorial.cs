@@ -51,6 +51,10 @@ public class PlayerControllerTutorial : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("*********************************************************************************************************************");
+            totalTime = 1200;
+            currentPos = 0;
+            currentPosInColorSubseq = 0;
         retrieveAndInitializeAllPrivateObjects();
 
         this.saveInitialMoveSpeed = this.moveSpeed;
