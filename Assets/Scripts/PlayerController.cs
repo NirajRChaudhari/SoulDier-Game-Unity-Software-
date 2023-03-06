@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     public static bool seq_jump_flag;
     public bool send_time_up_flag;
 
-    
+
 
     // Private variables
     private Rigidbody2D playerRigidbody2D;
@@ -63,8 +63,19 @@ public class PlayerController : MonoBehaviour
 
     // Start is called before the first frame update
 
+
     void Start()
     {
+        currentPosInColorSubseq = -1;
+        lastCharInColorSubseq = 'A';
+        send_analytics_1_enabled = true;
+        send_analytics_2_enabled = true;
+        send_analytics_3_enabled = true;
+        send_analytics_4_enabled = true;
+        send_analytics_5_enabled = true;
+        send_analytics_6_enabled = true;
+        prev_time = 0;
+        lastCheckpoint = "Starting Point";
 
         retrieveAndInitializeAllPrivateObjects();
 
@@ -97,7 +108,7 @@ public class PlayerController : MonoBehaviour
         targetSeqHeader.gameObject.SetActive(false);
         targetSeq.gameObject.SetActive(false);
         playerNextColorIndicatorSpriteRenderer.gameObject.SetActive(false);
-        
+
         jump_counter = 0;
         seq_jump_flag = false;
         send_time_up_flag = false;
@@ -269,8 +280,8 @@ public class PlayerController : MonoBehaviour
             _time_taken = 120f - PlayerController.totalTime;
             ob.Send(other.gameObject.name, _time_taken - prev_time, level_name, _sessionId);
             other.gameObject.SetActive(false);
-                        SendAnalytics4 ob2 = gameObject.AddComponent<SendAnalytics4>();
-                        ob2.Send("Level Completed", level_name);
+            SendAnalytics4 ob2 = gameObject.AddComponent<SendAnalytics4>();
+            ob2.Send("Level Completed", level_name);
         }
     }
 

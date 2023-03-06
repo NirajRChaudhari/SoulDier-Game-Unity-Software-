@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class ExitButtonOnCanvas : MonoBehaviour
 {
-    public void mainMenuScreen() {
+    public void mainMenuScreen()
+    {
         SceneManager.LoadScene(0);
     }
 }
