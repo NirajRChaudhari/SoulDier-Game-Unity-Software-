@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 using UnityEngine.UI;
 using System;
-using System.Threading.Tasks;
+// using System.Threading.Tasks;
+using System.Threading;
 
 public class PlayerController : MonoBehaviour
 {
@@ -46,12 +47,18 @@ public class PlayerController : MonoBehaviour
     private float _time_taken;
     private long _sessionId;
 
-    public static bool send_analytics_1_enabled = false;
-    public static bool send_analytics_2_enabled = false;
-    public static bool send_analytics_3_enabled = false;
-    public static bool send_analytics_4_enabled = false;
-    public static bool send_analytics_5_enabled = false;
-    public static bool send_analytics_6_enabled = false;
+    public static bool send_analytics_1_enabled = true;
+    public static bool send_analytics_2_enabled = true;
+    public static bool send_analytics_3_enabled = true;
+    public static bool send_analytics_4_enabled = true;
+    public static bool send_analytics_5_enabled = true;
+    public static bool send_analytics_6_enabled = true;
+    //  public static bool send_analytics_1_enabled = true;
+    // public static bool send_analytics_2_enabled = true;
+    // public static bool send_analytics_3_enabled = true;
+    // public static bool send_analytics_4_enabled = true;
+    // public static bool send_analytics_5_enabled = true;
+    // public static bool send_analytics_6_enabled = true;
 
     // Start is called before the first frame update
     void Start()
@@ -146,7 +153,9 @@ public class PlayerController : MonoBehaviour
             // call restartLevel here
             SendAnalytics5 ob3 = gameObject.AddComponent<SendAnalytics5>();
             ob3.Send(PlayerController.level_name);
-            playerRigidbody2D.gameObject.SetActive(false);
+            // Thread.sleep(2000);
+            // Thread.Sleep(1000);
+            // playerRigidbody2D.gameObject.SetActive(false);
             Invoke(nameof(restartLevel), 5f);
         }
         DisplayTime(totalTime);

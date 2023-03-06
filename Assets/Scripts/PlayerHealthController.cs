@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-using System.Threading.Tasks;
+using System.Threading;
 public class PlayerHealthController : MonoBehaviour
 {
 
@@ -101,7 +101,8 @@ public class PlayerHealthController : MonoBehaviour
                 }
                 SendAnalytics5 ob3 = gameObject.AddComponent<SendAnalytics5>();
                 ob3.Send(PlayerController.level_name);
-                gameObject.SetActive(false);
+                // Thread.Sleep(5000);
+                // gameObject.SetActive(false);
                 currentHealth = 0;
                 Invoke(nameof(restartLevel), 3f);
             }
