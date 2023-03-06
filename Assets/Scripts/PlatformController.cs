@@ -48,7 +48,7 @@ public class PlatformController : MonoBehaviour
     }
 
     // Update is called once per a frame
-    void Update()
+    void LateUpdate()
     {
 
         if (platformSpriteRenderer.color.CompareRGB(extractColorOfNextBottle()))
@@ -87,6 +87,7 @@ public class PlatformController : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
 
+            onMovingPlatform = true;
             if (platformSpriteRenderer.color.CompareRGB(extractColorOfNextBottle()))
             {
                 alpha = 1.0f;
@@ -100,7 +101,6 @@ public class PlatformController : MonoBehaviour
 
             if (gameObject.CompareTag("MovingPlatform"))
             {
-                onMovingPlatform = true;
             }
         }
     }
@@ -112,6 +112,7 @@ public class PlatformController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player") && collision.gameObject.activeSelf)
         {
+            onMovingPlatform = false;
             if (platformSpriteRenderer.color.CompareRGB(extractColorOfNextBottle()))
             {
                 Color platformColor = platformSpriteRenderer.color;
@@ -124,7 +125,6 @@ public class PlatformController : MonoBehaviour
 
         if (gameObject.CompareTag("MovingPlatform"))
         {
-            onMovingPlatform = false;
         }
     }
 
