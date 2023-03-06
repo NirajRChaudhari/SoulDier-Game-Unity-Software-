@@ -53,7 +53,7 @@ public class PlayerControllerTutorial : MonoBehaviour
     {
         totalTime = 1200;
         currentPos = 0;
-        currentPosInColorSubseq = -1;
+        currentPosInColorSubseq = 0;
         lastCharInColorSubseq = 'A';
         retrieveAndInitializeAllPrivateObjects();
 
