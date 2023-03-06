@@ -16,10 +16,16 @@ public class PlatformControllerTutorial : MonoBehaviour
     private Color[] colors;
     private int colorIndex;
     private bool onMovingPlatform;
-
+    private float alpha = 0.5f;
+    Color red, green, blue, yellow, black;
     // Start is called before the first frame update
     void Start()
     {
+        alpha = 0.5f;
+        red = new Color(255, 0, 0, alpha);
+        green = new Color(0, 255, 0, alpha);
+        blue = new Color(0, 0, 255, alpha);
+        yellow = new Color(255, 255, 0, alpha);
         if (gameObject.CompareTag("MovingPlatform"))
         {
             playerRB = player.GetComponent<Rigidbody2D>();
@@ -29,7 +35,8 @@ public class PlatformControllerTutorial : MonoBehaviour
         colorIndex = 0;
         platformSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 
-        colors = new Color[] { Color.red, Color.green, Color.yellow, Color.blue };
+        // colors = new Color[] { Color.red, Color.green, Color.yellow, Color.blue };
+        colors = new Color[] { red, green, yellow, blue };
 
         onMovingPlatform = false;
 
@@ -39,7 +46,7 @@ public class PlatformControllerTutorial : MonoBehaviour
     // Update is called once per a frame
     void Update()
     {
-        if (platformSpriteRenderer.color == Color.red)
+        if (platformSpriteRenderer.color == red || platformSpriteRenderer.color == Color.red)
         {
             gameObject.GetComponent<Collider2D>().isTrigger = false;
         }
@@ -71,10 +78,10 @@ public class PlatformControllerTutorial : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
 
-            if (platformSpriteRenderer.color == Color.red)
+            if (platformSpriteRenderer.color == red)
             {
                 CancelInvoke();
-                //platformSpriteRenderer.color = extractColorOfNextBottle();
+                platformSpriteRenderer.color = Color.red;
 
             }
 
@@ -93,9 +100,9 @@ public class PlatformControllerTutorial : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player") && collision.gameObject.activeSelf)
         {
-            if (platformSpriteRenderer.color == extractColorOfNextBottle())
+            if (platformSpriteRenderer.color == Color.red)
             {
-                //platformSpriteRenderer.color = Color.red;
+                platformSpriteRenderer.color = red;
 
                 Start();
             }
