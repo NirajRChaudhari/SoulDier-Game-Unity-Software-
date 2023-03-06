@@ -701,11 +701,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4738036651178454134, guid: 5a35242d2a660419ebc498b5bfc17a11, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.7
+      value: -24.2
       objectReference: {fileID: 0}
     - target: {fileID: 4738036651178454134, guid: 5a35242d2a660419ebc498b5bfc17a11, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4738036651178454134, guid: 5a35242d2a660419ebc498b5bfc17a11, type: 3}
       propertyPath: m_LocalPosition.z
@@ -745,11 +745,11 @@ PrefabInstance:
       objectReference: {fileID: 5158898640816052970}
     - target: {fileID: 4738036651178454135, guid: 5a35242d2a660419ebc498b5bfc17a11, type: 3}
       propertyPath: maxHeight
-      value: 12
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 4738036651178454135, guid: 5a35242d2a660419ebc498b5bfc17a11, type: 3}
       propertyPath: minHeight
-      value: -1
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 4738036651178454135, guid: 5a35242d2a660419ebc498b5bfc17a11, type: 3}
       propertyPath: farBackgroud
