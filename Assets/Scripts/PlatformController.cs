@@ -47,8 +47,9 @@ public class PlatformController : MonoBehaviour
         InvokeRepeating("ChangeColor", 0.0f, 2.0f);
     }
 
-    // Update is called once per a frame
-    void Update()
+    // LateUpdate is called post Update
+    // Do not change below line
+    private void LateUpdate()
     {
 
         if (platformSpriteRenderer.color.CompareRGB(extractColorOfNextBottle()))
