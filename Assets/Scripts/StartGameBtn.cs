@@ -18,12 +18,12 @@ public class StartGameBtn : MonoBehaviour
     }
 
     public void Level2Start() {
-        PlayerController.totalTime = 120;
+        PlayerController.totalTime = 150;
         SceneManager.LoadScene("FinalLvl2");
     }
 
     public void Level3Start() {
-        PlayerController.totalTime = 120;
+        PlayerController.totalTime = 150;
         SceneManager.LoadScene("FinalLvl3");
     }
 }

@@ -61,6 +61,13 @@ public class PlayerController : MonoBehaviour
     // public static bool send_analytics_6_enabled = true;
 
     // Start is called before the first frame update
+    void Awake(){
+                Scene scene = SceneManager.GetActiveScene();
+        // Debug.Log(scene.name);
+        // if (scene.name!="FinalLvl1"){
+        //     totalTime=150;
+        // }
+    }
     void Start()
     {
         retrieveAndInitializeAllPrivateObjects();
@@ -79,7 +86,7 @@ public class PlayerController : MonoBehaviour
         targetSeqHeader.gameObject.SetActive(false);
         targetSeq.gameObject.SetActive(false);
         playerNextColorIndicatorSpriteRenderer.gameObject.SetActive(false);
-
+        
         jump_counter = 0;
         seq_jump_flag = false;
         send_time_up_flag = false;
