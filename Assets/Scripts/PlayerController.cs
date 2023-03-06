@@ -148,11 +148,12 @@ public class PlayerController : MonoBehaviour
                 SendAnalytics4 ob = gameObject.AddComponent<SendAnalytics4>();
                 // Task.Delay(1000).ContinueWith(t=> ob.Send("Time up",level_name));
                 ob.Send("Time up", level_name);
+                SendAnalytics5 ob3 = gameObject.AddComponent<SendAnalytics5>();
+                ob3.Send(PlayerController.level_name);
             }
             messageBox.text = "TIME'S UP, GAME OVER..";
             // call restartLevel here
-            SendAnalytics5 ob3 = gameObject.AddComponent<SendAnalytics5>();
-            ob3.Send(PlayerController.level_name);
+
             // Thread.sleep(2000);
             // Thread.Sleep(1000);
             // playerRigidbody2D.gameObject.SetActive(false);
