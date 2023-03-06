@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public static bool seq_jump_flag;
     public bool send_time_up_flag;
 
+    
 
     // Private variables
     private Rigidbody2D playerRigidbody2D;
@@ -61,18 +62,28 @@ public class PlayerController : MonoBehaviour
     // public static bool send_analytics_6_enabled = true;
 
     // Start is called before the first frame update
-    void Awake(){
-                Scene scene = SceneManager.GetActiveScene();
-        // Debug.Log(scene.name);
-        // if (scene.name!="FinalLvl1"){
-        //     totalTime=150;
-        // }
-    }
+
     void Start()
     {
+
         retrieveAndInitializeAllPrivateObjects();
+
         Scene scene = SceneManager.GetActiveScene();
         Debug.Log(scene.name);
+
+        //Time for level
+        if (!RespawnCheck.isRespawn)
+        {
+            if (scene.name == "FinalLvl1")
+            {
+                totalTime = 120;
+            }
+            else
+            {
+                totalTime = 150;
+            }
+        }
+
         level_name = scene.name;
         _sessionId = DateTime.Now.Ticks;
         this.saveInitialMoveSpeed = this.moveSpeed;
@@ -441,10 +452,12 @@ public class PlayerController : MonoBehaviour
 
     private void restartLevel()
     {
+        RespawnCheck.isRespawn = false;
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
         messageBox.text = "";
-        totalTime = 120;
+        //totalTime = 120;
         playerRigidbody2D.gameObject.SetActive(true);
         playerNextColorIndicatorSpriteRenderer.color = SequencePlatformController.getColorUsingCharacter(targetSeq.text[0]);
         currentPosInColorSubseq = 0;

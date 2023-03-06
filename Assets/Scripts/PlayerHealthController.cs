@@ -28,6 +28,7 @@ public class PlayerHealthController : MonoBehaviour
     private void Awake()
     {
         instance = this;
+
     }
 
 
@@ -39,6 +40,7 @@ public class PlayerHealthController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         playerController = gameObject.GetComponent<PlayerController>();
+
     }
 
     // Update is called once per frame
@@ -124,7 +126,8 @@ public class PlayerHealthController : MonoBehaviour
     private void restartLevel()
 
     {
-
+        RespawnCheck.isRespawn = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
     }
 }
