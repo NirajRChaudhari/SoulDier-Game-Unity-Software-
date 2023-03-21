@@ -42,7 +42,7 @@ TagManager:
   - Water
   - UI
   - Player
-  - 
+  - GameOverScreen
   - 
   - 
   - 
@@ -79,4 +79,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1295463191
+    locked: 0
+  - name: GameOverScreen
+    uniqueID: 1080191387
     locked: 0

@@ -23,7 +23,6 @@ public class PlayerHealthController : MonoBehaviour
 
     public TMP_Text globalSequence;
 
-
     //Awake function is called before the start function
     private void Awake()
     {
@@ -77,12 +76,18 @@ public class PlayerHealthController : MonoBehaviour
             }
             if (currentHealth <= 0)
             {
-                messageBox.text = "GAME OVER";
+                messageBox.text = "Game Over...";
+                messageBox.fontSize = 100;
+                messageBox.GetComponent<RectTransform>().sizeDelta = new Vector2(800, 500);
+                messageBox.color = new Color(255f, 255f, 255f, 1.0f);
+                GameObject.Find("gameOverScreen").GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0.8f);
+                playerController.moveSpeed = 0f;
+                playerController.jumpForce = 0f;
+
                 SendAnalytics4 ob2 = gameObject.AddComponent<SendAnalytics4>();
                 // Task.Delay(1000).ContinueWith(t=> ob2.Send("Killed by Traps",PlayerController.level_name));
                 ob2.Send("Killed by Traps", PlayerController.level_name);
                 Debug.Log("Restarting");
-                Debug.Log(playerController.lastCheckpoint);
 
                 if (playerController.lastCheckpoint == "Checkpoint1")
                 {
@@ -94,9 +99,6 @@ public class PlayerHealthController : MonoBehaviour
                 }
                 else if (playerController.lastCheckpoint == "Checkpoint2")
                 {
-                    Debug.Log(playerController.lastCheckpoint);
-                    Debug.Log("CP2 x = " + checkPoint2.transform.position.x);
-                    Debug.Log("CP2 y = " + checkPoint2.transform.position.y);
                     PlayerPrefs.SetFloat("x", checkPoint2.transform.position.x);
                     PlayerPrefs.SetFloat("y", checkPoint2.transform.position.y);
                     PlayerPrefs.SetString("globalSequenceFile", globalSequence.text);
@@ -125,7 +127,6 @@ public class PlayerHealthController : MonoBehaviour
     }
 
     private void restartLevel()
-
     {
         RespawnCheck.isRespawn = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

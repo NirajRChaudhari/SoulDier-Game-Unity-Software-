@@ -12,7 +12,9 @@ using System.Threading;
 public class PlayerController : MonoBehaviour
 {
     // Public variables
+    public float moveSpeedInput;
     public float moveSpeed;
+    public float jumpForceInput;
     public float jumpForce;
     private Transform groundCheckPoint;
     public LayerMask whatIsGround;
@@ -66,6 +68,10 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        this.jumpForce = this.jumpForceInput;
+        this.moveSpeed = this.moveSpeedInput;
+        Debug.Log(this.moveSpeed);
+
         currentPosInColorSubseq = -1;
         lastCharInColorSubseq = 'A';
         send_analytics_1_enabled = true;
@@ -76,6 +82,9 @@ public class PlayerController : MonoBehaviour
         send_analytics_6_enabled = true;
         prev_time = 0;
         lastCheckpoint = "Starting Point";
+
+        
+        GameObject.Find("gameOverScreen").GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0f);
 
         retrieveAndInitializeAllPrivateObjects();
 
