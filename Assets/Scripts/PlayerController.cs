@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 using UnityEngine.UI;
 using System;
-using System.Threading.Tasks;
+// using System.Threading.Tasks;
+using System.Threading;
 
 public class PlayerController : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public static int jump_counter;
     public static bool seq_jump_flag;
     public bool send_time_up_flag;
+
 
 
     // Private variables
@@ -46,12 +48,53 @@ public class PlayerController : MonoBehaviour
     private float _time_taken;
     private long _sessionId;
 
+    public static bool send_analytics_1_enabled = true;
+    public static bool send_analytics_2_enabled = true;
+    public static bool send_analytics_3_enabled = true;
+    public static bool send_analytics_4_enabled = true;
+    public static bool send_analytics_5_enabled = true;
+    public static bool send_analytics_6_enabled = true;
+    //  public static bool send_analytics_1_enabled = true;
+    // public static bool send_analytics_2_enabled = true;
+    // public static bool send_analytics_3_enabled = true;
+    // public static bool send_analytics_4_enabled = true;
+    // public static bool send_analytics_5_enabled = true;
+    // public static bool send_analytics_6_enabled = true;
+
     // Start is called before the first frame update
+
+
     void Start()
     {
+        currentPosInColorSubseq = -1;
+        lastCharInColorSubseq = 'A';
+        send_analytics_1_enabled = true;
+        send_analytics_2_enabled = true;
+        send_analytics_3_enabled = true;
+        send_analytics_4_enabled = true;
+        send_analytics_5_enabled = true;
+        send_analytics_6_enabled = true;
+        prev_time = 0;
+        lastCheckpoint = "Starting Point";
+
         retrieveAndInitializeAllPrivateObjects();
+
         Scene scene = SceneManager.GetActiveScene();
         Debug.Log(scene.name);
+
+        //Time for level
+        if (!RespawnCheck.isRespawn)
+        {
+            if (scene.name == "FinalLvl1")
+            {
+                totalTime = 120;
+            }
+            else
+            {
+                totalTime = 150;
+            }
+        }
+
         level_name = scene.name;
         _sessionId = DateTime.Now.Ticks;
         this.saveInitialMoveSpeed = this.moveSpeed;
@@ -134,12 +177,15 @@ public class PlayerController : MonoBehaviour
                 SendAnalytics4 ob = gameObject.AddComponent<SendAnalytics4>();
                 // Task.Delay(1000).ContinueWith(t=> ob.Send("Time up",level_name));
                 ob.Send("Time up", level_name);
+                SendAnalytics5 ob3 = gameObject.AddComponent<SendAnalytics5>();
+                ob3.Send(PlayerController.level_name);
             }
             messageBox.text = "TIME'S UP, GAME OVER..";
             // call restartLevel here
-            SendAnalytics5 ob3 = gameObject.AddComponent<SendAnalytics5>();
-            ob3.Send(PlayerController.level_name);
-            playerRigidbody2D.gameObject.SetActive(false);
+
+            // Thread.sleep(2000);
+            // Thread.Sleep(1000);
+            // playerRigidbody2D.gameObject.SetActive(false);
             Invoke(nameof(restartLevel), 5f);
         }
         DisplayTime(totalTime);
@@ -234,8 +280,8 @@ public class PlayerController : MonoBehaviour
             _time_taken = 120f - PlayerController.totalTime;
             ob.Send(other.gameObject.name, _time_taken - prev_time, level_name, _sessionId);
             other.gameObject.SetActive(false);
-                        SendAnalytics4 ob2 = gameObject.AddComponent<SendAnalytics4>();
-                        ob2.Send("Level Completed", level_name);
+            SendAnalytics4 ob2 = gameObject.AddComponent<SendAnalytics4>();
+            ob2.Send("Level Completed", level_name);
         }
     }
 
@@ -417,10 +463,12 @@ public class PlayerController : MonoBehaviour
 
     private void restartLevel()
     {
+        RespawnCheck.isRespawn = false;
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
         messageBox.text = "";
-        totalTime = 120;
+        //totalTime = 120;
         playerRigidbody2D.gameObject.SetActive(true);
         playerNextColorIndicatorSpriteRenderer.color = SequencePlatformController.getColorUsingCharacter(targetSeq.text[0]);
         currentPosInColorSubseq = 0;

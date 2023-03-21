@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.Networking;
+using System.Threading;
 public class SendAnalytics6 : MonoBehaviour
 {
 
@@ -40,6 +41,9 @@ public class SendAnalytics6 : MonoBehaviour
         // _testFloat = UnityEngine.Random.Range(0.0f, 10.0f);
         // Debug.Log(seq_len);
         // Debug.Log(jumps_taken);
+                if (PlayerController.send_analytics_6_enabled==false){
+            return;
+        }
         StartCoroutine(Post(power_up_name));
     }
     private IEnumerator Post(string power_up_name)

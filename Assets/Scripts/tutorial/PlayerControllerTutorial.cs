@@ -23,7 +23,7 @@ public class PlayerControllerTutorial : MonoBehaviour
     public static int currentPosInColorSubseq = 0;
     public static char lastCharInColorSubseq;
     public static int jump_counter;
-        public static bool seq_jump_flag;
+    public static bool seq_jump_flag;
 
 
 
@@ -51,6 +51,10 @@ public class PlayerControllerTutorial : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        totalTime = 1200;
+        currentPos = 0;
+        currentPosInColorSubseq = 0;
+        lastCharInColorSubseq = 'A';
         retrieveAndInitializeAllPrivateObjects();
 
         this.saveInitialMoveSpeed = this.moveSpeed;
@@ -65,8 +69,8 @@ public class PlayerControllerTutorial : MonoBehaviour
 
         playerNextColorIndicatorSpriteRenderer.color = getColorUsingCharacter(targetSeq.text[0]);
         messageBox.text = "";
-        jump_counter=0;
-        seq_jump_flag=false;
+        jump_counter = 0;
+        seq_jump_flag = false;
         Invoke(nameof(ResetMessageBox), 10f);
     }
 
@@ -172,29 +176,34 @@ public class PlayerControllerTutorial : MonoBehaviour
             totalTime = totalTime - 5;
             messageBox.text = " - 5 Seconds! ";
             Invoke(nameof(ResetMessageBox), 1f);
-        } 
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        
-        if(other.gameObject.tag=="RedBottle") {
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+
+        if (other.gameObject.tag == "RedBottle")
+        {
             other.gameObject.SetActive(false);
             checkPoint2.SetActive(false);
-            playerSpriteRenderer.color = new Color (1, 1, 1, 1);
+            playerSpriteRenderer.color = new Color(1, 1, 1, 1);
         }
-        if(other.gameObject.tag=="BlueBottle") {
-            playerSpriteRenderer.color = new Color (1, 0, 0, 1);
+        if (other.gameObject.tag == "BlueBottle")
+        {
+            playerSpriteRenderer.color = new Color(1, 0, 0, 1);
             plaformJumpGuideImg.SetActive(false);
         }
-        if(other.gameObject.tag=="YellowBottle") {
-            playerSpriteRenderer.color = new Color (0, 0, 1, 1);
+        if (other.gameObject.tag == "YellowBottle")
+        {
+            playerSpriteRenderer.color = new Color(0, 0, 1, 1);
             other.gameObject.SetActive(false);
             checkpoint3.SetActive(false);
             messageBox.text = "Purrfect :)";
             Invoke(nameof(ResetMessageBox), 2f);
         }
 
-        if(other.gameObject.tag=="PlatformJumpGuideImg") {
+        if (other.gameObject.tag == "PlatformJumpGuideImg")
+        {
             playerNextColorIndicatorSpriteRenderer.gameObject.SetActive(true);
         }
 
@@ -227,7 +236,7 @@ public class PlayerControllerTutorial : MonoBehaviour
         }
     }
 
-        public void resetMovementToNormal()
+    public void resetMovementToNormal()
     {
         Debug.Log("Reset Movement");
         this.moveSpeed = this.saveInitialMoveSpeed;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.Networking;
+using System.Threading;
 public class SendAnalytics5 : MonoBehaviour
 {
 
@@ -28,7 +29,12 @@ public class SendAnalytics5 : MonoBehaviour
         //Send("dafa", 5.7f);
     }
     public void Send(string level)
+    
     {
+        if (PlayerController.send_analytics_5_enabled==false){
+            return;
+        }
+        // Thread.Sleep(500);
         // Assign variables
         // _sessionId = DateTime.Now.Ticks;
         // Debug.Log(checkpoint_name);

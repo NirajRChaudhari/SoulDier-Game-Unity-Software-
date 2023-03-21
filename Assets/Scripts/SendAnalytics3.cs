@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.Networking;
-
+using System.Threading;
 public class SendAnalytics3 : MonoBehaviour
 {
 
@@ -25,11 +25,16 @@ public class SendAnalytics3 : MonoBehaviour
     private void Awake()
     {
         // _sessionId = DateTime.Now.Ticks;
+        // URL="https://docs.google.com/forms/u/1/d/e/1FAIpQLScdUe5Xx-TenmgeyHNUXBfMdQsNhR-ShsZnAyqRQAg1OuQpbQ/formResponse";
         URL="https://docs.google.com/forms/u/0/d/e/1FAIpQLSd77rEdoh8xYnM_AFUFnEZkRKKAFvWeDn1EXFUTsKKsEN-_3A/formResponse";
         //Send("dafa", 5.7f);
     }
     public void Send(string cause_of_death)
     {
+        if (PlayerController.send_analytics_3_enabled==false){
+            return;
+        }
+
         // Assign variables
         // _sessionId = DateTime.Now.Ticks;
         // Debug.Log(checkpoint_name);
@@ -49,7 +54,9 @@ public class SendAnalytics3 : MonoBehaviour
         // Debug.Log(seq_len);
     // Debug.Log(jumps_taken);
         WWWForm form = new WWWForm();
+        // entry.1041347118"
         form.AddField("entry.1041347118", cause_of_death);
+        // form.AddField("entry.602697258", cause_of_death);  
         // form.AddField("entry.1841362125", jumps_taken);
         // form.AddField("entry.244123968", testBool);
         // form.AddField("entry.431586524", testFloat);

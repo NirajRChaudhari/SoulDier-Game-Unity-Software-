@@ -3174,7 +3174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b004cd4fc7a4a47088038f785051c385, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messageBox: {fileID: 0}
+  messageBox: {fileID: 1517501933}
 --- !u!1001 &346383113
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39266,7 +39266,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1482.6787, y: 473.98383}
+  m_AnchoredPosition: {x: -14, y: 498}
   m_SizeDelta: {x: 530, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1517501933
@@ -39352,7 +39352,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: -1.5757103, z: 0, w: 0}
+  m_margin: {x: 0, y: -1.5757103, z: 0, w: -0.73669434}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -40215,7 +40215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b004cd4fc7a4a47088038f785051c385, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messageBox: {fileID: 0}
+  messageBox: {fileID: 1517501933}
 --- !u!61 &1598154146
 BoxCollider2D:
   m_ObjectHideFlags: 0

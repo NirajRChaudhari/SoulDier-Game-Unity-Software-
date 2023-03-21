@@ -38,6 +38,9 @@ public class SendAnalytics : MonoBehaviour
     {
         // Assign variables
         // _sessionId = DateTime.Now.Ticks;
+        if (PlayerController.send_analytics_1_enabled==false){
+            return;
+        }
         Debug.Log(checkpoint_name);
         Debug.Log(time_taken);
         _sessionId=sessionId;

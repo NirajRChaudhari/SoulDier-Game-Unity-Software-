@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class DropletController : MonoBehaviour
 {
-    private BoxCollider2D collider;
+    private BoxCollider2D boxCollider;
     [SerializeField] private LayerMask jumpableGround;
     private float startX, startY;
 
     // Start is called before the first frame update
     void Start()
     {
-        collider = GetComponent<BoxCollider2D>();
+        boxCollider = GetComponent<BoxCollider2D>();
         startX = gameObject.transform.position.x;
         startY = gameObject.transform.position.y;
     }
@@ -32,6 +32,6 @@ public class DropletController : MonoBehaviour
     {
         //BoxCast method returns true if player box overlaps with ground layer.
 
-        return Physics2D.BoxCast(collider.bounds.center, collider.bounds.size, 0f, Vector2.down, 0f, jumpableGround);
+        return Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0f, Vector2.down, 0f, jumpableGround);
     }
 }

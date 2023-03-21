@@ -21744,11 +21744,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5585713119506465, guid: e28ce774ffed84967a6e36191a487a54, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.11
+      value: -17.73
       objectReference: {fileID: 0}
     - target: {fileID: 5585713119506465, guid: e28ce774ffed84967a6e36191a487a54, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.42
+      value: 7.79
       objectReference: {fileID: 0}
     - target: {fileID: 5585713119506465, guid: e28ce774ffed84967a6e36191a487a54, type: 3}
       propertyPath: m_LocalPosition.z
@@ -21785,6 +21785,22 @@ PrefabInstance:
     - target: {fileID: 365688436716068198, guid: e28ce774ffed84967a6e36191a487a54, type: 3}
       propertyPath: m_TagString
       value: Rotating Saw
+      objectReference: {fileID: 0}
+    - target: {fileID: 365688436716068199, guid: e28ce774ffed84967a6e36191a487a54, type: 3}
+      propertyPath: m_Size.x
+      value: 0.5782089
+      objectReference: {fileID: 0}
+    - target: {fileID: 365688436716068199, guid: e28ce774ffed84967a6e36191a487a54, type: 3}
+      propertyPath: m_Size.y
+      value: 0.8544686
+      objectReference: {fileID: 0}
+    - target: {fileID: 365688436716068199, guid: e28ce774ffed84967a6e36191a487a54, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.02041912
+      objectReference: {fileID: 0}
+    - target: {fileID: 365688436716068199, guid: e28ce774ffed84967a6e36191a487a54, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.028311133
       objectReference: {fileID: 0}
     - target: {fileID: 365688436716068199, guid: e28ce774ffed84967a6e36191a487a54, type: 3}
       propertyPath: m_IsTrigger
@@ -39409,11 +39425,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7328417389042922839, guid: bffc060ce2c1645bcac7a9095b4cd111, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20.09
+      value: -22.8
       objectReference: {fileID: 0}
     - target: {fileID: 7328417389042922839, guid: bffc060ce2c1645bcac7a9095b4cd111, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.1
+      value: 3.4
       objectReference: {fileID: 0}
     - target: {fileID: 7328417389042922839, guid: bffc060ce2c1645bcac7a9095b4cd111, type: 3}
       propertyPath: m_LocalPosition.z

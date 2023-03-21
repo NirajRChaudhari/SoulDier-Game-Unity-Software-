@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-using System.Threading.Tasks;
+using System.Threading;
 public class PlayerHealthController : MonoBehaviour
 {
 
@@ -28,6 +28,7 @@ public class PlayerHealthController : MonoBehaviour
     private void Awake()
     {
         instance = this;
+
     }
 
 
@@ -39,6 +40,7 @@ public class PlayerHealthController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         playerController = gameObject.GetComponent<PlayerController>();
+
     }
 
     // Update is called once per frame
@@ -101,7 +103,8 @@ public class PlayerHealthController : MonoBehaviour
                 }
                 SendAnalytics5 ob3 = gameObject.AddComponent<SendAnalytics5>();
                 ob3.Send(PlayerController.level_name);
-                gameObject.SetActive(false);
+                // Thread.Sleep(5000);
+                // gameObject.SetActive(false);
                 currentHealth = 0;
                 Invoke(nameof(restartLevel), 3f);
             }
@@ -123,7 +126,8 @@ public class PlayerHealthController : MonoBehaviour
     private void restartLevel()
 
     {
-
+        RespawnCheck.isRespawn = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
     }
 }

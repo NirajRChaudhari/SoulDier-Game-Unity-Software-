@@ -19,14 +19,13 @@ public class PlatformController : MonoBehaviour
     private bool onMovingPlatform;
 
     private float alpha = 0.5f;
-    Color red, green, blue, yellow, black;
+    Color red, blue, yellow, black;
 
     // Start is called before the first frame update
     void Start()
     {
         alpha = 0.5f;
         red = new Color(255, 0, 0, alpha);
-        green = new Color(0, 255, 0, alpha);
         blue = new Color(0, 0, 255, alpha);
         yellow = new Color(255, 255, 0, alpha);
         black = new Color(0, 0, 0, 1);
@@ -40,15 +39,16 @@ public class PlatformController : MonoBehaviour
         colorIndex = 0;
         platformSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 
-        colors = new Color[] { red, green, yellow, blue };
+        colors = new Color[] { red, yellow, blue };
 
         onMovingPlatform = false;
 
         InvokeRepeating("ChangeColor", 0.0f, 2.0f);
     }
 
-    // Update is called once per a frame
-    void Update()
+    // LateUpdate is called post Update
+    // Do not change below line
+    private void LateUpdate()
     {
 
         if (platformSpriteRenderer.color.CompareRGB(extractColorOfNextBottle()))
@@ -138,9 +138,6 @@ public class PlatformController : MonoBehaviour
                 return new Color(255, 0, 0, alpha); ;
 
             case "Blue":
-                return new Color(0, 0, 255, alpha);
-
-            case "Green":
                 return new Color(0, 0, 255, alpha);
 
             case "Yellow":
