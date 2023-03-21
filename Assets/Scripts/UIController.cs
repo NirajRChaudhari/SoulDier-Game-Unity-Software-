@@ -33,38 +33,21 @@ public class UIController : MonoBehaviour
 
         switch (PlayerHealthController.instance.currentHealth)
         {
-            case 6:
+
+            case 3:
                 heart1.sprite = heartFull;
                 heart2.sprite = heartFull;
                 heart3.sprite = heartFull;
                 break;
 
-            case 5:
-                heart1.sprite = heartFull;
-                heart2.sprite = heartFull;
-                heart3.sprite = heartHalf;
-                break;
-
-            case 4:
-                heart1.sprite = heartFull;
-                heart2.sprite = heartFull;
-                heart3.sprite = heartEmpty;
-                break;
-
-            case 3:
-                heart1.sprite = heartFull;
-                heart2.sprite = heartHalf;
-                heart3.sprite = heartEmpty;
-                break;
-
             case 2:
                 heart1.sprite = heartFull;
-                heart2.sprite = heartEmpty;
+                heart2.sprite = heartFull;
                 heart3.sprite = heartEmpty;
                 break;
 
             case 1:
-                heart1.sprite = heartHalf;
+                heart1.sprite = heartFull;
                 heart2.sprite = heartEmpty;
                 heart3.sprite = heartEmpty;
                 break;
