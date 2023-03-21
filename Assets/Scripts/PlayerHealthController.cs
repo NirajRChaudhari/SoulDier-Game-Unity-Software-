@@ -67,6 +67,7 @@ public class PlayerHealthController : MonoBehaviour
 
             if (trap == "Spike")
             {
+                Debug.Log("It's spike");
 
                 ob.Send("Spike");
             }

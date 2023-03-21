@@ -12,26 +12,32 @@ EditorBuildSettings:
     path: Assets/Scenes/tutorial.unity
     guid: ba1c86961eb904fd6ab56bd2324c3313
   - enabled: 1
-    path: Assets/Scenes/ChangeLvl1.unity
-    guid: 3278243efff0c48b2b2a05312dd4bd31
+    path: Assets/Scenes/ChangeLvl0.unity
+    guid: c3086d6ff8bb14276baff325d5d907f0
   - enabled: 1
-    path: Assets/Scenes/FinalLvl1.unity
-    guid: 5043bfc2d93729b4987098d99d75757c
+    path: Assets/Scenes/finalLevels/FinalLvl0.unity
+    guid: 48e2d8635c6524bee8462e7bb986fa79
+  - enabled: 1
+    path: Assets/Scenes/ChangeLvl1.unity
+    guid: c5781aa0595984b6eb85982760730c96
+  - enabled: 1
+    path: Assets/Scenes/finalLevels/FinalLvl1.unity
+    guid: 00f5927841b224ad5a6fc6f8af16e069
   - enabled: 1
     path: Assets/Scenes/ChangeLvl2.unity
-    guid: 91932526f4d3e411c847e583e605f14b
+    guid: 8d08d26a485e24843bbb9fbb11f5358b
   - enabled: 1
-    path: Assets/Scenes/FinalLvl2.unity
+    path: Assets/Scenes/finalLevels/FinalLvl2.unity
     guid: f166c3625405549afb8470a3f5a8506f
   - enabled: 1
     path: Assets/Scenes/ChangeLvl3.unity
-    guid: d6ca54731bf644f028460ca468783f83
+    guid: 92a4ac37ee50b480d877b82aaf992e8e
   - enabled: 1
-    path: Assets/Scenes/FinalLvl3.unity
+    path: Assets/Scenes/finalLevels/FinalLvl3.unity
     guid: 9d2203b3455d720418ba60b5d0260618
   - enabled: 1
     path: Assets/Scenes/ChangeLvlFinal.unity
-    guid: 04cb4da1e2b584a028946ac597cceaaf
+    guid: 9afa8480ee8894368b225da7d5051b95
   - enabled: 0
     path: Assets/Scenes/EndScreen.unity
     guid: 026bf03af914d467aa5ea96a1f7368ac

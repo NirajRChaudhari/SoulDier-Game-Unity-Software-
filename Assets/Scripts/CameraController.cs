@@ -22,7 +22,7 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         //  transform.position is by default points to the object to which current script is linked i.e, MainCamera
-        transform.position = new Vector3(target.position.x, Mathf.Clamp(target.position.y + 5, minHeight, maxHeight), transform.position.z);
+        transform.position = new Vector3(target.position.x, Mathf.Clamp(target.position.y + 3, minHeight, maxHeight), transform.position.z);
 
 
         Vector2 amountToMove = new Vector2(transform.position.x - lastPos.x, transform.position.y - lastPos.y);
