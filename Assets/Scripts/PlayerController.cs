@@ -263,6 +263,41 @@ public class PlayerController : MonoBehaviour
             Invoke(nameof(resetMovementToNormal), 5f);
         }
 
+        if (other.gameObject.tag.Equals("HeartPowerUp"))
+        {
+            //other.gameObject.SetActive(false);
+            //float normalMoveSpeedSave = this.moveSpeed;
+            //float normalJumpForce = this.jumpForce;
+            //this.jumpForce *= 1.5f;
+            //playerSpriteRenderer.color = new Color(0, 105, 50, 30);
+            //Debug.Log("Double jump mode activated");
+            //messageBox.text = "Double Jump Activated";
+            //Invoke(nameof(ResetMessageBox), 3f);
+            //Invoke(nameof(resetMovementToNormal), 5f);
+            Debug.Log("HeartPowerUp");
+            Debug.Log(PlayerHealthController.instance.currentHealth);
+
+
+            if (PlayerHealthController.instance.currentHealth < PlayerHealthController.instance.maxHealth)
+            {
+                other.gameObject.SetActive(false);
+
+                PlayerHealthController.instance.currentHealth++;
+                UIController.instance.UpdateHealthDisplay();
+
+                float scaleX = gameObject.transform.localScale.x;
+                float scaleY = gameObject.transform.localScale.y;
+
+                gameObject.transform.localScale = new Vector2(scaleX * 1.25f, scaleY * 1.25f);
+                //invincibleCounter = invincibleLength;
+                //spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0.5f);
+            }
+
+            Debug.Log(PlayerHealthController.instance.currentHealth);
+
+
+        }
+
         if (other.gameObject.name == "CP1")
         {
             SendAnalytics ob = gameObject.AddComponent<SendAnalytics>();
