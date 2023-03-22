@@ -34,6 +34,12 @@ TagManager:
   - doublejump
   - NextColorIndicator
   - Rotating Saw
+  - PlatformJumpGuideImg
+  - YellowBottle
+  - HeartPowerUp
+  - TimeIncreasePowerUp
+  - ColorFreezePowerUp
+  - cfpu
   layers:
   - Default
   - TransparentFX

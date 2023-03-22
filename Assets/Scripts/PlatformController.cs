@@ -21,6 +21,8 @@ public class PlatformController : MonoBehaviour
     private float alpha = 0.5f;
     Color red, blue, yellow, black;
 
+    public static bool isFrozen = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -74,9 +76,35 @@ public class PlatformController : MonoBehaviour
 
     void ChangeColor()
     {
-        colorIndex = (colorIndex) % colors.Length;
-        platformSpriteRenderer.color = colors[colorIndex];
-        colorIndex++;
+        if (!isFrozen)
+        {
+            colorIndex = (colorIndex) % colors.Length;
+            platformSpriteRenderer.color = colors[colorIndex];
+            colorIndex++;
+        }
+        else
+        {
+            Debug.Log("In else block");
+            TMP_Text nextBottle = GameObject.Find("NextBottle").GetComponent<TMP_Text>();
+
+            Debug.Log(nextBottle.text);
+            switch (nextBottle.text)
+            {
+                case "Red":
+                    platformSpriteRenderer.color =  new Color(255, 0, 0, alpha);
+                    break;
+
+                case "Blue":
+                    platformSpriteRenderer.color = new Color(0, 0, 255, alpha);
+                    break;
+
+                case "Yellow":
+                    platformSpriteRenderer.color = new Color(255, 255, 0, alpha);
+                    break;
+            }
+
+        }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

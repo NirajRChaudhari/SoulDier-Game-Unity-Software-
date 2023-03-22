@@ -263,6 +263,50 @@ public class PlayerController : MonoBehaviour
             Invoke(nameof(resetMovementToNormal), 5f);
         }
 
+        if (other.gameObject.tag.Equals("HeartPowerUp"))
+        {
+            Debug.Log("HeartPowerUp");
+            Debug.Log(PlayerHealthController.instance.currentHealth);
+
+
+            if (PlayerHealthController.instance.currentHealth < PlayerHealthController.instance.maxHealth)
+            {
+                other.gameObject.SetActive(false);
+
+                PlayerHealthController.instance.currentHealth++;
+                UIController.instance.UpdateHealthDisplay();
+
+                float scaleX = gameObject.transform.localScale.x;
+                float scaleY = gameObject.transform.localScale.y;
+
+                gameObject.transform.localScale = new Vector2(scaleX * 1.25f, scaleY * 1.25f);
+                //invincibleCounter = invincibleLength;
+                //spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0.5f);
+            }
+
+            Debug.Log(PlayerHealthController.instance.currentHealth);
+        }
+
+        if (other.gameObject.tag.Equals("TimeIncreasePowerUp"))
+        {
+            other.gameObject.SetActive(false);
+
+            PlayerController.totalTime += 5f;
+        }
+
+        if (other.gameObject.tag.Equals("ColorFreezePowerUp"))
+        {
+            Debug.Log("ColorFreeze");
+
+            other.gameObject.SetActive(false);
+
+            PlatformController.isFrozen = true;
+
+            Invoke(nameof(resetFrozenFlag), 8f);
+
+            //Debug.Log(PlatformController.isFrozen);
+        }
+
         if (other.gameObject.name == "CP1")
         {
             SendAnalytics ob = gameObject.AddComponent<SendAnalytics>();
@@ -523,6 +567,12 @@ public class PlayerController : MonoBehaviour
             default:
                 return Color.black;
         }
+    }
+
+    public void resetFrozenFlag()
+    {
+        PlatformController.isFrozen = false;
+        Debug.Log(PlatformController.isFrozen);
     }
 }
 
