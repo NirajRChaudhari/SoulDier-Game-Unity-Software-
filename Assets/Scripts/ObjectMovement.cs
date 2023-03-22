@@ -13,7 +13,7 @@ public class ObjectMovement : MonoBehaviour
         // Object move between 2 waypoints logic
         if(Vector2.Distance(borders[currentIndex].transform.position, transform.position) < 0.1f) {
             currentIndex++;
-            if(currentIndex>1) {
+            if(currentIndex>=borders.Length) {
                 currentIndex=0;
             }
         }

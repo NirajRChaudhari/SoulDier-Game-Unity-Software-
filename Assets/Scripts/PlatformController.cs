@@ -135,7 +135,7 @@ public class PlatformController : MonoBehaviour
         switch (nextBottle.text)
         {
             case "Red":
-                return new Color(255, 0, 0, alpha); ;
+                return new Color(255, 0, 0, alpha);
 
             case "Blue":
                 return new Color(0, 0, 255, alpha);
