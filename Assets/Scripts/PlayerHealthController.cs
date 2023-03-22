@@ -58,6 +58,7 @@ public class PlayerHealthController : MonoBehaviour
 
     public void DealDamage(string trap)
     {
+        // Debug.Log("Invincible Counter: " + invincibleCounter);
         if (invincibleCounter <= 0 && gameObject.activeSelf)
         {
 
@@ -74,6 +75,7 @@ public class PlayerHealthController : MonoBehaviour
             {
                 ob.Send("Rotating Saw");
             }
+
             if (currentHealth <= 0)
             {
                 messageBox.text = "Game Over...";

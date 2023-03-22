@@ -31,9 +31,8 @@ public class DamagePlayer : MonoBehaviour
     //     }
     // }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-
         if (collision.CompareTag("Player") && collision.gameObject.activeSelf && PlayerHealthController.instance != null)
         {
 
@@ -54,4 +53,27 @@ public class DamagePlayer : MonoBehaviour
             }
         }
     }
+    // private void OnTriggerEnter2D(Collider2D collision)
+    // {
+
+    //     if (collision.CompareTag("Player") && collision.gameObject.activeSelf && PlayerHealthController.instance != null)
+    //     {
+
+    //         // SendAnalytics3 ob = gameObject.AddComponent<SendAnalytics3>();
+    //         if (gameObject.CompareTag("Spike"))
+    //         {
+    //             PlayerHealthController.instance.DealDamage("Spike");
+    //             // ob.Send("Spike");
+    //             // Debug.Log("Spike");
+    //             // PlayerHealthController.instance.DealDamage();
+    //         }
+    //         else if (gameObject.CompareTag("Rotating Saw"))
+    //         {
+    //             PlayerHealthController.instance.DealDamage("Rotating Saw");
+    //             // ob.Send("Rotating Saw");
+    //             // Debug.Log("Rotating Saw");
+    //             // PlayerHealthController.instance.DealDamage();
+    //         }
+    //     }
+    // }
 }
