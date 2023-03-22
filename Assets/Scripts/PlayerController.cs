@@ -50,12 +50,12 @@ public class PlayerController : MonoBehaviour
     private float _time_taken;
     private long _sessionId;
 
-    public static bool send_analytics_1_enabled = true;
-    public static bool send_analytics_2_enabled = true;
-    public static bool send_analytics_3_enabled = true;
-    public static bool send_analytics_4_enabled = true;
-    public static bool send_analytics_5_enabled = true;
-    public static bool send_analytics_6_enabled = true;
+    public static bool send_analytics_1_enabled = false;
+    public static bool send_analytics_2_enabled = false;
+    public static bool send_analytics_3_enabled = false;
+    public static bool send_analytics_4_enabled = false;
+    public static bool send_analytics_5_enabled = false;
+    public static bool send_analytics_6_enabled = false;
     //  public static bool send_analytics_1_enabled = true;
     // public static bool send_analytics_2_enabled = true;
     // public static bool send_analytics_3_enabled = true;
@@ -74,12 +74,6 @@ public class PlayerController : MonoBehaviour
 
         currentPosInColorSubseq = -1;
         lastCharInColorSubseq = 'A';
-        send_analytics_1_enabled = true;
-        send_analytics_2_enabled = true;
-        send_analytics_3_enabled = true;
-        send_analytics_4_enabled = true;
-        send_analytics_5_enabled = true;
-        send_analytics_6_enabled = true;
         prev_time = 0;
         lastCheckpoint = "Starting Point";
 
@@ -200,7 +194,7 @@ public class PlayerController : MonoBehaviour
 
             // Thread.sleep(2000);
             // Thread.Sleep(1000);
-            // playerRigidbody2D.gameObject.SetActive(false);
+            playerRigidbody2D.gameObject.SetActive(false);
             Invoke(nameof(restartLevel), 5f);
         }
         DisplayTime(totalTime);
