@@ -190,6 +190,12 @@ public class PlayerController : MonoBehaviour
                 ob3.Send(PlayerController.level_name);
             }
             messageBox.text = "TIME'S UP, GAME OVER..";
+            messageBox.fontSize = 100;
+            messageBox.GetComponent<RectTransform>().sizeDelta = new Vector2(800, 500);
+            messageBox.color = new Color(255f, 255f, 255f, 1.0f);
+            GameObject.Find("gameOverScreen").GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0.8f);
+            this.moveSpeed = 0f;
+            this.jumpForce = 0f;
             // call restartLevel here
 
             // Thread.sleep(2000);
