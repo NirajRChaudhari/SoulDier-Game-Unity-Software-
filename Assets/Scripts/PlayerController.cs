@@ -265,15 +265,6 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.tag.Equals("HeartPowerUp"))
         {
-            //other.gameObject.SetActive(false);
-            //float normalMoveSpeedSave = this.moveSpeed;
-            //float normalJumpForce = this.jumpForce;
-            //this.jumpForce *= 1.5f;
-            //playerSpriteRenderer.color = new Color(0, 105, 50, 30);
-            //Debug.Log("Double jump mode activated");
-            //messageBox.text = "Double Jump Activated";
-            //Invoke(nameof(ResetMessageBox), 3f);
-            //Invoke(nameof(resetMovementToNormal), 5f);
             Debug.Log("HeartPowerUp");
             Debug.Log(PlayerHealthController.instance.currentHealth);
 
@@ -294,8 +285,26 @@ public class PlayerController : MonoBehaviour
             }
 
             Debug.Log(PlayerHealthController.instance.currentHealth);
+        }
 
+        if (other.gameObject.tag.Equals("TimeIncreasePowerUp"))
+        {
+            other.gameObject.SetActive(false);
 
+            PlayerController.totalTime += 5f;
+        }
+
+        if (other.gameObject.tag.Equals("ColorFreezePowerUp"))
+        {
+            Debug.Log("ColorFreeze");
+
+            other.gameObject.SetActive(false);
+
+            PlatformController.isFrozen = true;
+
+            Invoke(nameof(resetFrozenFlag), 8f);
+
+            //Debug.Log(PlatformController.isFrozen);
         }
 
         if (other.gameObject.name == "CP1")
@@ -558,6 +567,12 @@ public class PlayerController : MonoBehaviour
             default:
                 return Color.black;
         }
+    }
+
+    public void resetFrozenFlag()
+    {
+        PlatformController.isFrozen = false;
+        Debug.Log(PlatformController.isFrozen);
     }
 }
 
