@@ -28551,8 +28551,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 686166352}
   - {fileID: 2138098532}
+  - {fileID: 686166352}
   - {fileID: 1116947467}
   - {fileID: 1385309302}
   m_Father: {fileID: 0}
@@ -47631,6 +47631,14 @@ PrefabInstance:
     - target: {fileID: 2462292737499681053, guid: bffc060ce2c1645bcac7a9095b4cd111, type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2462292737499681053, guid: bffc060ce2c1645bcac7a9095b4cd111, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2462292737499681053, guid: bffc060ce2c1645bcac7a9095b4cd111, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1295463191
       objectReference: {fileID: 0}
     - target: {fileID: 2462292737499681058, guid: bffc060ce2c1645bcac7a9095b4cd111, type: 3}
       propertyPath: m_LocalScale.x
