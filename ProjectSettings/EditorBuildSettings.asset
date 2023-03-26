@@ -5,36 +5,63 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/ChangeLvlTutorial.unity
-    guid: 1db478118e5d44786815461fcca53dd1
+    path: Assets/Scenes/changeLvl/ChangeLvlTutorial.unity
+    guid: 69fefe2ae9f3643388f2978d4eb9a7ad
   - enabled: 1
     path: Assets/Scenes/tutorial.unity
     guid: ba1c86961eb904fd6ab56bd2324c3313
   - enabled: 1
-    path: Assets/Scenes/ChangeLvl0.unity
+    path: Assets/Scenes/changeLvl/ChangeLvl0.unity
     guid: c3086d6ff8bb14276baff325d5d907f0
   - enabled: 1
     path: Assets/Scenes/finalLevels/FinalLvl0.unity
     guid: 48e2d8635c6524bee8462e7bb986fa79
   - enabled: 1
-    path: Assets/Scenes/ChangeLvl1.unity
-    guid: c5781aa0595984b6eb85982760730c96
+    path: Assets/Scenes/changeLvl/ChangeLvl1.unity
+    guid: e59088c97e39944f8970dadb00932c34
   - enabled: 1
     path: Assets/Scenes/finalLevels/FinalLvl1.unity
     guid: 00f5927841b224ad5a6fc6f8af16e069
   - enabled: 1
-    path: Assets/Scenes/ChangeLvl2.unity
-    guid: 8d08d26a485e24843bbb9fbb11f5358b
+    path: Assets/Scenes/changeLvl/ChangeLvl2.unity
+    guid: ac526972c95a244fdb3ecebd12c0693c
   - enabled: 1
-    path: Assets/Scenes/finalLevels/FinalLvl2.unity
-    guid: f166c3625405549afb8470a3f5a8506f
+    path: Assets/Scenes/finalLevels/Prem Level.unity
+    guid: 8fd8e91dd0e4042be953a05cdb238cea
   - enabled: 1
-    path: Assets/Scenes/ChangeLvl3.unity
-    guid: 92a4ac37ee50b480d877b82aaf992e8e
+    path: Assets/Scenes/changeLvl/ChangeLvl3.unity
+    guid: 84c3b43d77f4e4e30b1ff7137480cb76
   - enabled: 1
-    path: Assets/Scenes/finalLevels/FinalLvl3.unity
-    guid: 9d2203b3455d720418ba60b5d0260618
+    path: Assets/Scenes/finalLevels/PremLevel2.unity
+    guid: 9732f3a57846c4d7c80d3c463dc80227
+  - enabled: 1
+    path: Assets/Scenes/changeLvl/ChangeLvl4.unity
+    guid: 06b08dc9559114db195bf06b5a64963e
+  - enabled: 1
+    path: Assets/Scenes/finalLevels/Parth01.unity
+    guid: 0a5f31b2f0633f84ab98c9ae422e349e
+  - enabled: 1
+    path: Assets/Scenes/changeLvl/ChangeLvl5.unity
+    guid: c790a9a4b0b3944129b42ffe558cc1ab
+  - enabled: 1
+    path: Assets/Scenes/finalLevels/Parth02.unity
+    guid: 64f585738b004f54faba4380a683edb4
+  - enabled: 1
+    path: Assets/Scenes/changeLvl/ChangeLvl6.unity
+    guid: bc2d731e79f1644f29aa97eedb761cf1
+  - enabled: 1
+    path: Assets/Scenes/finalLevels/PremLevel3.unity
+    guid: 1188063498faf474d86f1a7f99dda5bb
+  - enabled: 1
+    path: Assets/Scenes/changeLvl/ChangeLvl7.unity
+    guid: d8419cb647c844c728a92aa4145147f7
+  - enabled: 1
+    path: Assets/Scenes/finalLevels/Parth03.unity
+    guid: e8b81d840a755924c9085d1d34f5ca1f
   - enabled: 1
     path: Assets/Scenes/ChangeLvlFinal.unity
     guid: 9afa8480ee8894368b225da7d5051b95
