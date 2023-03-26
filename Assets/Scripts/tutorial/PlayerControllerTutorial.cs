@@ -225,7 +225,7 @@ public class PlayerControllerTutorial : MonoBehaviour
 
         if (other.gameObject.tag.Equals("speedSlowPowerDown"))
         {
-            other.gameObject.SetActive(false);
+            other.gameObject.SetActive(false); 
             float normalMoveSpeedSave = this.moveSpeed;
             float normalJumpForce = this.jumpForce;
             this.moveSpeed -= 5;
@@ -233,6 +233,19 @@ public class PlayerControllerTutorial : MonoBehaviour
             // playerSpriteRenderer.color = new Color(1, 0, 0, 1);
             Debug.Log("Speed slow activated");
             Invoke(nameof(resetMovementToNormal), 3f);
+        }
+
+         if (other.gameObject.tag.Equals("ColorFreezePowerUp"))
+        {
+            Debug.Log("ColorFreeze");
+
+            other.gameObject.SetActive(false);
+
+            PlatformControllerTutorial.isFrozen = true;
+
+            Invoke(nameof(resetFrozenFlag), 8f);
+
+            //Debug.Log(PlatformControllerTutorial.isFrozen);
         }
     }
 
@@ -415,6 +428,12 @@ public class PlayerControllerTutorial : MonoBehaviour
         }
 
         return color;
+    }
+
+    public void resetFrozenFlag()
+    {
+        PlatformControllerTutorial.isFrozen = false;
+        Debug.Log(PlatformControllerTutorial.isFrozen);
     }
 
 }
