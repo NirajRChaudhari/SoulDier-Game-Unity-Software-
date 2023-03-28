@@ -11,7 +11,12 @@ public class EnemyController : MonoBehaviour
     private bool movingRight;
 
     private Rigidbody2D rigidBody;
-    private SpriteRenderer spriteRenderer;
+
+    private SpriteRenderer enemySpriteRenderer;
+
+    private int colorIndex = 0;
+
+    private Color[] colors;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +32,11 @@ public class EnemyController : MonoBehaviour
 
         movingRight = true;
 
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        colors = new Color[] { Color.red, Color.yellow, Color.blue };
+
+        enemySpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+
+        InvokeRepeating("ChangeColor", 0.0f, 2.0f);
     }
 
     // Update is called once per frame
@@ -37,9 +46,9 @@ public class EnemyController : MonoBehaviour
         {
             rigidBody.velocity = new Vector2(moveSpeed, rigidBody.velocity.y);
 
-            spriteRenderer.flipX = true;
+            enemySpriteRenderer.flipX = true;
 
-            if(transform.position.x > rightPoint.position.x)
+            if (transform.position.x > rightPoint.position.x)
             {
                 movingRight = false;
             }
@@ -48,7 +57,7 @@ public class EnemyController : MonoBehaviour
         {
             rigidBody.velocity = new Vector2(-moveSpeed, rigidBody.velocity.y);
 
-            spriteRenderer.flipX = false;
+            enemySpriteRenderer.flipX = false;
 
             if (transform.position.x < leftPoint.position.x)
             {
@@ -56,4 +65,12 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
+
+    void ChangeColor()
+    {
+        colorIndex = (colorIndex) % colors.Length;
+        enemySpriteRenderer.color = colors[colorIndex];
+        colorIndex++;
+    }
+
 }
