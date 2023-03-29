@@ -75,15 +75,35 @@ public class PlayerControllerTutorial : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if (isGrounded)
         {
             isDoubleJumpAllowed = true;
         }
+
+
+
+
+        
         playerRigidbody2D.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), playerRigidbody2D.velocity.y);
 
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, .2f, whatIsGround);
+
+
+
+//  isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, .2f, whatIsGround);
+
+        if (Mathf.Approximately(playerRigidbody2D.velocity.y, 0))
+        {
+            if( Mathf.Approximately(Mathf.Abs(playerRigidbody2D.velocity.x), 0)) {
+                animator.SetBool("isGrounded", true);
+            }
+        } else {
+            animator.SetBool("isGrounded", false);
+        }
+
+
 
         if (Input.GetButtonDown("Jump"))
         {
@@ -110,7 +130,7 @@ public class PlayerControllerTutorial : MonoBehaviour
             playerSpriteRenderer.flipX = false;
         }
         animator.SetFloat("moveSpeed", Mathf.Abs(playerRigidbody2D.velocity.x));
-        animator.SetBool("isGrounded", isGrounded);
+        // animator.SetBool("isGrounded", isGrounded);
 
         float positionX = transform.position.x;
 
