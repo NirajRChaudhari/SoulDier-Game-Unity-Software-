@@ -75,15 +75,35 @@ public class PlayerControllerTutorial : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if (isGrounded)
         {
             isDoubleJumpAllowed = true;
         }
+
+
+
+
+        
         playerRigidbody2D.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), playerRigidbody2D.velocity.y);
 
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, .2f, whatIsGround);
+
+
+
+//  isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, .2f, whatIsGround);
+
+        if (Mathf.Approximately(playerRigidbody2D.velocity.y, 0))
+        {
+            if( Mathf.Approximately(Mathf.Abs(playerRigidbody2D.velocity.x), 0)) {
+                animator.SetBool("isGrounded", true);
+            }
+        } else {
+            animator.SetBool("isGrounded", false);
+        }
+
+
 
         if (Input.GetButtonDown("Jump"))
         {
@@ -110,7 +130,7 @@ public class PlayerControllerTutorial : MonoBehaviour
             playerSpriteRenderer.flipX = false;
         }
         animator.SetFloat("moveSpeed", Mathf.Abs(playerRigidbody2D.velocity.x));
-        animator.SetBool("isGrounded", isGrounded);
+        // animator.SetBool("isGrounded", isGrounded);
 
         float positionX = transform.position.x;
 
@@ -225,7 +245,7 @@ public class PlayerControllerTutorial : MonoBehaviour
 
         if (other.gameObject.tag.Equals("speedSlowPowerDown"))
         {
-            other.gameObject.SetActive(false);
+            other.gameObject.SetActive(false); 
             float normalMoveSpeedSave = this.moveSpeed;
             float normalJumpForce = this.jumpForce;
             this.moveSpeed -= 5;
@@ -233,6 +253,19 @@ public class PlayerControllerTutorial : MonoBehaviour
             // playerSpriteRenderer.color = new Color(1, 0, 0, 1);
             Debug.Log("Speed slow activated");
             Invoke(nameof(resetMovementToNormal), 3f);
+        }
+
+         if (other.gameObject.tag.Equals("ColorFreezePowerUp"))
+        {
+            Debug.Log("ColorFreeze");
+
+            other.gameObject.SetActive(false);
+
+            PlatformControllerTutorial.isFrozen = true;
+
+            Invoke(nameof(resetFrozenFlag), 8f);
+
+            //Debug.Log(PlatformControllerTutorial.isFrozen);
         }
     }
 
@@ -415,6 +448,12 @@ public class PlayerControllerTutorial : MonoBehaviour
         }
 
         return color;
+    }
+
+    public void resetFrozenFlag()
+    {
+        PlatformControllerTutorial.isFrozen = false;
+        Debug.Log(PlatformControllerTutorial.isFrozen);
     }
 
 }

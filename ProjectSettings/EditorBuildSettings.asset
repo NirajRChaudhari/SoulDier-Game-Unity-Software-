@@ -62,9 +62,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/finalLevels/Parth03.unity
     guid: e8b81d840a755924c9085d1d34f5ca1f
-  - enabled: 1
-    path: Assets/Scenes/ChangeLvlFinal.unity
-    guid: 9afa8480ee8894368b225da7d5051b95
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 0
     path: Assets/Scenes/EndScreen.unity
     guid: 026bf03af914d467aa5ea96a1f7368ac
