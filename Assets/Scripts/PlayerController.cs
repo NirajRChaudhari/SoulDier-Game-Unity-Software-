@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
         prev_time = 0;
         lastCheckpoint = "Starting Point";
 
-        
+
         GameObject.Find("gameOverScreen").GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0f);
 
         retrieveAndInitializeAllPrivateObjects();
@@ -342,7 +342,7 @@ public class PlayerController : MonoBehaviour
     {
         string tag = collision.gameObject.tag;
 
-        if (tag.Equals("EnemyMonster"))
+        if (tag.Equals("EnemyMonster") && !collision.gameObject.GetComponent<SpriteRenderer>().color.CompareRGB(gameObject.GetComponent<SpriteRenderer>().color))
         {
             totalTime = totalTime - 5;
             SendAnalytics3 ob = gameObject.AddComponent<SendAnalytics3>();
