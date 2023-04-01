@@ -248,8 +248,8 @@ public class PlayerControllerTutorial : MonoBehaviour
             other.gameObject.SetActive(false); 
             float normalMoveSpeedSave = this.moveSpeed;
             float normalJumpForce = this.jumpForce;
-            this.moveSpeed -= 5;
-            this.jumpForce -= 4;
+            this.moveSpeed -= 4;
+            this.jumpForce -= 3;
             // playerSpriteRenderer.color = new Color(1, 0, 0, 1);
             Debug.Log("Speed slow activated");
             Invoke(nameof(resetMovementToNormal), 3f);
@@ -262,7 +262,7 @@ public class PlayerControllerTutorial : MonoBehaviour
             other.gameObject.SetActive(false);
 
             PlatformControllerTutorial.isFrozen = true;
-
+            
             Invoke(nameof(resetFrozenFlag), 8f);
 
             //Debug.Log(PlatformControllerTutorial.isFrozen);
