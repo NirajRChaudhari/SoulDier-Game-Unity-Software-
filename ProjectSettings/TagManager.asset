@@ -40,6 +40,7 @@ TagManager:
   - TimeIncreasePowerUp
   - ColorFreezePowerUp
   - cfpu
+  - Magnet
   layers:
   - Default
   - TransparentFX

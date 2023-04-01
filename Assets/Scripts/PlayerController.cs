@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
         prev_time = 0;
         lastCheckpoint = "Starting Point";
 
-
+        
         GameObject.Find("gameOverScreen").GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0f);
 
         retrieveAndInitializeAllPrivateObjects();
@@ -163,6 +163,7 @@ public class PlayerController : MonoBehaviour
             playerSpriteRenderer.flipX = false;
         }
         animator.SetFloat("moveSpeed", Mathf.Abs(playerRigidbody2D.velocity.x));
+        //Debug.Log("isGrounded == >"+ isGrounded);
         animator.SetBool("isGrounded", isGrounded);
 
         float positionX = transform.position.x;
@@ -342,7 +343,7 @@ public class PlayerController : MonoBehaviour
     {
         string tag = collision.gameObject.tag;
 
-        if (tag.Equals("EnemyMonster") && !collision.gameObject.GetComponent<SpriteRenderer>().color.CompareRGB(gameObject.GetComponent<SpriteRenderer>().color))
+        if (tag.Equals("EnemyMonster"))
         {
             totalTime = totalTime - 5;
             SendAnalytics3 ob = gameObject.AddComponent<SendAnalytics3>();
