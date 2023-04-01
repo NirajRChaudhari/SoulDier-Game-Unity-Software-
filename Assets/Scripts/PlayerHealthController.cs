@@ -9,8 +9,6 @@ public class PlayerHealthController : MonoBehaviour
 
     public static PlayerHealthController instance;
 
-    private Animator animator;
-
     public int currentHealth, maxHealth;
     public TMP_Text messageBox;
 
@@ -41,7 +39,6 @@ public class PlayerHealthController : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         playerController = gameObject.GetComponent<PlayerController>();
-        animator = GetComponent<Animator>();
 
     }
 
@@ -70,16 +67,12 @@ public class PlayerHealthController : MonoBehaviour
 
             if (trap == "Spike")
             {
-                animator.SetBool("isKilled", true);
-                Invoke(nameof(resetIsKilled), 1f);
                 Debug.Log("It's spike");
 
                 ob.Send("Spike");
             }
             else if (trap == "Rotating Saw")
             {
-                animator.SetBool("isKilled", true);
-                Invoke(nameof(resetIsKilled), 1f);
                 ob.Send("Rotating Saw");
             }
 
@@ -133,10 +126,6 @@ public class PlayerHealthController : MonoBehaviour
 
             UIController.instance.UpdateHealthDisplay();
         }
-    }
-
-    private void resetIsKilled() {
-        animator.SetBool("isKilled", false);
     }
 
     private void restartLevel()
