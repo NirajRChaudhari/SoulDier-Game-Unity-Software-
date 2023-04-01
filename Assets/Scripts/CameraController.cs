@@ -12,20 +12,10 @@ public class CameraController : MonoBehaviour
 
     private Vector2 lastPos;
 
-
-    private Camera cam;
-    private float targetZoomOut;
-    private float targetZoomReset;
-    private float zoomLerpSpeed = 5;
-
     // Start is called before the first frame update
     void Start()
     {
         lastPos = transform.position;
-
-        cam = Camera.main;
-        targetZoomOut = cam.orthographicSize + 8f;
-        targetZoomReset = cam.orthographicSize;
     }
 
     // Update is called once per frame
@@ -45,18 +35,5 @@ public class CameraController : MonoBehaviour
 
         // Keep z same just increment x and y position by amountToMoveX
         //farBackgroud.position = new Vector3(farBackgroud.position.x + amountToMove.x, farBackgroud.position.y + amountToMove.y, farBackgroud.position.z);
-
-        if (Input.GetButton("Zoom"))
-        {
-            Debug.Log("Zoooooooom Out");
-            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoomOut, Time.deltaTime * zoomLerpSpeed);
-        }
-
-        if (Input.GetButtonUp("Zoom"))
-        {
-            Debug.Log("Zoooooooom In");
-            //cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoomIn, Time.deltaTime * zoomLerpSpeed);
-            cam.orthographicSize = targetZoomReset;
-        }
     }
 }

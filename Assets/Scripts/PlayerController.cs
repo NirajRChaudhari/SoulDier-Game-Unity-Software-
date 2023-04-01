@@ -163,7 +163,6 @@ public class PlayerController : MonoBehaviour
             playerSpriteRenderer.flipX = false;
         }
         animator.SetFloat("moveSpeed", Mathf.Abs(playerRigidbody2D.velocity.x));
-        //Debug.Log("isGrounded == >"+ isGrounded);
         animator.SetBool("isGrounded", isGrounded);
 
         float positionX = transform.position.x;
