@@ -23,9 +23,12 @@ public class magneticFieldController : MonoBehaviour
     void Start()
     {
         alpha = 0.3f;
-        red = new Color(255, 0, 0, alpha);
-        blue = new Color(0, 0, 255, alpha);
-        yellow = new Color(255, 255, 0, alpha);
+        red = Color.red;
+        red.a = alpha;
+        blue = Color.blue;
+        blue.a = alpha;
+        yellow = Color.yellow;
+        yellow.a = alpha;  
 
 
         magneticFieldSpriteRenderer = gameObject.GetComponent<UnityEngine.U2D.SpriteShapeRenderer>();
@@ -57,12 +60,15 @@ public class magneticFieldController : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
+
     {
+        Debug.Log(magneticFieldSpriteRenderer.color);
+        Debug.Log(playerSpriteRenderer.color);
         if (collision.CompareTag("Player"))
         {
-            if (playerSpriteRenderer.color.r == magneticFieldSpriteRenderer.color.r/255
-                && playerSpriteRenderer.color.g == magneticFieldSpriteRenderer.color.g/255
-                && playerSpriteRenderer.color.b == magneticFieldSpriteRenderer.color.b/255)
+            if (playerSpriteRenderer.color.r == magneticFieldSpriteRenderer.color.r
+                && playerSpriteRenderer.color.g == magneticFieldSpriteRenderer.color.g
+                && playerSpriteRenderer.color.b == magneticFieldSpriteRenderer.color.b)
             {
                 isMagnetOn = true;
                 playerRB.gravityScale = 0.0f;
@@ -73,9 +79,9 @@ public class magneticFieldController : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            if (playerSpriteRenderer.color.r == magneticFieldSpriteRenderer.color.r / 255
-                && playerSpriteRenderer.color.g == magneticFieldSpriteRenderer.color.g / 255
-                && playerSpriteRenderer.color.b == magneticFieldSpriteRenderer.color.b / 255)
+            if (playerSpriteRenderer.color.r == magneticFieldSpriteRenderer.color.r 
+                && playerSpriteRenderer.color.g == magneticFieldSpriteRenderer.color.g 
+                && playerSpriteRenderer.color.b == magneticFieldSpriteRenderer.color.b )
             {
                 isMagnetOn = true;
                 playerRB.gravityScale = 0.0f;
