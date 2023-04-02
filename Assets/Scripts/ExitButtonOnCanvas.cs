@@ -7,6 +7,6 @@ public class ExitButtonOnCanvas : MonoBehaviour
 {
     public void mainMenuScreen()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("ChangeLvl");
     }
 }
