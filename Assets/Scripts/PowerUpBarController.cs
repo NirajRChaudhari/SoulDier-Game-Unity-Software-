@@ -29,6 +29,7 @@ public class PowerUpBarController : MonoBehaviour
             powerUpBar2.transform.localScale = new Vector3(freezeTimer/8, 1, 1);
         }
         else{
+        freezeTimer = 8f;
             powerUpBar1.SetActive(false);
             powerUpBar2.SetActive(false);
         }
