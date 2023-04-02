@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/changeLvl/ChangeLvl0.unity
     guid: c3086d6ff8bb14276baff325d5d907f0
   - enabled: 1
-    path: Assets/Scenes/finalLevels/Level1.unity
+    path: Assets/Scenes/finalLevels/level1.unity
     guid: 48e2d8635c6524bee8462e7bb986fa79
   - enabled: 1
     path: Assets/Scenes/changeLvl/ChangeLvl1.unity
@@ -71,4 +71,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/changeLvl/ChangeLvl.unity
+    guid: d46460c3d90b0464fba084832a6591da
   m_configObjects: {}

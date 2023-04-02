@@ -18,7 +18,8 @@ public class LevelCompleted : MonoBehaviour
     }
 
     private void levelComplete() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("ChangeLvl");
     }
     
 }
