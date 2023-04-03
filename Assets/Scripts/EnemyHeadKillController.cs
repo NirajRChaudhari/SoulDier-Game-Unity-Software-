@@ -7,6 +7,7 @@ public class EnemyHeadKillController : MonoBehaviour
 {
 
     private SpriteRenderer enemySpriteRenderer;
+    public TMP_Text messageBox;
 
     // Start is called before the first frame update
     void Start()
@@ -32,8 +33,16 @@ public class EnemyHeadKillController : MonoBehaviour
             if (enemySpriteRenderer.color.CompareRGB(collision.gameObject.GetComponent<SpriteRenderer>().color))
             {
                 Destroy(transform.parent.gameObject);
+                PlayerController.totalTime += 15f;
+                //messageBox.text = "15 Seconds Gained...";
+                //Invoke(nameof(ResetMessageBox), 3f);
             }
         }
     }
 
+    //void ResetMessageBox()
+    //{
+    //    Debug.Log("Enetered");
+    //    messageBox.text = "";
+    //}
 }

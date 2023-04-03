@@ -40,6 +40,7 @@ public class magneticFieldController : MonoBehaviour
 
         nonZeroGravity = playerRB.gravityScale;
         InvokeRepeating("ChangeColor", 0.0f, 4.0f);
+        //Invoke("ChangeColor", 4.0f);
     }
 
     private void Update()
@@ -62,8 +63,8 @@ public class magneticFieldController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
 
     {
-        Debug.Log(magneticFieldSpriteRenderer.color);
-        Debug.Log(playerSpriteRenderer.color);
+        //Debug.Log(magneticFieldSpriteRenderer.color);
+        //Debug.Log(playerSpriteRenderer.color);
         if (collision.CompareTag("Player"))
         {
             if (playerSpriteRenderer.color.r == magneticFieldSpriteRenderer.color.r
@@ -72,6 +73,7 @@ public class magneticFieldController : MonoBehaviour
             {
                 isMagnetOn = true;
                 playerRB.gravityScale = 0.0f;
+                CancelInvoke();
             }
         }
     }
@@ -85,6 +87,7 @@ public class magneticFieldController : MonoBehaviour
             {
                 isMagnetOn = true;
                 playerRB.gravityScale = 0.0f;
+                CancelInvoke();
             }
         }
     }
@@ -92,8 +95,19 @@ public class magneticFieldController : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            isMagnetOn = false;
-            playerRB.gravityScale = nonZeroGravity;
+            Debug.Log("in exit 1");
+
+            if (playerSpriteRenderer.color.r == magneticFieldSpriteRenderer.color.r
+                && playerSpriteRenderer.color.g == magneticFieldSpriteRenderer.color.g
+                && playerSpriteRenderer.color.b == magneticFieldSpriteRenderer.color.b)
+            {
+                Debug.Log("in exit 2");
+                isMagnetOn = false;
+                playerRB.gravityScale = nonZeroGravity;
+                //InvokeRepeating("ChangeColor", 0.0f, 4.0f);
+
+                Start();
+            }
         }
     }
 
