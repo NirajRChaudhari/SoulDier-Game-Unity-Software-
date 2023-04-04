@@ -86,6 +86,7 @@ public class BottleController : MonoBehaviour
     private void levelComplete()
     {
         PlayerController.totalTime = 120;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("ChangeLvl");
     }
 }

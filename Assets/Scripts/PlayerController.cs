@@ -43,7 +43,8 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private SpriteRenderer playerSpriteRenderer;
     private SpriteRenderer playerNextColorIndicatorSpriteRenderer;
-    private TMP_Text targetSeq, targetSeqHeader, messageBox, nextBottle, globalSequence, timerText;
+    private TMP_Text targetSeq, targetSeqHeader, nextBottle, globalSequence, timerText;
+    public static TMP_Text messageBox;
     private GameObject checkPoint1, checkPoint2;
     public static string level_name;
     private float prev_time = 0;
@@ -343,8 +344,9 @@ public class PlayerController : MonoBehaviour
     {
         string tag = collision.gameObject.tag;
 
-        if (tag.Equals("EnemyMonster"))
+        if (tag.Equals("EnemyMonster") && !collision.gameObject.GetComponent<SpriteRenderer>().color.CompareRGB(gameObject.GetComponent<SpriteRenderer>().color))
         {
+
             totalTime = totalTime - 5;
             SendAnalytics3 ob = gameObject.AddComponent<SendAnalytics3>();
             ob.Send("Monster");

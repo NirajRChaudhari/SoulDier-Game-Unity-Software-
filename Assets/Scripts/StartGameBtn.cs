@@ -51,4 +51,14 @@ public class StartGameBtn : MonoBehaviour
         PlayerController.totalTime = 150;
         SceneManager.LoadScene("level8");
     }
+
+    public void Level9Start() {
+        PlayerController.totalTime = 150;
+        SceneManager.LoadScene("level9");
+    }
+
+    public void Tutorial2Start() {
+        PlayerController.totalTime = 1200;
+        SceneManager.LoadScene("Tutorial2");
+    }
 }
