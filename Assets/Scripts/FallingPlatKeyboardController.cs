@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class FallingPlatKeyboardController : MonoBehaviour
 {
-    public static  bool playerInKeyboardZone = false;
+    public static bool playerInKeyboardZone = false;
 
     private Rigidbody2D fallingPlatformRB;
     private SpriteRenderer fallingPlatformSR;
-
+    private TMP_Text messageBox;
     private SpriteRenderer playerSR;
 
     // Start is called before the first frame update
@@ -20,7 +21,7 @@ public class FallingPlatKeyboardController : MonoBehaviour
         fallingPlatformSR = GameObject.Find("FallingPlatform").GetComponent<SpriteRenderer>();
         playerSR = GameObject.Find("Player").GetComponent<SpriteRenderer>();
 
-        //fallingPlatformController = gameObject.GetComponent<FallingPlatformController>();
+        messageBox = GameObject.Find("MessageBox").GetComponent<TMP_Text>();
     }
 
     // Update is called once per frame
@@ -33,6 +34,8 @@ public class FallingPlatKeyboardController : MonoBehaviour
         if (other.gameObject.name == "Player")
         {
             playerInKeyboardZone = true;
+            messageBox.text = "Press C when platform color is same as player color";
+            Invoke(nameof(ResetMessageBox), 8f);
         }
     }
 
@@ -42,5 +45,10 @@ public class FallingPlatKeyboardController : MonoBehaviour
         {
             playerInKeyboardZone = false;
         }
+    }
+
+    void ResetMessageBox()
+    {
+        messageBox.text = "";
     }
 }
