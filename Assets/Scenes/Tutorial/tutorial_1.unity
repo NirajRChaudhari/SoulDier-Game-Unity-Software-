@@ -37052,6 +37052,7 @@ MonoBehaviour:
   canvas: {fileID: 1178642476}
   colorfullFloor: {fileID: 1849696422}
   blackFloor: {fileID: 1557697089}
+  plaformJumpGuideImg: {fileID: 37478524}
 --- !u!1 &760544757
 GameObject:
   m_ObjectHideFlags: 0
@@ -37180,6 +37181,7 @@ MonoBehaviour:
   canvas: {fileID: 1178642476}
   colorfullFloor: {fileID: 1849696422}
   blackFloor: {fileID: 1557697089}
+  plaformJumpGuideImg: {fileID: 37478524}
 --- !u!1 &855763280
 GameObject:
   m_ObjectHideFlags: 0
@@ -37834,6 +37836,7 @@ MonoBehaviour:
   canvas: {fileID: 1178642476}
   colorfullFloor: {fileID: 1849696422}
   blackFloor: {fileID: 1557697089}
+  plaformJumpGuideImg: {fileID: 37478524}
 --- !u!1 &1176099953
 GameObject:
   m_ObjectHideFlags: 0
@@ -38169,6 +38172,7 @@ MonoBehaviour:
   canvas: {fileID: 1178642476}
   colorfullFloor: {fileID: 1849696422}
   blackFloor: {fileID: 1557697089}
+  plaformJumpGuideImg: {fileID: 37478524}
 --- !u!1 &1311551559
 GameObject:
   m_ObjectHideFlags: 0
@@ -39241,6 +39245,7 @@ MonoBehaviour:
   canvas: {fileID: 1178642476}
   colorfullFloor: {fileID: 1849696422}
   blackFloor: {fileID: 1557697089}
+  plaformJumpGuideImg: {fileID: 37478524}
 --- !u!1 &1801437911
 GameObject:
   m_ObjectHideFlags: 0
