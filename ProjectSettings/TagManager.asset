@@ -41,6 +41,8 @@ TagManager:
   - ColorFreezePowerUp
   - cfpu
   - Magnet
+  - portal_1
+  - portal_2
   layers:
   - Default
   - TransparentFX
