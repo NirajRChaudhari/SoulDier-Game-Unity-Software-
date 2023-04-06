@@ -190,7 +190,7 @@ public class PlayerControllerTutorial : MonoBehaviour
         //     playerNextColorIndicatorSpriteRenderer.color = extractNextColorForPlayerSprite('V');
 
         // }
-        if (tag.Equals("EnemyMonster") || tag.Equals("FireBall"))
+        if ((tag.Equals("EnemyMonster")&& !collision.gameObject.GetComponent<SpriteRenderer>().color.CompareRGB(gameObject.GetComponent<SpriteRenderer>().color)) || tag.Equals("FireBall"))
         {
             Debug.Log("Fireball touched!");
             totalTime = totalTime - 5;
@@ -212,7 +212,7 @@ public class PlayerControllerTutorial : MonoBehaviour
         {
             playerSpriteRenderer.color = new Color(1, 0, 0, 1);
             other.gameObject.SetActive(false);
-            plaformJumpGuideImg.SetActive(false);
+            plaformJumpGuideImg.SetActive(false); 
         }
         if (other.gameObject.tag == "YellowBottle")
         {
