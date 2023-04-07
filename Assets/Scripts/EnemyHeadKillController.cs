@@ -7,7 +7,7 @@ public class EnemyHeadKillController : MonoBehaviour
 {
 
     private SpriteRenderer enemySpriteRenderer;
-    public TMP_Text messageBox;
+    // public TMP_Text messageBox;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +24,7 @@ public class EnemyHeadKillController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Entered");
+        // Debug.Log("Entered");
 
 
         if (collision.gameObject.CompareTag("Player"))
@@ -32,17 +32,22 @@ public class EnemyHeadKillController : MonoBehaviour
 
             if (enemySpriteRenderer.color.CompareRGB(collision.gameObject.GetComponent<SpriteRenderer>().color))
             {
+
+                PlayerController pc=collision.gameObject.GetComponent<PlayerController>();
+                pc.resetMonsterKillMessageBox();
+                // Invoke("PlayerController.resetMonsterKillMessageBox", 1.0f);
                 Destroy(transform.parent.gameObject);
-                PlayerController.totalTime += 15f;
-                //messageBox.text = "15 Seconds Gained...";
-                //Invoke(nameof(ResetMessageBox), 3f);
+
+                // messageBox.text="";
+
             }
         }
     }
 
-    //void ResetMessageBox()
-    //{
-    //    Debug.Log("Enetered");
-    //    messageBox.text = "";
-    //}
+    // void ResetMessageBox1()
+    // {
+    //    Debug.Log("in reset box");
+    //    messageBox.text = "dafsdf";
+    //    Debug.Log(messageBox.text);
+    // }
 }
