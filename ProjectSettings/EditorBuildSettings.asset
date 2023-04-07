@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/changeLvl/ChangeLvlTutorial.unity
     guid: 69fefe2ae9f3643388f2978d4eb9a7ad
   - enabled: 1
-    path: Assets/Scenes/Tutorial/tutorial.unity
+    path: Assets/Scenes/Tutorial/tutorial_Combined.unity
     guid: ba1c86961eb904fd6ab56bd2324c3313
   - enabled: 1
     path: Assets/Scenes/changeLvl/ChangeLvl0.unity
@@ -69,7 +69,7 @@ EditorBuildSettings:
     path: Assets/Scenes/changeLvl/ChangeLvl.unity
     guid: d46460c3d90b0464fba084832a6591da
   - enabled: 1
-    path: Assets/Scenes/Tutorial/tutorial2.unity
+    path: Assets/Scenes/Tutorial/tutorial_6.unity
     guid: c646addb15e0e44f0a60bc20f96dae15
   - enabled: 0
     path: 
@@ -80,4 +80,19 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/tutorial_1.unity
+    guid: 74e8869f29a06458fb1760d4baf791ef
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/tutorial_2.unity
+    guid: b0bfacd3f30f94be8a5a64e75cd08ffe
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/tutorial_3.unity
+    guid: 62de07e2f38514042bb30aa7c0adc2ca
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/tutorial_4.unity
+    guid: 331ee22f9e3374392b586a5762a49e5d
+  - enabled: 1
+    path: Assets/Scenes/Tutorial/tutorial_5.unity
+    guid: 239fd0563fd2e45f889eb1f87c7f25f9
   m_configObjects: {}

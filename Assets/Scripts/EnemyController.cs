@@ -29,7 +29,7 @@ public class EnemyController : MonoBehaviour
         //rightPoint from being child of Enemy Frog object.
         leftPoint.parent = null;
         rightPoint.parent = null;
-
+        
         movingRight = true;
 
         colors = new Color[] { Color.red, Color.yellow, Color.blue };

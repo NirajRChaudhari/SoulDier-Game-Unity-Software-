@@ -10,6 +10,9 @@ public class SequencePlatformControllerTutorial : MonoBehaviour
     public GameObject colorfullFloor;
     public GameObject blackFloor;
 
+    public GameObject plaformJumpGuideImg; 
+
+
     private SpriteRenderer playerNextColorIndicatorSpriteRenderer, currentPlatformSpriteRenderer;
     private TMP_Text targetSeq, messageBox;
     private SpriteRenderer redFloor, greenFloor, orangeFloor, yellowFloor, violetFloor;
@@ -112,7 +115,8 @@ public class SequencePlatformControllerTutorial : MonoBehaviour
             {
                             Debug.Log("Point 4");
 
-                messageBox.text = "Pick the Blue bottle.";
+                messageBox.text = "Pick the Blue bottle."; 
+                plaformJumpGuideImg.SetActive(false); 
                 blackFloor.SetActive(true);
 
                 redFloor.color = Color.white;

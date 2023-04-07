@@ -342,11 +342,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        string tag = collision.gameObject.tag;
+        string tag = collision.gameObject.tag; 
 
         if (tag.Equals("EnemyMonster") && !collision.gameObject.GetComponent<SpriteRenderer>().color.CompareRGB(gameObject.GetComponent<SpriteRenderer>().color))
         {
-
             totalTime = totalTime - 5;
             SendAnalytics3 ob = gameObject.AddComponent<SendAnalytics3>();
             ob.Send("Monster");
