@@ -210,7 +210,7 @@ public class PlayerControllerTutorial : MonoBehaviour
         }
         if (other.gameObject.tag == "BlueBottle")
         {
-            playerSpriteRenderer.color = new Color(1, 0, 0, 1);
+            playerSpriteRenderer.color = new Color(255, 0, 0, 1);
             other.gameObject.SetActive(false);
             plaformJumpGuideImg.SetActive(false); 
         }
