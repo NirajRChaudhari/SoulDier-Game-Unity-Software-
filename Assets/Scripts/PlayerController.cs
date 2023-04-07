@@ -511,7 +511,7 @@ public class PlayerController : MonoBehaviour
         timerText.text = "Time- " + string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
-    void ResetMessageBox()
+     void ResetMessageBox()
     {
         messageBox.text = "";
     }
@@ -576,6 +576,21 @@ public class PlayerController : MonoBehaviour
         PlatformController.isFrozen = false;
         Debug.Log(PlatformController.isFrozen);
     }
+    public void resetMonsterKillMessageBox()
+    {
+        PlayerController.totalTime += 15f;
+        messageBox.text = "15 Seconds Gained...";
+        Invoke("resetMessageBox2", 1.0f);
+        // PlatformController.isFrozen = false;
+        // Debug.Log(PlatformController.isFrozen);
+    }
+    public void resetMessageBox2()
+    {
+        messageBox.text="";
+        // PlatformController.isFrozen = false;
+        // Debug.Log(PlatformController.isFrozen);
+    }
+
 }
 
 

@@ -456,5 +456,19 @@ public class PlayerControllerTutorial : MonoBehaviour
         PlatformControllerTutorial.isFrozen = false;
         Debug.Log(PlatformControllerTutorial.isFrozen);
     }
+    public void resetMonsterKillMessageBox()
+    {
+        PlayerController.totalTime += 15f;
+        messageBox.text = "15 Seconds Gained...";
+        Invoke("resetMessageBox2", 1.0f);
+        // PlatformController.isFrozen = false;
+        // Debug.Log(PlatformController.isFrozen);
+    }
+    public void resetMessageBox2()
+    {
+        messageBox.text="";
+        // PlatformController.isFrozen = false;
+        // Debug.Log(PlatformController.isFrozen);
+    }
 
 }

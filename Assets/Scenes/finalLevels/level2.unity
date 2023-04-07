@@ -775,6 +775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98f9157fff62a47999dc5cb37ce1eb45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  messageBox: {fileID: 0}
 --- !u!61 &243367921
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -955,6 +956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98f9157fff62a47999dc5cb37ce1eb45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  messageBox: {fileID: 0}
 --- !u!61 &286598289
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -108877,6 +108879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98f9157fff62a47999dc5cb37ce1eb45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  messageBox: {fileID: 1613323021}
 --- !u!61 &2137647103
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -123706,11 +123709,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7328417389042922839, guid: bffc060ce2c1645bcac7a9095b4cd111, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -21.1
+      value: 38.4
       objectReference: {fileID: 0}
     - target: {fileID: 7328417389042922839, guid: bffc060ce2c1645bcac7a9095b4cd111, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7328417389042922839, guid: bffc060ce2c1645bcac7a9095b4cd111, type: 3}
       propertyPath: m_LocalPosition.z
