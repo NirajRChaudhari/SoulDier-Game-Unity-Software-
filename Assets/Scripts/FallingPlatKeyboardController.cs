@@ -16,6 +16,7 @@ public class FallingPlatKeyboardController : MonoBehaviour
     void Start()
     {
         playerInKeyboardZone = false;
+        FallingPlatformController.playerKeyPressed = false;
         fallingPlatformRB = GameObject.Find("FallingPlatform").GetComponent<Rigidbody2D>();
 
         fallingPlatformSR = GameObject.Find("FallingPlatform").GetComponent<SpriteRenderer>();

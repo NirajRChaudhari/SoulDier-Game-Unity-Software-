@@ -9,15 +9,16 @@ public class FallingPlatformController : MonoBehaviour
     private Color[] colors;
     private int currentColorIndex;
 
-    public static bool stopColorChange = false;
+    public static bool stopColorChange = false, playerKeyPressed = false;
     private SpriteRenderer playerSpriteRenderer;
     private float initialXposPlatform, initialYposPlatform;
 
     private Transform lowestFallingPlatformPoint;
-
+    
     // Start is called before the first frame update
     void Start()
     {
+        playerKeyPressed = false;
         currentColorIndex = 0;
         colors = new Color[] { Color.red, Color.yellow, Color.blue };
 
@@ -25,7 +26,7 @@ public class FallingPlatformController : MonoBehaviour
         fallingPlatformRB = gameObject.GetComponent<Rigidbody2D>();
         playerSpriteRenderer = GameObject.Find("Player").GetComponent<SpriteRenderer>();
         fallingPlatformRB.gravityScale = 0.0f;
-
+        
         initialXposPlatform = transform.position.x;
         initialYposPlatform = transform.position.y;
 
@@ -37,16 +38,17 @@ public class FallingPlatformController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.y < lowestFallingPlatformPoint.position.y)
+        if (transform.position.y < lowestFallingPlatformPoint.position.y )
         {
             transform.localScale = new Vector3(transform.localScale.x * 1.25f, transform.localScale.y, transform.localScale.z);
 
             transform.position = new Vector3(initialXposPlatform, initialYposPlatform, 0);
             fallingPlatformRB.gravityScale = 0.0f;
             fallingPlatformRB.bodyType = RigidbodyType2D.Static;
+            playerKeyPressed = false;
         }
 
-        if (FallingPlatKeyboardController.playerInKeyboardZone && Input.GetKeyDown(KeyCode.C))
+        if (FallingPlatKeyboardController.playerInKeyboardZone && Input.GetKeyDown(KeyCode.C) && !playerKeyPressed)
         {
             if (fallingPlatformSpriteRenderer.color.r == playerSpriteRenderer.color.r
                 && fallingPlatformSpriteRenderer.color.g == playerSpriteRenderer.color.g
@@ -64,6 +66,7 @@ public class FallingPlatformController : MonoBehaviour
             }
 
             fallingPlatformRB.bodyType = RigidbodyType2D.Dynamic;
+            playerKeyPressed = true;
         }
     }
 
