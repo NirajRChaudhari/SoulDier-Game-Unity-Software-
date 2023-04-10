@@ -21,11 +21,12 @@ public class PlatformController : MonoBehaviour
     private float alpha = 0.5f;
     Color red, blue, yellow, black;
 
-    public static bool isFrozen = false;
+    public static bool isFrozen ;
 
     // Start is called before the first frame update
     void Start()
     {
+        isFrozen = false;
         alpha = 0.5f;
         red = new Color(255, 0, 0, alpha);
         blue = new Color(0, 0, 255, alpha);
