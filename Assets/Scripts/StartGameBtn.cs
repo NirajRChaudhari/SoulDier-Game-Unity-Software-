@@ -9,7 +9,7 @@ public class StartGameBtn : MonoBehaviour
 
     public void tutorialStart() {
         PlayerControllerTutorial.totalTime = 1200;
-        SceneManager.LoadScene("tutorial");
+        SceneManager.LoadScene("tutorial_Combined");
     }
 
     public void Level1Start() {
@@ -63,7 +63,7 @@ public class StartGameBtn : MonoBehaviour
 
     public void Tutorial2Start() {
         PlayerController.totalTime = 1200;
-        SceneManager.LoadScene("Tutorial2");
+        SceneManager.LoadScene("Tutorial_6");
     }
 
     public void TutorialLevel1() {
