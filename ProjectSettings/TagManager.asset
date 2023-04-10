@@ -43,6 +43,11 @@ TagManager:
   - Magnet
   - portal_1
   - portal_2
+  - FallingPlatform
+  - portal_3
+  - portal_4
+  - portal_5
+  - portal_6
   layers:
   - Default
   - TransparentFX
