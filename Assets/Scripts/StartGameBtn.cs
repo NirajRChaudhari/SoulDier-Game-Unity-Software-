@@ -56,6 +56,10 @@ public class StartGameBtn : MonoBehaviour
         PlayerController.totalTime = 150;
         SceneManager.LoadScene("level9");
     }
+    public void Level10Start() {
+        PlayerController.totalTime = 150;
+        SceneManager.LoadScene("level10");
+    }
 
     public void Tutorial2Start() {
         PlayerController.totalTime = 1200;
@@ -63,27 +67,27 @@ public class StartGameBtn : MonoBehaviour
     }
 
     public void TutorialLevel1() {
-        PlayerController.totalTime = 150;
+        PlayerController.totalTime = 1200;
         SceneManager.LoadScene("tutorial_1");
     }
 
     public void TutorialLevel2() {
-        PlayerController.totalTime = 150;
+        PlayerController.totalTime = 1200;
         SceneManager.LoadScene("tutorial_2");
     }
 
     public void TutorialLevel3() {
-        PlayerController.totalTime = 150;
+        PlayerController.totalTime = 1200;
         SceneManager.LoadScene("tutorial_3");
     }
 
     public void TutorialLevel4() {
-        PlayerController.totalTime = 150;
+        PlayerController.totalTime = 1200;
         SceneManager.LoadScene("tutorial_4");
     }
 
     public void TutorialLevel5() {
-        PlayerController.totalTime = 150;
+        PlayerController.totalTime = 1200;
         SceneManager.LoadScene("tutorial_5");
     }
 }
