@@ -135,7 +135,8 @@ public class PlayerHealthController : MonoBehaviour
         }
     }
 
-    private void resetIsKilled() {
+    private void resetIsKilled()
+    {
         animator.SetBool("isKilled", false);
     }
 

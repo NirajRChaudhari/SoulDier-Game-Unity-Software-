@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
         prev_time = 0;
         lastCheckpoint = "Starting Point";
 
-        
+
         GameObject.Find("gameOverScreen").GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0f);
 
         retrieveAndInitializeAllPrivateObjects();
@@ -342,7 +342,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        string tag = collision.gameObject.tag; 
+        string tag = collision.gameObject.tag;
 
         if (tag.Equals("EnemyMonster") && !collision.gameObject.GetComponent<SpriteRenderer>().color.CompareRGB(gameObject.GetComponent<SpriteRenderer>().color))
         {
@@ -457,6 +457,19 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        if (PlayerPrefs.HasKey("lastCheckpoint"))
+        {
+            if (PlayerPrefs.GetString("lastCheckpoint").Equals("Checkpoint1"))
+            {
+                GameObject.Find("RedBottle").SetActive(false);
+            }
+            else if (PlayerPrefs.GetString("lastCheckpoint").Equals("Checkpoint2"))
+            {
+                GameObject.Find("RedBottle").SetActive(false);
+                GameObject.Find("BlueBottle").SetActive(false);
+            }
+        }
+
         if (PlayerPrefs.HasKey("x") && PlayerPrefs.HasKey("y"))
         {
             Debug.Log("Latest: " + lastCheckpoint);
@@ -511,7 +524,7 @@ public class PlayerController : MonoBehaviour
         timerText.text = "Time- " + string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
-     void ResetMessageBox()
+    void ResetMessageBox()
     {
         messageBox.text = "";
     }
@@ -586,7 +599,7 @@ public class PlayerController : MonoBehaviour
     }
     public void resetMessageBox2()
     {
-        messageBox.text="";
+        messageBox.text = "";
         // PlatformController.isFrozen = false;
         // Debug.Log(PlatformController.isFrozen);
     }
