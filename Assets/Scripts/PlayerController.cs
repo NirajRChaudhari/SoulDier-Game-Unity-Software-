@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public GameObject canvas;
     public GameObject checkPointGroup;
     public GameObject blackFloor;
+    public ParticleSystem[] premParticles;
     public static float totalTime = 120;
     public string lastCheckpoint = "Starting Point";
     public static int jump_counter;
@@ -67,13 +68,23 @@ public class PlayerController : MonoBehaviour
     // public static bool send_analytics_6_enabled = true;
 
     // Start is called before the first frame update
-
+    public float initial_x;
+    public float initial_y;
 
     void Start()
     {
+        initial_x=transform.position.x;
+        initial_y=transform.position.y;
         this.jumpForce = this.jumpForceInput;
         this.moveSpeed = this.moveSpeedInput;
         Debug.Log(this.moveSpeed);
+        premParticles = GameObject.FindObjectsOfType<ParticleSystem>();
+        // Debug.Log(premParticles);
+        foreach (ParticleSystem particle in premParticles)
+        {
+            particle.Stop();
+        }
+
 
         currentPosInColorSubseq = -1;
         lastCharInColorSubseq = 'A';

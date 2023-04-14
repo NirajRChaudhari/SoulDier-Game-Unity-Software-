@@ -139,7 +139,7 @@ public class PlayerHealthController : MonoBehaviour
         animator.SetBool("isKilled", false);
     }
 
-    private void restartLevel()
+    public void restartLevel()
     {
         RespawnCheck.isRespawn = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
