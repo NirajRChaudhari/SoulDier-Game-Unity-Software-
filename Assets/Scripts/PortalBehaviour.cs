@@ -13,13 +13,13 @@ public class PortalBehaviour : MonoBehaviour
     private Color[] colors;
     private int colorIndex;
 
-    private float alpha = 0.3f;
+    private float alpha = 1f;
     Color red, blue, yellow;
 
     // Start is called before the first frame update
     void Start()
     {
-        alpha = 0.3f;
+        alpha = 1f;
         red = Color.red;
         red.a = alpha;
         blue = Color.blue;

@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
         jump_counter = 0;
         seq_jump_flag = false;
         send_time_up_flag = false;
-        // timerText.fontSize =50;
+        timerText.fontSize =52;
         timerText.fontStyle = FontStyles.Bold;
 
         // InvokeRepeating("reverseCooldown",0,0f,1.0f);
