@@ -38226,12 +38226,12 @@ Transform:
   - {fileID: 1923030894}
   - {fileID: 691148245}
   - {fileID: 720790866}
-  - {fileID: 958177462}
   - {fileID: 297359848}
   - {fileID: 580135543}
-  - {fileID: 52562808}
+  - {fileID: 958177462}
   - {fileID: 1652117147}
   - {fileID: 190257472}
+  - {fileID: 52562808}
   - {fileID: 1642072931}
   - {fileID: 927087179}
   - {fileID: 2117557065}
@@ -38248,16 +38248,16 @@ Transform:
   - {fileID: 99017935}
   - {fileID: 100576273}
   - {fileID: 538665505}
+  - {fileID: 1471456833}
   - {fileID: 329277681}
   - {fileID: 1818073261}
-  - {fileID: 600883741}
+  - {fileID: 1306227488}
   - {fileID: 1422719136}
   - {fileID: 649803580}
+  - {fileID: 600883741}
   - {fileID: 1856257226}
   - {fileID: 2029122395}
-  - {fileID: 1471456833}
   - {fileID: 202938863}
-  - {fileID: 1306227488}
   - {fileID: 805567789}
   - {fileID: 45820320}
   - {fileID: 969873857}
@@ -38268,29 +38268,29 @@ Transform:
   - {fileID: 1539364354}
   - {fileID: 1328220664}
   - {fileID: 446287531}
+  - {fileID: 1188765426}
   - {fileID: 1706476079}
   - {fileID: 1483313881}
   - {fileID: 2057890126}
+  - {fileID: 820282871}
   - {fileID: 1101684095}
   - {fileID: 1677217930}
-  - {fileID: 1188765426}
+  - {fileID: 654093118}
   - {fileID: 1170156665}
   - {fileID: 1113484108}
   - {fileID: 1095259637}
   - {fileID: 1701593427}
+  - {fileID: 1336235482}
+  - {fileID: 1548263532}
   - {fileID: 145021036}
-  - {fileID: 1262630782}
   - {fileID: 114807110}
-  - {fileID: 654093118}
+  - {fileID: 1262630782}
+  - {fileID: 1188952874}
+  - {fileID: 82397637}
   - {fileID: 1146530209}
   - {fileID: 256270511}
   - {fileID: 195392963}
   - {fileID: 890956374}
-  - {fileID: 1336235482}
-  - {fileID: 1548263532}
-  - {fileID: 82397637}
-  - {fileID: 820282871}
-  - {fileID: 1188952874}
   m_Father: {fileID: 0}
   m_RootOrder: 38
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -38839,7 +38839,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.09433961, g: 0.051174786, b: 0.054098297, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

@@ -26340,22 +26340,22 @@ Transform:
   m_Children:
   - {fileID: 1545754591}
   - {fileID: 257872909}
-  - {fileID: 475994337}
   - {fileID: 1777080684}
-  - {fileID: 1824878221}
+  - {fileID: 475994337}
   - {fileID: 178044569}
-  - {fileID: 187451973}
-  - {fileID: 1841595313}
-  - {fileID: 1726951523}
-  - {fileID: 663874954}
-  - {fileID: 68385195}
-  - {fileID: 694428171}
   - {fileID: 264152426}
+  - {fileID: 1824878221}
+  - {fileID: 1841595313}
+  - {fileID: 187451973}
   - {fileID: 490795801}
+  - {fileID: 694428171}
   - {fileID: 464536592}
+  - {fileID: 1726951523}
   - {fileID: 972611743}
   - {fileID: 2101306074}
+  - {fileID: 663874954}
   - {fileID: 1420367208}
+  - {fileID: 68385195}
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -31231,7 +31231,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.09433961, g: 0.051174786, b: 0.054098297, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
