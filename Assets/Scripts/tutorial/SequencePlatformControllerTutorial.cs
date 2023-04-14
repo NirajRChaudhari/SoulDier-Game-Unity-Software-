@@ -150,8 +150,8 @@ public class SequencePlatformControllerTutorial : MonoBehaviour
 
             PlayerControllerTutorial.currentPosInColorSubseq = 0;
 
-            redFloor.color = Color.red;
-            yellowFloor.color = Color.yellow;
+            redFloor.color = Color.cyan;
+            yellowFloor.color = Color.grey;
             orangeFloor.color = new Color(1, 0.5f, 0, 1);
             greenFloor.color = Color.green;
             violetFloor.color = Color.magenta;
@@ -170,10 +170,10 @@ public class SequencePlatformControllerTutorial : MonoBehaviour
         switch (colorChar)
         {
             case 'R':
-                color = Color.red;
+                color = Color.cyan;
                 break;
             case 'Y':
-                color = Color.yellow;
+                color = Color.grey;
                 break;
             case 'O':
                 color = new Color(1, 0.5f, 0, 1);
