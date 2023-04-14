@@ -21,12 +21,12 @@ public class PlatformController : MonoBehaviour
     private float alpha = 0.5f;
     Color red, blue, yellow, black;
 
-    public static bool isFrozen ;
+    public static bool isFrozen =false;
 
     // Start is called before the first frame update
     void Start()
     {
-        isFrozen = false;
+        // isFrozen = false;
         alpha = 0.5f;
         red = new Color(255, 0, 0, alpha);
         blue = new Color(0, 0, 255, alpha);
@@ -48,6 +48,10 @@ public class PlatformController : MonoBehaviour
 
         InvokeRepeating("ChangeColor", 0.0f, 2.0f);
     }
+    // void Awake()
+    // {
+    //     isFrozen =false;
+    // }
 
     // LateUpdate is called post Update
     // Do not change below line
