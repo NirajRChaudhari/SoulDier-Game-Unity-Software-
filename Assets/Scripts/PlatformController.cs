@@ -15,7 +15,7 @@ public class PlatformController : MonoBehaviour
     private SpriteRenderer platformSpriteRenderer;
 
     private Color[] colors;
-    private int colorIndex;
+    private int colorIndex=0;
     private bool onMovingPlatform;
 
     private float alpha = 0.5f;
@@ -39,7 +39,7 @@ public class PlatformController : MonoBehaviour
         }
         platformRB = GetComponent<Rigidbody2D>();
 
-        colorIndex = 0;
+        // colorIndex = 0;
         platformSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 
         colors = new Color[] { red, yellow, blue };
