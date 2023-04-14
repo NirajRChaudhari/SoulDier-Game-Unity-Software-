@@ -59,10 +59,10 @@ public class MarkersController : MonoBehaviour
         switch (colorChar)
         {
             case 'R':
-                color = Color.red;
+                color = Color.cyan;
                 break;
             case 'Y':
-                color = Color.yellow;
+                color = Color.grey;
                 break;
             case 'O':
                 color = new Color(1, 0.5f, 0, 1);

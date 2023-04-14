@@ -15,18 +15,18 @@ public class PlatformController : MonoBehaviour
     private SpriteRenderer platformSpriteRenderer;
 
     private Color[] colors;
-    private int colorIndex;
+    private int colorIndex=0;
     private bool onMovingPlatform;
 
     private float alpha = 0.5f;
     Color red, blue, yellow, black;
 
-    public static bool isFrozen ;
+    public static bool isFrozen =false;
 
     // Start is called before the first frame update
     void Start()
     {
-        isFrozen = false;
+        // isFrozen = false;
         alpha = 0.5f;
         red = new Color(255, 0, 0, alpha);
         blue = new Color(0, 0, 255, alpha);
@@ -39,7 +39,7 @@ public class PlatformController : MonoBehaviour
         }
         platformRB = GetComponent<Rigidbody2D>();
 
-        colorIndex = 0;
+        // colorIndex = 0;
         platformSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 
         colors = new Color[] { red, yellow, blue };
@@ -48,6 +48,10 @@ public class PlatformController : MonoBehaviour
 
         InvokeRepeating("ChangeColor", 0.0f, 2.0f);
     }
+    // void Awake()
+    // {
+    //     isFrozen =false;
+    // }
 
     // LateUpdate is called post Update
     // Do not change below line

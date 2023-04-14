@@ -9,17 +9,20 @@ public class PortalBehaviour : MonoBehaviour
     private GameObject exit_portal, player;
 
     private SpriteRenderer portalSpriteRenderer, playerSpriteRenderer;
-
+ private PlayerController playerController;
+  private PlayerHealthController playerHealthController;
     private Color[] colors;
     private int colorIndex;
 
-    private float alpha = 0.3f;
+    private float alpha = 1f;
     Color red, blue, yellow;
 
     // Start is called before the first frame update
     void Start()
     {
-        alpha = 0.3f;
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        playerHealthController= GameObject.Find("Player").GetComponent<PlayerHealthController>();
+        alpha = 1f;
         red = Color.red;
         red.a = alpha;
         blue = Color.blue;
@@ -80,6 +83,31 @@ public class PortalBehaviour : MonoBehaviour
             }
             else
             {
+                if (playerController.lastCheckpoint == "Checkpoint1")
+                {
+                    collision.gameObject.transform.position = new Vector3(playerHealthController.checkPoint1.transform.position.x, playerHealthController.checkPoint1.transform.position.y+20, 0);
+            
+                    // Debug.Log(playerController.lastCheckpoint);
+                    // PlayerPrefs.SetFloat("x", playerHealthController.checkPoint1.transform.position.x);
+                    // PlayerPrefs.SetFloat("y", playerHealthController.checkPoint1.transform.position.y);
+                    // PlayerPrefs.SetString("globalSequenceFile", globalSequence.text);
+                    // PlayerPrefs.SetString("lastCheckpoint", playerController.lastCheckpoint);
+                }
+                else if (playerController.lastCheckpoint == "Checkpoint2")
+                {
+                    collision.gameObject.transform.position = new Vector3(playerHealthController.checkPoint2.transform.position.x, playerHealthController.checkPoint2.transform.position.y+20, 0);
+                    // PlayerPrefs.SetFloat("x", playerHealthController.checkPoint2.transform.position.x);
+                    // PlayerPrefs.SetFloat("y", playerHealthController.checkPoint2.transform.position.y);
+                    // PlayerPrefs.SetString("globalSequenceFile", globalSequence.text);
+                    // PlayerPrefs.SetString("lastCheckpoint", playerController.lastCheckpoint);
+                }
+                // playerHealthController.restartLevel();
+                // else if (playerController.lastCheckpoint == "StartingPoint")
+                else
+                {
+                    collision.gameObject.transform.position = new Vector3(playerController.initial_x, playerController.initial_y+20, 0);
+                    
+                }
                 //PlayerHealthController.instance.currentHealth--;
                 //UIController.instance.UpdateHealthDisplay();
 

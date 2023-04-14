@@ -21,12 +21,14 @@ public class PlayerController : MonoBehaviour
     public GameObject canvas;
     public GameObject checkPointGroup;
     public GameObject blackFloor;
+    public ParticleSystem[] premParticles;
     public static float totalTime = 120;
     public string lastCheckpoint = "Starting Point";
     public static int jump_counter;
     public static bool seq_jump_flag;
     public bool send_time_up_flag;
-
+    private bool TimerColorRed=false; 
+    private bool lessTimeFlag=false;
 
 
     // Private variables
@@ -57,6 +59,7 @@ public class PlayerController : MonoBehaviour
     public static bool send_analytics_4_enabled = false;
     public static bool send_analytics_5_enabled = false;
     public static bool send_analytics_6_enabled = false;
+    // private bool cooldown = false;
     //  public static bool send_analytics_1_enabled = true;
     // public static bool send_analytics_2_enabled = true;
     // public static bool send_analytics_3_enabled = true;
@@ -65,13 +68,24 @@ public class PlayerController : MonoBehaviour
     // public static bool send_analytics_6_enabled = true;
 
     // Start is called before the first frame update
-
+    public float initial_x;
+    public float initial_y;
 
     void Start()
     {
+        PlatformController.isFrozen=false;
+        initial_x=transform.position.x;
+        initial_y=transform.position.y;
         this.jumpForce = this.jumpForceInput;
         this.moveSpeed = this.moveSpeedInput;
         Debug.Log(this.moveSpeed);
+        premParticles = GameObject.FindObjectsOfType<ParticleSystem>();
+        // Debug.Log(premParticles);
+        foreach (ParticleSystem particle in premParticles)
+        {
+            particle.Stop();
+        }
+
 
         currentPosInColorSubseq = -1;
         lastCharInColorSubseq = 'A';
@@ -116,6 +130,12 @@ public class PlayerController : MonoBehaviour
         jump_counter = 0;
         seq_jump_flag = false;
         send_time_up_flag = false;
+        timerText.fontSize =52;
+        timerText.fontStyle = FontStyles.Bold;
+
+        // InvokeRepeating("reverseCooldown",0,0f,1.0f);
+
+        // timerText.fontStyle = FontStyles.UpperCase;
     }
 
     // Update is called once per frame
@@ -200,6 +220,7 @@ public class PlayerController : MonoBehaviour
             Invoke(nameof(restartLevel), 5f);
         }
         DisplayTime(totalTime);
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -284,6 +305,11 @@ public class PlayerController : MonoBehaviour
                 gameObject.transform.localScale = new Vector2(scaleX * 1.25f, scaleY * 1.25f);
                 //invincibleCounter = invincibleLength;
                 //spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0.5f);
+            }
+            else{
+                messageBox.text = "Health is full";
+                Invoke(nameof(ResetMessageBox), 2f);
+
             }
 
             Debug.Log(PlayerHealthController.instance.currentHealth);
@@ -508,7 +534,30 @@ public class PlayerController : MonoBehaviour
 
         float minutes = Mathf.FloorToInt(time / 60);
         float seconds = Mathf.FloorToInt(time % 60);
-        timerText.text = "Time- " + string.Format("{0:00}:{1:00}", minutes, seconds);
+        timerText.text = "TIME - " + string.Format("{0:00}:{1:00}", minutes, seconds);
+        // Debug.Log(time);
+        if (time<20 && lessTimeFlag==false){
+            Debug.Log("Time is 145");
+            // InvokeRepeating("changeTimerColor", 1.0f);
+                    InvokeRepeating("changeTimerColor", 0.0f, 1.0f);
+            lessTimeFlag=true;
+        }
+
+        
+    }
+    void changeTimerColor()
+    
+    {
+        if (TimerColorRed == true)
+        {
+            timerText.color = Color.red;
+            TimerColorRed = false;
+        }
+        else
+        {
+            timerText.color = Color.white;
+            TimerColorRed = true;
+        }
     }
 
      void ResetMessageBox()
