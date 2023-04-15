@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class FallingPlatKeyboardController : MonoBehaviour
 {
-    public static bool playerInKeyboardZone = false;
+    public bool playerInKeyboardZone = false;
 
+    public GameObject fallingPlatform;
     private Rigidbody2D fallingPlatformRB;
     private SpriteRenderer fallingPlatformSR;
+    private FallingPlatformController fallingPlatformScript;
     private TMP_Text messageBox;
     private SpriteRenderer playerSR;
 
@@ -16,10 +18,19 @@ public class FallingPlatKeyboardController : MonoBehaviour
     void Start()
     {
         playerInKeyboardZone = false;
-        FallingPlatformController.playerKeyPressed = false;
-        fallingPlatformRB = GameObject.Find("FallingPlatform").GetComponent<Rigidbody2D>();
 
-        fallingPlatformSR = GameObject.Find("FallingPlatform").GetComponent<SpriteRenderer>();
+        // FallingPlatformController.playerKeyPressed = false;
+        // fallingPlatformRB = GameObject.Find("FallingPlatform").GetComponent<Rigidbody2D>();
+        // fallingPlatformSR = GameObject.Find("FallingPlatform").GetComponent<SpriteRenderer>();
+
+
+        fallingPlatformScript = fallingPlatform.GetComponentInChildren<Rigidbody2D>().gameObject.GetComponent<FallingPlatformController>();
+
+        fallingPlatformScript.setKeyPressed(false);
+
+        fallingPlatformRB = fallingPlatform.GetComponent<Rigidbody2D>();
+        fallingPlatformSR = fallingPlatform.GetComponent<SpriteRenderer>();
+
         playerSR = GameObject.Find("Player").GetComponent<SpriteRenderer>();
 
         messageBox = GameObject.Find("MessageBox").GetComponent<TMP_Text>();
@@ -28,6 +39,7 @@ public class FallingPlatKeyboardController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -51,5 +63,10 @@ public class FallingPlatKeyboardController : MonoBehaviour
     void ResetMessageBox()
     {
         messageBox.text = "";
+    }
+
+    public bool getPlayerInKeyboardZone()
+    {
+        return playerInKeyboardZone;
     }
 }
