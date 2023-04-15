@@ -9,12 +9,12 @@ public class FallingPlatformController : MonoBehaviour
     private Color[] colors;
     private int currentColorIndex;
 
-    public static bool stopColorChange = false, playerKeyPressed = false;
+    public bool playerKeyPressed = false;
     private SpriteRenderer playerSpriteRenderer;
     private float initialXposPlatform, initialYposPlatform;
-
     private Transform lowestFallingPlatformPoint;
-    
+    private FallingPlatKeyboardController keyboardZoneScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,11 +26,13 @@ public class FallingPlatformController : MonoBehaviour
         fallingPlatformRB = gameObject.GetComponent<Rigidbody2D>();
         playerSpriteRenderer = GameObject.Find("Player").GetComponent<SpriteRenderer>();
         fallingPlatformRB.gravityScale = 0.0f;
-        
+
         initialXposPlatform = transform.position.x;
         initialYposPlatform = transform.position.y;
 
         lowestFallingPlatformPoint = transform.parent.GetChild(2).GetComponent<Transform>();
+
+        keyboardZoneScript = transform.parent.GetChild(0).GetComponent<FallingPlatKeyboardController>();
 
         InvokeRepeating("ChangeColor", 0.0f, 1.0f);
     }
@@ -38,7 +40,7 @@ public class FallingPlatformController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.y < lowestFallingPlatformPoint.position.y )
+        if (transform.position.y < lowestFallingPlatformPoint.position.y)
         {
             transform.localScale = new Vector3(transform.localScale.x * 1.25f, transform.localScale.y, transform.localScale.z);
 
@@ -48,7 +50,7 @@ public class FallingPlatformController : MonoBehaviour
             playerKeyPressed = false;
         }
 
-        if (FallingPlatKeyboardController.playerInKeyboardZone && Input.GetKeyDown(KeyCode.C) && !playerKeyPressed)
+        if (keyboardZoneScript.getPlayerInKeyboardZone() && Input.GetKeyDown(KeyCode.C) && !playerKeyPressed)
         {
             if (fallingPlatformSpriteRenderer.color.r == playerSpriteRenderer.color.r
                 && fallingPlatformSpriteRenderer.color.g == playerSpriteRenderer.color.g
@@ -80,5 +82,11 @@ public class FallingPlatformController : MonoBehaviour
     {
         fallingPlatformSpriteRenderer.color = colors[currentColorIndex];
         currentColorIndex = (currentColorIndex + 1) % colors.Length;
+    }
+
+    public void setKeyPressed(bool value)
+    {
+        Debug.Log("Key pressed value setKeyPressed");
+        playerKeyPressed = value;
     }
 }
