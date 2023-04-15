@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,13 +17,20 @@ public class JumpPad : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
         if (collision.gameObject.CompareTag("Player"))
         {
-            PlayerController otherInstance = FindObjectOfType<PlayerController>();
+            try{
+                PlayerController otherInstance = FindObjectOfType<PlayerController>();
+                Animator otherAnimator = otherInstance.GetComponent<Animator>();
+                otherAnimator.SetBool("doubleJumpAllowed", true);
+            }catch(Exception e) {};
 
-    Animator otherAnimator = otherInstance.GetComponent<Animator>();
-            otherAnimator.SetBool("doubleJumpAllowed", true);
+            try {
+                PlayerControllerTutorial otherInstanceTutorial = FindObjectOfType<PlayerControllerTutorial>();
+                Animator otherAnimatorTutorial = otherInstanceTutorial.GetComponent<Animator>();
+                otherAnimatorTutorial.SetBool("doubleJumpAllowed", true);
+            }catch(Exception e){};
+
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
         }
     }
