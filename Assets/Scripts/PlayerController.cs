@@ -146,7 +146,14 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, .2f, whatIsGround);
 
 
-        playerRigidbody2D.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), playerRigidbody2D.velocity.y);
+//----------------------------Invert Logic--------------------------
+        if (InvertedSphere.isSphereActive)
+            if(InvertedSphere.invertControls)
+                playerRigidbody2D.velocity = new Vector2(-moveSpeed * Input.GetAxis("Horizontal"), playerRigidbody2D.velocity.y);
+            else
+                playerRigidbody2D.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), playerRigidbody2D.velocity.y);
+        else
+            playerRigidbody2D.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), playerRigidbody2D.velocity.y);
 
 
         if (Input.GetButtonDown("Jump"))
