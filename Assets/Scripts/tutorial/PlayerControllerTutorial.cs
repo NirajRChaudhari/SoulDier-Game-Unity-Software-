@@ -75,12 +75,12 @@ public class PlayerControllerTutorial : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
-        if (isGrounded)
-        {
-            isDoubleJumpAllowed = true;
-        }
+        // if (isGrounded)
+        // {
+        //     isDoubleJumpAllowed = true;
+        // }
 
 
 
@@ -104,22 +104,48 @@ public class PlayerControllerTutorial : MonoBehaviour
         }
 
 
+        if(isGrounded) {
+            isDoubleJumpAllowed = true;
+            this.animator.SetBool("isGrounded", true);
+            this.animator.SetBool("doubleJumpAllowed",true);
+        }
 
         if (Input.GetButtonDown("Jump"))
         {
-            if (isGrounded)
+            if (isDoubleJumpAllowed || isGrounded)
             {
                 playerRigidbody2D.velocity = new Vector2(playerRigidbody2D.velocity.x, jumpForce);
-            }
-            else
-            {
+
                 if (isDoubleJumpAllowed)
                 {
-                    playerRigidbody2D.velocity = new Vector2(playerRigidbody2D.velocity.x, jumpForce);
+                    this.animator.SetBool("doubleJumpAllowed", false);
+                    animator.SetBool("isGrounded", false);
                     isDoubleJumpAllowed = false;
+                }
+                else
+                {
+                    animator.SetBool("doubleJumpAllowed", true);
+                    isDoubleJumpAllowed = true;
                 }
             }
         }
+
+
+        // if (Input.GetButtonDown("Jump"))
+        // {
+        //     if (isGrounded)
+        //     {
+        //         playerRigidbody2D.velocity = new Vector2(playerRigidbody2D.velocity.x, jumpForce);
+        //     }
+        //     else
+        //     {
+        //         if (isDoubleJumpAllowed)
+        //         {
+        //             playerRigidbody2D.velocity = new Vector2(playerRigidbody2D.velocity.x, jumpForce);
+        //             isDoubleJumpAllowed = false;
+        //         }
+        //     }
+        // }
 
         if (playerRigidbody2D.velocity.x < 0)
         {
