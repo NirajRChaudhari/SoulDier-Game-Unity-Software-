@@ -500,6 +500,18 @@ public class PlayerController : MonoBehaviour
                 nextBottle.text = getColorOfBottle(globalSequence.text[0]);
             }
         }
+                if (PlayerPrefs.HasKey("lastCheckpoint"))
+        {
+            if (PlayerPrefs.GetString("lastCheckpoint").Equals("Checkpoint1"))
+            {
+                GameObject.Find("RedBottle").SetActive(false);
+            }
+            else if (PlayerPrefs.GetString("lastCheckpoint").Equals("Checkpoint2"))
+            {
+                GameObject.Find("RedBottle").SetActive(false);
+                GameObject.Find("BlueBottle").SetActive(false);
+            }
+        }
 
         if (PlayerPrefs.HasKey("x") && PlayerPrefs.HasKey("y"))
         {
