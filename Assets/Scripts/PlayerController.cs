@@ -73,7 +73,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        PlatformController.isFrozen=false;
+        PlatformControllerTutorial.isFrozen = false;
+        PlatformController.isFrozen =false;
         initial_x=transform.position.x;
         initial_y=transform.position.y;
         this.jumpForce = this.jumpForceInput;
@@ -141,6 +142,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         playerSpriteRenderer.color = getColorUsingColorName(nextBottle.text);
 
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, .2f, whatIsGround);
@@ -148,6 +150,12 @@ public class PlayerController : MonoBehaviour
 
         playerRigidbody2D.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), playerRigidbody2D.velocity.y);
 
+        if(isGrounded) {
+            isDoubleJumpAllowed = true;
+            this.animator.SetBool("isGrounded", true);
+            this.animator.SetBool("doubleJumpAllowed",true);
+
+        }
 
         if (Input.GetButtonDown("Jump"))
         {
@@ -157,10 +165,13 @@ public class PlayerController : MonoBehaviour
 
                 if (isDoubleJumpAllowed)
                 {
+                    this.animator.SetBool("doubleJumpAllowed", false);
+                    animator.SetBool("isGrounded", false);
                     isDoubleJumpAllowed = false;
                 }
                 else
                 {
+                    animator.SetBool("doubleJumpAllowed", true);
                     isDoubleJumpAllowed = true;
                 }
             }
@@ -185,7 +196,7 @@ public class PlayerController : MonoBehaviour
         }
         animator.SetFloat("moveSpeed", Mathf.Abs(playerRigidbody2D.velocity.x));
         //Debug.Log("isGrounded == >"+ isGrounded);
-        animator.SetBool("isGrounded", isGrounded);
+        animator.SetBool("isGrounded", isGrounded); 
 
         float positionX = transform.position.x;
 
