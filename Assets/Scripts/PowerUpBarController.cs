@@ -20,7 +20,7 @@ public class PowerUpBarController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlatformController.isFrozen){
+        if (PlatformController.isFrozen || PlatformControllerTutorial.isFrozen){
             
             powerUpBar1.SetActive(true);
             powerUpBar2.SetActive(true);

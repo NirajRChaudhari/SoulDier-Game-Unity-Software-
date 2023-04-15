@@ -51,6 +51,7 @@ public class PlayerControllerTutorial : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlatformControllerTutorial.isFrozen = false;
         totalTime = 1200;
         currentPos = 0;
         currentPosInColorSubseq = 0;

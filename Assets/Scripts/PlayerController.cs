@@ -73,7 +73,8 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        PlatformController.isFrozen=false;
+        PlatformControllerTutorial.isFrozen = false;
+        PlatformController.isFrozen =false;
         initial_x=transform.position.x;
         initial_y=transform.position.y;
         this.jumpForce = this.jumpForceInput;
