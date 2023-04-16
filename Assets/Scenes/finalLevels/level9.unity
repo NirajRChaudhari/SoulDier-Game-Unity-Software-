@@ -49188,6 +49188,10 @@ PrefabInstance:
       propertyPath: m_LocalAABB.m_Extent.y
       value: 18.835474
       objectReference: {fileID: 0}
+    - target: {fileID: 6713943716730522122, guid: 0951a653a521a5646a1af01199a09fd1, type: 3}
+      propertyPath: magnetForce
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 6713943716730522123, guid: 0951a653a521a5646a1af01199a09fd1, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
       value: -6.002947
@@ -50796,6 +50800,10 @@ PrefabInstance:
     - target: {fileID: 6713943716730522120, guid: 0951a653a521a5646a1af01199a09fd1, type: 3}
       propertyPath: m_LocalAABB.m_Extent.y
       value: 18.835474
+      objectReference: {fileID: 0}
+    - target: {fileID: 6713943716730522122, guid: 0951a653a521a5646a1af01199a09fd1, type: 3}
+      propertyPath: magnetForce
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6713943716730522123, guid: 0951a653a521a5646a1af01199a09fd1, type: 3}
       propertyPath: m_Points.m_Paths.Array.data[0].Array.data[0].x
