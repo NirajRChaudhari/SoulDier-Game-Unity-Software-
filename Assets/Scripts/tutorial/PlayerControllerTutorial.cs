@@ -105,11 +105,11 @@ public class PlayerControllerTutorial : MonoBehaviour
         }
 
 
-        if(isGrounded) {
-            isDoubleJumpAllowed = true;
-            this.animator.SetBool("isGrounded", true);
-            this.animator.SetBool("doubleJumpAllowed",true);
-        }
+        //if(isGrounded) {
+        //    isDoubleJumpAllowed = true;
+        //    this.animator.SetBool("isGrounded", true);
+        //    this.animator.SetBool("doubleJumpAllowed",true);
+        //}
 
         if (Input.GetButtonDown("Jump"))
         {
@@ -120,7 +120,7 @@ public class PlayerControllerTutorial : MonoBehaviour
                 if (isDoubleJumpAllowed)
                 {
                     //this.animator.SetBool("doubleJumpAllowed", false);
-                    animator.SetBool("isGrounded", false);
+                    //animator.SetBool("isGrounded", false);
                     isDoubleJumpAllowed = false;
                 }
                 else

@@ -157,12 +157,12 @@ public class PlayerController : MonoBehaviour
         else
             playerRigidbody2D.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), playerRigidbody2D.velocity.y);
 
-        if(isGrounded) {
-            isDoubleJumpAllowed = true;
-            this.animator.SetBool("isGrounded", true);
-            //this.animator.SetBool("doubleJumpAllowed",true);
+        //if(isGrounded) {
+        //    isDoubleJumpAllowed = true;
+        //    this.animator.SetBool("isGrounded", true);
+        //    //this.animator.SetBool("doubleJumpAllowed",true);
 
-        }
+        //}
 
         if (Input.GetButtonDown("Jump"))
         {
@@ -173,7 +173,7 @@ public class PlayerController : MonoBehaviour
                 if (isDoubleJumpAllowed)
                 {
                     //this.animator.SetBool("doubleJumpAllowed", false);
-                    animator.SetBool("isGrounded", false);
+                    //animator.SetBool("isGrounded", false);
                     isDoubleJumpAllowed = false;
                 }
                 else
