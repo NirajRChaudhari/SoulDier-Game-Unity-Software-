@@ -11,10 +11,14 @@ public class BottleControllerTutorial : MonoBehaviour
     public GameObject player;
     public GameObject dependentCheckpoint;
 
+    private SpriteRenderer playerSpriteRenderer;
+
+
     // Start is called before the first frame update
     void Start()
     {
         globalSequence.gameObject.SetActive(false);
+        playerSpriteRenderer = player.GetComponent<SpriteRenderer>();
         // victoryBanner.SetActive(false);
     }
 
@@ -26,6 +30,7 @@ public class BottleControllerTutorial : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        playerSpriteRenderer.color = new Color(1, 0, 0, 1);
         gameObject.SetActive(false);
         dependentCheckpoint.GetComponent<BoxCollider2D>().isTrigger = true;
 

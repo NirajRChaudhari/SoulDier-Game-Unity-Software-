@@ -119,13 +119,13 @@ public class PlayerControllerTutorial : MonoBehaviour
 
                 if (isDoubleJumpAllowed)
                 {
-                    this.animator.SetBool("doubleJumpAllowed", false);
+                    //this.animator.SetBool("doubleJumpAllowed", false);
                     animator.SetBool("isGrounded", false);
                     isDoubleJumpAllowed = false;
                 }
                 else
                 {
-                    animator.SetBool("doubleJumpAllowed", true);
+                    //animator.SetBool("doubleJumpAllowed", true);
                     isDoubleJumpAllowed = true;
                 }
             }
@@ -237,6 +237,7 @@ public class PlayerControllerTutorial : MonoBehaviour
         }
         if (other.gameObject.tag == "BlueBottle")
         {
+            Debug.Log("Color is changed to red here");
             playerSpriteRenderer.color = new Color(1, 0, 0, 1);
             other.gameObject.SetActive(false);
             plaformJumpGuideImg.SetActive(false); 

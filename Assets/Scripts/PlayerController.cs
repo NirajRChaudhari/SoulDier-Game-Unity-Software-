@@ -160,7 +160,7 @@ public class PlayerController : MonoBehaviour
         if(isGrounded) {
             isDoubleJumpAllowed = true;
             this.animator.SetBool("isGrounded", true);
-            this.animator.SetBool("doubleJumpAllowed",true);
+            //this.animator.SetBool("doubleJumpAllowed",true);
 
         }
 
@@ -172,13 +172,13 @@ public class PlayerController : MonoBehaviour
 
                 if (isDoubleJumpAllowed)
                 {
-                    this.animator.SetBool("doubleJumpAllowed", false);
+                    //this.animator.SetBool("doubleJumpAllowed", false);
                     animator.SetBool("isGrounded", false);
                     isDoubleJumpAllowed = false;
                 }
                 else
                 {
-                    animator.SetBool("doubleJumpAllowed", true);
+                    //animator.SetBool("doubleJumpAllowed", true);
                     isDoubleJumpAllowed = true;
                 }
             }

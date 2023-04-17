@@ -32,7 +32,7 @@ public class MarkersController : MonoBehaviour
             {
                 gameObject.SetActive(false);
 
-                messageBox.text = "Jump on platform with the color same as Marker.";
+                messageBox.text = "";
                 playerNextColorIndicator.SetActive(true);
 
                 if (PlayerController.currentPosInColorSubseq == -1)

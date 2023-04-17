@@ -14,7 +14,7 @@ public class magneticFieldController : MonoBehaviour
     private Color[] colors;
     private int colorIndex;
     private bool isMagnetOn;
-    public float magnetForce = 10f;
+    private float magnetForce = 80f;
     private float nonZeroGravity;
     private float alpha = 0.3f;
     Color red, blue, yellow;
