@@ -71,6 +71,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5f394078a81b4b3f9998921e9452bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInKeyboardZone: 0
+  fallingPlatform: {fileID: 0}
 --- !u!1 &8162478469326647682
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,7 +263,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -282,3 +284,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6b1f8227d0e2497fa6101a385240755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerKeyPressed: 0
