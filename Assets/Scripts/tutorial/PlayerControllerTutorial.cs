@@ -237,6 +237,7 @@ public class PlayerControllerTutorial : MonoBehaviour
         }
         if (other.gameObject.tag == "BlueBottle")
         {
+            Debug.Log("Color is changed to red here");
             playerSpriteRenderer.color = new Color(1, 0, 0, 1);
             other.gameObject.SetActive(false);
             plaformJumpGuideImg.SetActive(false); 
