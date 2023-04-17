@@ -336,7 +336,8 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag.Equals("TimeIncreasePowerUp"))
         {
             other.gameObject.SetActive(false);
-
+                messageBox.text = "+5 seconds!";
+                Invoke(nameof(ResetMessageBox), 2f);
             PlayerController.totalTime += 5f;
         }
 
