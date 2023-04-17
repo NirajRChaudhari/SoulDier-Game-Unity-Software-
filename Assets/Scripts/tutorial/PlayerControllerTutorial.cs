@@ -119,13 +119,13 @@ public class PlayerControllerTutorial : MonoBehaviour
 
                 if (isDoubleJumpAllowed)
                 {
-                    this.animator.SetBool("doubleJumpAllowed", false);
+                    //this.animator.SetBool("doubleJumpAllowed", false);
                     animator.SetBool("isGrounded", false);
                     isDoubleJumpAllowed = false;
                 }
                 else
                 {
-                    animator.SetBool("doubleJumpAllowed", true);
+                    //animator.SetBool("doubleJumpAllowed", true);
                     isDoubleJumpAllowed = true;
                 }
             }
