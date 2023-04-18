@@ -114,6 +114,6 @@ EditorBuildSettings:
     path: Assets/Scenes/finalLevels/level18.unity
     guid: 34757c1cc33c23241ad7ff4ef6fe842d
   - enabled: 1
-    path: Assets/Scenes/finalLevels/level19.unity
+    path: Assets/Scenes/finalLevels/parth new falling platform.unity
     guid: ec7f51e389f2f4a2b817429edbee5dbc
   m_configObjects: {}
