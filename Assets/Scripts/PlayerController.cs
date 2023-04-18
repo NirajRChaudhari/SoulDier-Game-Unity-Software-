@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer playerNextColorIndicatorSpriteRenderer;
     private TMP_Text targetSeq, targetSeqHeader, nextBottle, globalSequence, timerText;
     public static TMP_Text messageBox;
-    private GameObject checkPoint1, checkPoint2;
+    private GameObject checkPoint1, checkPoint2, doubleJumpAnimationObject;
     public static string level_name;
     private float prev_time = 0;
     private float _time_taken;
@@ -137,6 +137,17 @@ public class PlayerController : MonoBehaviour
         // InvokeRepeating("reverseCooldown",0,0f,1.0f);
 
         // timerText.fontStyle = FontStyles.UpperCase;
+
+         Transform[] playerObjectChildrens = transform.gameObject.GetComponentsInChildren<Transform>();
+        Debug.Log(playerObjectChildrens.Length);
+        foreach (Transform children in playerObjectChildrens)
+        {
+            if (children.tag.Equals("DoubleJumpAnimation"))
+            {
+                doubleJumpAnimationObject = children.gameObject;
+            }
+        }
+        doubleJumpAnimationObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -168,6 +179,9 @@ public class PlayerController : MonoBehaviour
         {
             if (isDoubleJumpAllowed || isGrounded)
             {
+                doubleJumpAnimationObject.SetActive(true);
+                Invoke("disableDoubleJumpAnimation",0.1f);
+
                 playerRigidbody2D.velocity = new Vector2(playerRigidbody2D.velocity.x, jumpForce);
 
                 if (isDoubleJumpAllowed)
@@ -656,6 +670,7 @@ public class PlayerController : MonoBehaviour
         PlatformController.isFrozen = false;
         Debug.Log(PlatformController.isFrozen);
     }
+    
     public void resetMonsterKillMessageBox()
     {
         PlayerController.totalTime += 15f;
@@ -664,6 +679,7 @@ public class PlayerController : MonoBehaviour
         // PlatformController.isFrozen = false;
         // Debug.Log(PlatformController.isFrozen);
     }
+
     public void resetMessageBox2()
     {
         messageBox.text="";
@@ -671,6 +687,9 @@ public class PlayerController : MonoBehaviour
         // Debug.Log(PlatformController.isFrozen);
     }
 
+    private void disableDoubleJumpAnimation(){
+        doubleJumpAnimationObject.SetActive(false);
+    }
 }
 
 
