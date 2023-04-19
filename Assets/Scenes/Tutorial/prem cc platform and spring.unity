@@ -1463,6 +1463,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: parth spring
       objectReference: {fileID: 0}
+    - target: {fileID: 1427287491048112220, guid: 6a6bd1968e0f0934a985e6cc3329cf97, type: 3}
+      propertyPath: jumpPower
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 1427287491048112223, guid: 6a6bd1968e0f0934a985e6cc3329cf97, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -67447,7 +67451,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000013383313856}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -66.51, y: 6.0299997, z: -0.75477886}
+  m_LocalPosition: {x: -66.51, y: 8.1, z: -0.75477886}
   m_LocalScale: {x: 0.56, y: 0.6247934, z: 0.23140496}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -67710,11 +67714,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7328417389042922839, guid: bffc060ce2c1645bcac7a9095b4cd111, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -59.199997
+      value: -61.26
       objectReference: {fileID: 0}
     - target: {fileID: 7328417389042922839, guid: bffc060ce2c1645bcac7a9095b4cd111, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.9
+      value: 3.99
       objectReference: {fileID: 0}
     - target: {fileID: 7328417389042922839, guid: bffc060ce2c1645bcac7a9095b4cd111, type: 3}
       propertyPath: m_LocalPosition.z
