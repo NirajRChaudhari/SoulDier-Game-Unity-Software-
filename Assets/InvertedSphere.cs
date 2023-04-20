@@ -18,7 +18,7 @@ public class InvertedSphere : MonoBehaviour
     private Color red, blue, yellow, noColor;
 
     public static bool isSphereActive = false;
-    public static bool invertControls = false;
+    public static bool invertControls = false, inTheSphereZone = false;
 
 
     void Start()
@@ -70,6 +70,7 @@ public class InvertedSphere : MonoBehaviour
         //If sphere is active only then we change its color
         if (isSphereActive)
         {
+            inTheSphereZone = true;
             colorIndex = (colorIndex) % colors.Length;
             invertedSphereSpriteRenderer.color = colors[colorIndex];
             colorIndex++;
@@ -84,7 +85,10 @@ public class InvertedSphere : MonoBehaviour
 
         }
         else //otherwise we keep it's alpha zero
+        {
+            inTheSphereZone = false;
             invertedSphereSpriteRenderer.color = noColor;
+        }
     }
 }
 

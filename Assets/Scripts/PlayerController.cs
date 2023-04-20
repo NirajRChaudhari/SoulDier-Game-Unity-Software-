@@ -165,11 +165,8 @@ public class PlayerController : MonoBehaviour
 
 
         //----------------------------Invert Logic--------------------------
-        if (InvertedSphere.isSphereActive)
-            if (InvertedSphere.invertControls)
-                playerRigidbody2D.velocity = new Vector2(-moveSpeed * Input.GetAxis("Horizontal"), playerRigidbody2D.velocity.y);
-            else
-                playerRigidbody2D.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), playerRigidbody2D.velocity.y);
+        if (InvertedSphere.inTheSphereZone && InvertedSphere.invertControls)
+            playerRigidbody2D.velocity = new Vector2(-moveSpeed * Input.GetAxis("Horizontal"), playerRigidbody2D.velocity.y);
         else
             playerRigidbody2D.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), playerRigidbody2D.velocity.y);
 
