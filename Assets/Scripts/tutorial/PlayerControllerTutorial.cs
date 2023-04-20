@@ -106,9 +106,9 @@ public class PlayerControllerTutorial : MonoBehaviour
 
 
         if(isGrounded) {
-            isDoubleJumpAllowed = true;
-            this.animator.SetBool("isGrounded", true);
-            this.animator.SetBool("doubleJumpAllowed",true);
+           isDoubleJumpAllowed = true;
+           this.animator.SetBool("isGrounded", true);
+           this.animator.SetBool("doubleJumpAllowed",true);
         }
 
         if (Input.GetButtonDown("Jump"))
@@ -119,13 +119,19 @@ public class PlayerControllerTutorial : MonoBehaviour
 
                 if (isDoubleJumpAllowed)
                 {
-                    //this.animator.SetBool("doubleJumpAllowed", false);
+                    this.animator.SetBool("doubleJumpAllowed", false);
+                    // Transform[] playerChildrens = transform.parent.GetComponentsInChildren<Transform>();
+                    // foreach (Transform checkpointTransform in playerChildrens)
+                    // {
+                    //     Debug.Log(checkpointTransform);
+                    // }
+                    
                     animator.SetBool("isGrounded", false);
                     isDoubleJumpAllowed = false;
                 }
                 else
                 {
-                    //animator.SetBool("doubleJumpAllowed", true);
+                    animator.SetBool("doubleJumpAllowed", true);
                     isDoubleJumpAllowed = true;
                 }
             }
@@ -389,6 +395,7 @@ public class PlayerControllerTutorial : MonoBehaviour
 
         //Set All Checkpoint Child Objects
         Transform[] allCheckpoints = checkPointGroup.GetComponentsInChildren<Transform>();
+        
         foreach (Transform checkpointTransform in allCheckpoints)
         {
             switch (checkpointTransform.gameObject.name)
