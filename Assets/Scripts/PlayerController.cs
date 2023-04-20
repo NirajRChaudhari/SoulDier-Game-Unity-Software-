@@ -137,6 +137,10 @@ public class PlayerController : MonoBehaviour
         // InvokeRepeating("reverseCooldown",0,0f,1.0f);
 
         // timerText.fontStyle = FontStyles.UpperCase;
+        PreReqText ob=new PreReqText();
+        messageBox.text = ob.getText(level_name);
+        // messageBox.fontSize = 100;
+        Invoke(nameof(ResetMessageBox), 2f);
     }
 
     // Update is called once per frame
