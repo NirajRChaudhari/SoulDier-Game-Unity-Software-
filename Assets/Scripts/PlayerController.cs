@@ -138,6 +138,11 @@ public class PlayerController : MonoBehaviour
 
         // timerText.fontStyle = FontStyles.UpperCase;
 
+        PreReqText ob=new PreReqText();
+        messageBox.text = ob.getText(level_name);
+        // messageBox.fontSize = 100;
+        Invoke(nameof(ResetMessageBox), 2f);
+
         Transform[] playerObjectChildrens = transform.gameObject.GetComponentsInChildren<Transform>();
         Debug.Log(playerObjectChildrens.Length);
         foreach (Transform children in playerObjectChildrens)
