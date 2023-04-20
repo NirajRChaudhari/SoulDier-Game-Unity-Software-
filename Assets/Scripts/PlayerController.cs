@@ -27,8 +27,8 @@ public class PlayerController : MonoBehaviour
     public static int jump_counter;
     public static bool seq_jump_flag;
     public bool send_time_up_flag;
-    private bool TimerColorRed=false; 
-    private bool lessTimeFlag=false;
+    private bool TimerColorRed = false;
+    private bool lessTimeFlag = false;
 
 
     // Private variables
@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer playerNextColorIndicatorSpriteRenderer;
     private TMP_Text targetSeq, targetSeqHeader, nextBottle, globalSequence, timerText;
     public static TMP_Text messageBox;
-    private GameObject checkPoint1, checkPoint2;
+    private GameObject checkPoint1, checkPoint2, doubleJumpAnimationObject;
     public static string level_name;
     private float prev_time = 0;
     private float _time_taken;
@@ -74,9 +74,9 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         PlatformControllerTutorial.isFrozen = false;
-        PlatformController.isFrozen =false;
-        initial_x=transform.position.x;
-        initial_y=transform.position.y;
+        PlatformController.isFrozen = false;
+        initial_x = transform.position.x;
+        initial_y = transform.position.y;
         this.jumpForce = this.jumpForceInput;
         this.moveSpeed = this.moveSpeedInput;
         Debug.Log(this.moveSpeed);
@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour
         prev_time = 0;
         lastCheckpoint = "Starting Point";
 
-        
+
         GameObject.Find("gameOverScreen").GetComponent<SpriteRenderer>().color = new Color(0f, 0f, 0f, 0f);
 
         retrieveAndInitializeAllPrivateObjects();
@@ -131,12 +131,23 @@ public class PlayerController : MonoBehaviour
         jump_counter = 0;
         seq_jump_flag = false;
         send_time_up_flag = false;
-        timerText.fontSize =52;
+        timerText.fontSize = 52;
         timerText.fontStyle = FontStyles.Bold;
 
         // InvokeRepeating("reverseCooldown",0,0f,1.0f);
 
         // timerText.fontStyle = FontStyles.UpperCase;
+
+        Transform[] playerObjectChildrens = transform.gameObject.GetComponentsInChildren<Transform>();
+        Debug.Log(playerObjectChildrens.Length);
+        foreach (Transform children in playerObjectChildrens)
+        {
+            if (children.tag.Equals("DoubleJumpAnimation"))
+            {
+                doubleJumpAnimationObject = children.gameObject;
+            }
+        }
+        doubleJumpAnimationObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -148,9 +159,9 @@ public class PlayerController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, .2f, whatIsGround);
 
 
-//----------------------------Invert Logic--------------------------
+        //----------------------------Invert Logic--------------------------
         if (InvertedSphere.isSphereActive)
-            if(InvertedSphere.invertControls)
+            if (InvertedSphere.invertControls)
                 playerRigidbody2D.velocity = new Vector2(-moveSpeed * Input.GetAxis("Horizontal"), playerRigidbody2D.velocity.y);
             else
                 playerRigidbody2D.velocity = new Vector2(moveSpeed * Input.GetAxis("Horizontal"), playerRigidbody2D.velocity.y);
@@ -168,6 +179,9 @@ public class PlayerController : MonoBehaviour
         {
             if (isDoubleJumpAllowed || isGrounded)
             {
+                doubleJumpAnimationObject.SetActive(true);
+                Invoke("disableDoubleJumpAnimation", 0.1f);
+
                 playerRigidbody2D.velocity = new Vector2(playerRigidbody2D.velocity.x, jumpForce);
 
                 if (isDoubleJumpAllowed)
@@ -203,7 +217,7 @@ public class PlayerController : MonoBehaviour
         }
         animator.SetFloat("moveSpeed", Mathf.Abs(playerRigidbody2D.velocity.x));
         //Debug.Log("isGrounded == >"+ isGrounded);
-        animator.SetBool("isGrounded", isGrounded); 
+        animator.SetBool("isGrounded", isGrounded);
 
         float positionX = transform.position.x;
 
@@ -324,7 +338,8 @@ public class PlayerController : MonoBehaviour
                 //invincibleCounter = invincibleLength;
                 //spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0.5f);
             }
-            else{
+            else
+            {
                 messageBox.text = "Health is full";
                 Invoke(nameof(ResetMessageBox), 2f);
 
@@ -336,8 +351,8 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag.Equals("TimeIncreasePowerUp"))
         {
             other.gameObject.SetActive(false);
-                messageBox.text = "+5 seconds!";
-                Invoke(nameof(ResetMessageBox), 2f);
+            messageBox.text = "+5 seconds!";
+            Invoke(nameof(ResetMessageBox), 2f);
             PlayerController.totalTime += 5f;
         }
 
@@ -387,7 +402,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        string tag = collision.gameObject.tag; 
+        string tag = collision.gameObject.tag;
 
         if (tag.Equals("EnemyMonster") && !collision.gameObject.GetComponent<SpriteRenderer>().color.CompareRGB(gameObject.GetComponent<SpriteRenderer>().color))
         {
@@ -501,7 +516,7 @@ public class PlayerController : MonoBehaviour
                 nextBottle.text = getColorOfBottle(globalSequence.text[0]);
             }
         }
-                if (PlayerPrefs.HasKey("lastCheckpoint"))
+        if (PlayerPrefs.HasKey("lastCheckpoint"))
         {
             if (PlayerPrefs.GetString("lastCheckpoint").Equals("Checkpoint1"))
             {
@@ -567,17 +582,18 @@ public class PlayerController : MonoBehaviour
         float seconds = Mathf.FloorToInt(time % 60);
         timerText.text = "TIME - " + string.Format("{0:00}:{1:00}", minutes, seconds);
         // Debug.Log(time);
-        if (time<20 && lessTimeFlag==false){
+        if (time < 20 && lessTimeFlag == false)
+        {
             Debug.Log("Time is 145");
             // InvokeRepeating("changeTimerColor", 1.0f);
-                    InvokeRepeating("changeTimerColor", 0.0f, 1.0f);
-            lessTimeFlag=true;
+            InvokeRepeating("changeTimerColor", 0.0f, 1.0f);
+            lessTimeFlag = true;
         }
 
-        
+
     }
     void changeTimerColor()
-    
+
     {
         if (TimerColorRed == true)
         {
@@ -591,7 +607,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-     void ResetMessageBox()
+    void ResetMessageBox()
     {
         messageBox.text = "";
     }
@@ -656,6 +672,7 @@ public class PlayerController : MonoBehaviour
         PlatformController.isFrozen = false;
         Debug.Log(PlatformController.isFrozen);
     }
+
     public void resetMonsterKillMessageBox()
     {
         PlayerController.totalTime += 15f;
@@ -664,13 +681,18 @@ public class PlayerController : MonoBehaviour
         // PlatformController.isFrozen = false;
         // Debug.Log(PlatformController.isFrozen);
     }
+
     public void resetMessageBox2()
     {
-        messageBox.text="";
+        messageBox.text = "";
         // PlatformController.isFrozen = false;
         // Debug.Log(PlatformController.isFrozen);
     }
 
+    private void disableDoubleJumpAnimation()
+    {
+        doubleJumpAnimationObject.SetActive(false);
+    }
 }
 
 
