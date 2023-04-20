@@ -57,6 +57,7 @@ public class FallingPlatKeyboardController : MonoBehaviour
         if (other.gameObject.name == "Player")
         {
             playerInKeyboardZone = false;
+            ResetMessageBox();
         }
     }
 
