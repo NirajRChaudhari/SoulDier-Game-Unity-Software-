@@ -6,7 +6,7 @@ using UnityEngine;
 public class JumpPad : MonoBehaviour
 {
 
-    public float jumpPower = 20f;
+    private float jumpPower = 20f;
 
     
 
