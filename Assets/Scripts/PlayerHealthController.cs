@@ -103,7 +103,16 @@ public class PlayerHealthController : MonoBehaviour
                     Debug.Log(playerController.lastCheckpoint);
                     PlayerPrefs.SetFloat("x", checkPoint1.transform.position.x);
                     PlayerPrefs.SetFloat("y", checkPoint1.transform.position.y);
-                    PlayerPrefs.SetString("globalSequenceFile", globalSequence.text);
+
+                    if (spriteRenderer.color == Color.yellow)
+                    {
+                        PlayerPrefs.SetString("globalSequenceFile", "B" + globalSequence.text);
+                    }
+                    else
+                    {
+                        PlayerPrefs.SetString("globalSequenceFile", globalSequence.text);
+                    }
+
                     PlayerPrefs.SetString("lastCheckpoint", playerController.lastCheckpoint);
                 }
                 else if (playerController.lastCheckpoint == "Checkpoint2")
@@ -135,7 +144,8 @@ public class PlayerHealthController : MonoBehaviour
         }
     }
 
-    private void resetIsKilled() {
+    private void resetIsKilled()
+    {
         animator.SetBool("isKilled", false);
     }
 
