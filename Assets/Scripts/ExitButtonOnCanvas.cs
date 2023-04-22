@@ -8,6 +8,6 @@ public class ExitButtonOnCanvas : MonoBehaviour
     public void mainMenuScreen()
     {
         // PlatformController.isFrozen=false;
-        SceneManager.LoadScene("ChangeLvl");
+        SceneManager.LoadScene("LevelSelectorScreen");
     }
 }

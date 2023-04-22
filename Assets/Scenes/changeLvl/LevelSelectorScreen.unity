@@ -222,7 +222,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 28084902}
         m_TargetAssemblyTypeName: StartGameBtn, Assembly-CSharp
-        m_MethodName: TutorialLevel1
+        m_MethodName: Level12Start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -369,7 +369,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 66715941}
         m_TargetAssemblyTypeName: StartGameBtn, Assembly-CSharp
-        m_MethodName: TutorialLevel1
+        m_MethodName: Level15Start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -516,7 +516,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 204903333}
         m_TargetAssemblyTypeName: StartGameBtn, Assembly-CSharp
-        m_MethodName: TutorialLevel1
+        m_MethodName: Level21Start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1005,7 +1005,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 461415045}
         m_TargetAssemblyTypeName: StartGameBtn, Assembly-CSharp
-        m_MethodName: TutorialLevel1
+        m_MethodName: Level14Start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1152,7 +1152,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 506653557}
         m_TargetAssemblyTypeName: StartGameBtn, Assembly-CSharp
-        m_MethodName: TutorialLevel1
+        m_MethodName: Level17Start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1299,7 +1299,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 560197390}
         m_TargetAssemblyTypeName: StartGameBtn, Assembly-CSharp
-        m_MethodName: TutorialLevel1
+        m_MethodName: Level8Start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1446,7 +1446,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 562605376}
         m_TargetAssemblyTypeName: StartGameBtn, Assembly-CSharp
-        m_MethodName: TutorialLevel1
+        m_MethodName: Level18Start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1812,7 +1812,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 649399093}
         m_TargetAssemblyTypeName: StartGameBtn, Assembly-CSharp
-        m_MethodName: TutorialLevel1
+        m_MethodName: Level25Start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2094,7 +2094,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 738794153}
         m_TargetAssemblyTypeName: StartGameBtn, Assembly-CSharp
-        m_MethodName: TutorialLevel1
+        m_MethodName: Level5Start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2241,7 +2241,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 766415509}
         m_TargetAssemblyTypeName: StartGameBtn, Assembly-CSharp
-        m_MethodName: TutorialLevel1
+        m_MethodName: Level7Start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3139,7 +3139,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 992799289}
         m_TargetAssemblyTypeName: StartGameBtn, Assembly-CSharp
-        m_MethodName: TutorialLevel1
+        m_MethodName: Level1Start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3286,7 +3286,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1004194889}
         m_TargetAssemblyTypeName: StartGameBtn, Assembly-CSharp
-        m_MethodName: TutorialLevel1
+        m_MethodName: Level9Start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3568,7 +3568,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1062166094}
         m_TargetAssemblyTypeName: StartGameBtn, Assembly-CSharp
-        m_MethodName: TutorialLevel1
+        m_MethodName: Level6Start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3715,7 +3715,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1072027814}
         m_TargetAssemblyTypeName: StartGameBtn, Assembly-CSharp
-        m_MethodName: TutorialLevel1
+        m_MethodName: Level19Start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3862,7 +3862,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1115070451}
         m_TargetAssemblyTypeName: StartGameBtn, Assembly-CSharp
-        m_MethodName: TutorialLevel1
+        m_MethodName: Level3Start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4009,7 +4009,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1139901805}
         m_TargetAssemblyTypeName: StartGameBtn, Assembly-CSharp
-        m_MethodName: TutorialLevel1
+        m_MethodName: Level4Start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4291,7 +4291,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1148907707}
         m_TargetAssemblyTypeName: StartGameBtn, Assembly-CSharp
-        m_MethodName: TutorialLevel1
+        m_MethodName: Level13Start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4708,7 +4708,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1254060881}
         m_TargetAssemblyTypeName: StartGameBtn, Assembly-CSharp
-        m_MethodName: TutorialLevel1
+        m_MethodName: Level2Start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5193,7 +5193,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1315799432}
         m_TargetAssemblyTypeName: StartGameBtn, Assembly-CSharp
-        m_MethodName: TutorialLevel1
+        m_MethodName: Level11Start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5340,7 +5340,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1369106453}
         m_TargetAssemblyTypeName: StartGameBtn, Assembly-CSharp
-        m_MethodName: TutorialLevel1
+        m_MethodName: Level22Start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5892,7 +5892,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1554941620}
         m_TargetAssemblyTypeName: StartGameBtn, Assembly-CSharp
-        m_MethodName: TutorialLevel1
+        m_MethodName: Level20Start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6309,7 +6309,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1665645880}
         m_TargetAssemblyTypeName: StartGameBtn, Assembly-CSharp
-        m_MethodName: TutorialLevel1
+        m_MethodName: Level23Start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7266,7 +7266,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1786396942}
         m_TargetAssemblyTypeName: StartGameBtn, Assembly-CSharp
-        m_MethodName: TutorialLevel1
+        m_MethodName: Level16Start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7413,7 +7413,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1810480816}
         m_TargetAssemblyTypeName: StartGameBtn, Assembly-CSharp
-        m_MethodName: TutorialLevel1
+        m_MethodName: Level10Start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7965,7 +7965,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2036988105}
         m_TargetAssemblyTypeName: StartGameBtn, Assembly-CSharp
-        m_MethodName: TutorialLevel1
+        m_MethodName: Level24Start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

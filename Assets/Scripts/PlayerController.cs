@@ -104,9 +104,9 @@ public class PlayerController : MonoBehaviour
         //Time for level
         if (!RespawnCheck.isRespawn)
         {
-            if (scene.name == "FinalLvl1")
+            if (scene.name == "level1" || scene.name == "level2" || scene.name == "level3" || scene.name == "level4" || scene.name == "level5" || scene.name == "level6" || scene.name == "level7")
             {
-                totalTime = 120;
+                totalTime = 1200;
             }
             else
             {
