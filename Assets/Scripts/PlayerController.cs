@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour
 
         // timerText.fontStyle = FontStyles.UpperCase;
 
-        PreReqText ob=new PreReqText();
+        PreReqText ob = new PreReqText();
         messageBox.text = ob.getText(level_name);
         // messageBox.fontSize = 100;
         Invoke(nameof(ResetMessageBox), 2f);
@@ -513,6 +513,7 @@ public class PlayerController : MonoBehaviour
         if (PlayerPrefs.HasKey("globalSequenceFile") && PlayerPrefs.HasKey("lastCheckpoint"))
         {
             globalSequence.text = PlayerPrefs.GetString("globalSequenceFile");
+
             if (globalSequence.text != "")
             {
                 nextBottle.text = getColorOfBottle(globalSequence.text[0]);
