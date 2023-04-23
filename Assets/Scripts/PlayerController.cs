@@ -73,6 +73,11 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        //Invert Controls Flas Initialization
+        InvertedSphere.inTheSphereZone = false;
+        InvertedSphere.isSphereActive = false;
+        InvertedSphere.invertControls = false;
+
         PlatformControllerTutorial.isFrozen = false;
         PlatformController.isFrozen = false;
         initial_x = transform.position.x;

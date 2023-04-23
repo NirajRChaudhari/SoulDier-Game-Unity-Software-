@@ -27,9 +27,13 @@ public class InvertedSphere : MonoBehaviour
         //invertedSphereSpriteRenderer.color = new Color(255, 255, 255, 0);
         playerSpriteRenderer = GameObject.Find("Player").GetComponent<SpriteRenderer>();
 
-        //gameObject.SetActive(false);
+        isSphereActive = false;
+        invertControls = false;
+        inTheSphereZone = false;
 
-        alpha = 0.5f;
+    //gameObject.SetActive(false);
+
+    alpha = 0.5f;
         red = Color.red;
         red.a = alpha;
         blue = Color.blue;
