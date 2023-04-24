@@ -23,7 +23,7 @@ public class JumpPad : MonoBehaviour
         colors = new Color[] { red, yellow, blue };
         gameObject.layer = 3;
     jumpPadSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-    InvokeRepeating("ChangeColor", 0.0f, 4.0f);
+    InvokeRepeating("ChangeColor", 0.0f, 3.0f);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
