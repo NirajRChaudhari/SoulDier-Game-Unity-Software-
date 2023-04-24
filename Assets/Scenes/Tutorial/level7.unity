@@ -142444,6 +142444,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: parth spring (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1427287491048112220, guid: 6a6bd1968e0f0934a985e6cc3329cf97, type: 3}
+      propertyPath: jumpPower
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1427287491048112223, guid: 6a6bd1968e0f0934a985e6cc3329cf97, type: 3}
       propertyPath: m_RootOrder
       value: 11

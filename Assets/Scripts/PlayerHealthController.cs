@@ -98,9 +98,12 @@ public class PlayerHealthController : MonoBehaviour
                 ob2.Send("Killed by Traps", PlayerController.level_name);
                 Debug.Log("Restarting");
 
+                Debug.Log(playerController.lastCheckpoint);
+
                 if (playerController.lastCheckpoint == "Checkpoint1")
                 {
-                    Debug.Log(playerController.lastCheckpoint);
+                    
+                    Debug.Log(checkPoint1.transform.position.x);
                     PlayerPrefs.SetFloat("x", checkPoint1.transform.position.x);
                     PlayerPrefs.SetFloat("y", checkPoint1.transform.position.y);
 
@@ -117,6 +120,7 @@ public class PlayerHealthController : MonoBehaviour
                 }
                 else if (playerController.lastCheckpoint == "Checkpoint2")
                 {
+                    Debug.Log(checkPoint2.transform.position.x);
                     PlayerPrefs.SetFloat("x", checkPoint2.transform.position.x);
                     PlayerPrefs.SetFloat("y", checkPoint2.transform.position.y);
                     PlayerPrefs.SetString("globalSequenceFile", globalSequence.text);
