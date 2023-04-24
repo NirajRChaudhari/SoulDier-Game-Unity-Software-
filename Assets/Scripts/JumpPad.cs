@@ -6,7 +6,7 @@ using UnityEngine;
 public class JumpPad : MonoBehaviour
 {
 
-    private float jumpPower = 20f;
+    public float jumpPower = 20f;
     private float alpha = 0.5f;
     private SpriteRenderer jumpPadSpriteRenderer;
     private Color[] colors;
