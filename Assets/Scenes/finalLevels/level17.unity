@@ -118656,7 +118656,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1266862124216433993, guid: d2b2b60bd339b4e4eaf93bc2787a89ee, type: 3}
       propertyPath: jumpPower
-      value: 15
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 1266862124216433994, guid: d2b2b60bd339b4e4eaf93bc2787a89ee, type: 3}
       propertyPath: m_RootOrder
@@ -119935,7 +119935,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1266862124216433993, guid: d2b2b60bd339b4e4eaf93bc2787a89ee, type: 3}
       propertyPath: jumpPower
-      value: 14
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 1266862124216433994, guid: d2b2b60bd339b4e4eaf93bc2787a89ee, type: 3}
       propertyPath: m_RootOrder
